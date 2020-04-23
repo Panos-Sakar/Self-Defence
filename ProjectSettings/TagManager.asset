@@ -16,12 +16,12 @@ TagManager:
   - 
   - PostProssesing
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Particles
+  - StaticObjects
+  - MovingObjects
+  - SpawnPoints
+  - Systems
+  - Lights
   - 
   - 
   - 

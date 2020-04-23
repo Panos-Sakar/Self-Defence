@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerLogicScript : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class PlayerLogicScript : MonoBehaviour
 
     private PlayerInputActions _inputActionsVar;
 
-    private Vector2 _zoomLevel;
+    private float _zoomLevel;
     private bool _fireProjectile;
     
     public float normFov = 50f, maxFov = 60f, minFov = 25f;
@@ -24,7 +25,7 @@ public class PlayerLogicScript : MonoBehaviour
         normFov = 50f;
         _inputActionsVar = new PlayerInputActions();
         _inputActionsVar.PlayerControls.Fire.performed += ctx => _fireProjectile = ctx.ReadValue<bool>();
-        _inputActionsVar.PlayerControls.Zoom.performed += ctx => _zoomLevel = ctx.ReadValue<Vector2>();
+        _inputActionsVar.PlayerControls.Zoom.performed += ctx => _zoomLevel = ctx.ReadValue<float>();
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class PlayerLogicScript : MonoBehaviour
     {
         headGridTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
         headInerTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
-        normFov += _zoomLevel.y/100;
+        normFov += _zoomLevel;
         if (normFov < minFov) normFov = minFov;
         if (normFov > maxFov) normFov = maxFov;
         Camera.main.fieldOfView = normFov;
