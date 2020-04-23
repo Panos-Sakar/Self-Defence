@@ -581,6 +581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Graphy]'
       objectReference: {fileID: 0}
+    - target: {fileID: 177638, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_audioModuleState
       value: 4
@@ -593,9 +597,17 @@ PrefabInstance:
       propertyPath: m_advancedModulePosition
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11496292, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_enableOnStartup
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 22323726, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22323726, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22439978, guid: 0abab5bb77339e4428787a870eb31bd3, type: 3}
       propertyPath: m_AnchorMax.x
