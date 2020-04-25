@@ -1,47 +1,35 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.InputSystem;
 
 public class PlayerLogicScript : MonoBehaviour
 {
-    [SerializeField] private  float normFov = 50f, maxFov = 60f, minFov = 25f;
+    
     [SerializeField] private float headRotationSpeed = 50f;
-    
-    public GameObject headInerTransform;
+    [SerializeField] private SpawnProjectiles projectileSystem;
+    public GameObject headInnerTransform;
     public GameObject headGridTransform;
-    private PlayerInputActions _inputActionsVar;
-    private Camera _mainCamera;
-
-    private float _zoomLevel;
-    private float _fireProjectile;
     
-
+    private PlayerInputActions _inputActionsVar;
+    
+    
     // Start is called before the first frame update
     void Awake()
     {
-        _inputActionsVar = new PlayerInputActions();
-        _inputActionsVar.PlayerControls.Fire.performed += ctx => _fireProjectile = ctx.ReadValue<float>();
-        _inputActionsVar.PlayerControls.Zoom.performed += ctx => _zoomLevel = ctx.ReadValue<float>();
-        _mainCamera = Camera.main;
-        
-        normFov = 50f;
+        InitializeInputSystem();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         headGridTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
-        headInerTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
-        
-        normFov += _zoomLevel;
-        
-        if (normFov < minFov) normFov = minFov;
-        if (normFov > maxFov) normFov = maxFov;
-        
-        _mainCamera.fieldOfView = normFov;
+        headInnerTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
+
     }
 
     private void OnEnable()
@@ -52,5 +40,16 @@ public class PlayerLogicScript : MonoBehaviour
     private void OnDisable()
     {
         _inputActionsVar.Disable();
+    }
+
+    private void FireProjectile(InputAction.CallbackContext context)
+    {
+        projectileSystem.SpawnFireEffect();
+    }
+
+    private void InitializeInputSystem()
+    {
+        _inputActionsVar = new PlayerInputActions();
+        _inputActionsVar.PlayerControls.Fire.performed += FireProjectile;
     }
 }

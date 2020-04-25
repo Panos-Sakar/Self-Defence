@@ -6,20 +6,12 @@
             "id": "48d4dae6-36e3-4267-84bf-f422026f8842",
             "actions": [
                 {
-                    "name": "Zoom",
-                    "type": "PassThrough",
-                    "id": "b6f6d40e-fa43-4f6c-af85-9edf0dba9cd5",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "d4e385be-3374-42e5-9a68-5fe402ddd537",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "ContextMenu",
@@ -30,17 +22,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ExitGame",
-                    "type": "Button",
-                    "id": "a345f31a-4076-4f09-afc0-a791eb2f30f7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "MoveCursor",
                     "type": "PassThrough",
-                    "id": "96bc3827-9944-437d-b958-6b9d7738dbea",
+                    "id": "359c6df1-9048-4964-a58b-f95df0301adb",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
@@ -49,55 +33,11 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "5311ab8e-f088-450c-a815-4408306ca01a",
-                    "path": "<Mouse>/scroll/y",
-                    "interactions": "",
-                    "processors": "Invert,Clamp(min=-1,max=1),Scale(factor=5)",
-                    "groups": "",
-                    "action": "Zoom",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "be1333b4-3088-4982-941c-69a109267795",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Zoom",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "ba0f0f27-a05f-4c10-a474-ae12c5b58013",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Zoom",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "85316cd9-9231-4d15-a26e-6c035d1cefc7",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Zoom",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "",
                     "id": "2e6eef5b-cd84-4618-9476-3ed99ca29bb0",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Mouse",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -108,7 +48,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -119,7 +59,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Mouse",
                     "action": "ContextMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -130,46 +70,281 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "ContextMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b9380d59-68cd-4652-baee-9e354d71a7d4",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ExitGame",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "db3e505a-2d2c-47f0-aca9-a827d0fb99a3",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ExitGame",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0e23ed00-2683-4130-b01d-0e6eb23534d1",
+                    "id": "41f05e00-a9e4-400e-abd3-4b976a6b7499",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "MoveCursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CameraControls",
+            "id": "a9bf0f48-25c3-4fc7-aab9-6e4f4e4d78eb",
+            "actions": [
+                {
+                    "name": "RotateEnable",
+                    "type": "Button",
+                    "id": "41312b50-6b01-4c10-8120-cb6218a81a55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotateDisable",
+                    "type": "Button",
+                    "id": "496929b5-7334-40f9-a0ec-7614b1a49bcb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Zoom",
+                    "type": "PassThrough",
+                    "id": "7dc34ef5-c177-4ce8-a951-8dcc66ef4b95",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotateCameraWithMouse",
+                    "type": "Value",
+                    "id": "6cbb5035-4ae4-4a0a-9554-7b1aeeec72be",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotateCameraWithButtons",
+                    "type": "Value",
+                    "id": "e4c84ede-d756-448a-9af2-3335d1b91fef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ccdcf170-8904-4e41-b63c-db73849130e4",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "RotateEnable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60f16807-178f-47f9-9c94-a93e8f8e999f",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "RotateCameraWithMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "791e35cf-7570-4717-9016-25b6f2fdf0b2",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "RotateDisable",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "GamepadComp",
+                    "id": "d4042add-92ef-4dac-9faa-ab4992874a57",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateCameraWithButtons",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "40cf3d0f-23c3-41ae-89b6-e399ee888287",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateCameraWithButtons",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "1941fbf3-fa37-45d7-94a3-05af24fd0fd6",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateCameraWithButtons",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "WASDComp",
+                    "id": "cc951107-8e23-4b6d-a6b7-69b30da38200",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateCameraWithButtons",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "5222d06e-b37a-4c64-b7b6-3eed4252cedb",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "RotateCameraWithButtons",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "61c68e75-1444-4f76-907d-cf4d5b28d113",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "RotateCameraWithButtons",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9c734609-6092-4b75-81e2-9f3f98e4b666",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "Invert,Clamp(min=-1,max=1),Scale(factor=5)",
+                    "groups": "Mouse",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "DamepadZoom",
+                    "id": "73d5f80e-28f3-49f9-8104-b16eb50a0a19",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "e328120d-cf8e-469a-bdc3-7bec4b58201c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3c7ddbf5-85c0-42b4-afc6-9d243a824526",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "UIControls1",
+            "id": "5c4372d1-6c91-425a-9a59-3f7c69053871",
+            "actions": [
+                {
+                    "name": "ExitGame",
+                    "type": "Button",
+                    "id": "8d1d5823-9315-41c1-adc2-a2f703e5b3fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8a133c47-ad4e-4432-ac4c-765e80916a52",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "ExitGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "68af3607-6403-4cb8-bbc7-4e15025f930e",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ExitGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Mouse",
+            "bindingGroup": "Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
