@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 314288632855744271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.019}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 74908192627307354}
   m_RootOrder: 1
@@ -4767,7 +4767,7 @@ GameObject:
   - component: {fileID: 3212585957654976831}
   - component: {fileID: 149390747174327266}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: UberProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4782,7 +4782,7 @@ Transform:
   m_GameObject: {fileID: 359624065364460398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 5322701436569004355}
   - {fileID: 5771721760057678070}
@@ -4802,7 +4802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f399d6efea3aab54694209976a858a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 40
   timeToSelfDestroy: 5
   impactEffect: {fileID: 641640498708556364, guid: 9e9e8a3f5f107b646add30e9471e0f5d,
     type: 3}
@@ -4820,7 +4820,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &149390747174327266
 Rigidbody:
@@ -4864,7 +4864,7 @@ Transform:
   m_GameObject: {fileID: 1673519731665931821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 74908192627307354}
   m_RootOrder: 2
@@ -5002,7 +5002,7 @@ Transform:
   m_GameObject: {fileID: 6729553402038121883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 74908192627307354}
   m_RootOrder: 0

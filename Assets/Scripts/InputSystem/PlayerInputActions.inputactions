@@ -280,7 +280,7 @@
             ]
         },
         {
-            "name": "UIControls1",
+            "name": "UIControls",
             "id": "5c4372d1-6c91-425a-9a59-3f7c69053871",
             "actions": [
                 {
@@ -289,7 +289,7 @@
                     "id": "8d1d5823-9315-41c1-adc2-a2f703e5b3fb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=1)"
                 }
             ],
             "bindings": [

@@ -12,9 +12,13 @@ public class EnemyLogic : MonoBehaviour
     private Transform _playerTransform;
     private Transform _myTransform;
     
-    [SerializeField] private bool destroyMe = false;
     [SerializeField] private GameObject explosionParticle = null;
+    [SerializeField] private GameObject hitParticle = null;
 
+    [SerializeField] public float damageAmount = 0;
+    [SerializeField] public float life = 1;
+    [SerializeField] public float maxLife = 1;
+    
     private Vector3 _particlePosition;
     private Quaternion _particleRotation;
     // Start is called before the first frame update
@@ -29,12 +33,6 @@ public class EnemyLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space") || destroyMe)
-        {
-            destroyMe = false;
-            gameObject.SetActive(false);
-        }
-
         if (gameObject.activeInHierarchy.Equals(true))
         {
             _enemyNavMesh.destination = _playerTransform.position;
@@ -51,6 +49,23 @@ public class EnemyLogic : MonoBehaviour
             
             Instantiate(explosionParticle, _particlePosition, _particleRotation);
             gameObject.SetActive(false);  
+        }
+
+        if (other.gameObject.CompareTag("Projectile"))
+        {
+            float damageTaken = 1;
+            life -= damageTaken;
+
+            if (life <= 0)
+            {
+                life = maxLife;
+                _particlePosition = _myTransform.position;
+                _particleRotation = _myTransform.rotation;
+
+                _player.GetComponent<PlayerLogicScript>().giveMoney(1);
+                Instantiate(hitParticle, _particlePosition, _particleRotation);
+                gameObject.SetActive(false);
+            }
         }
     }
 

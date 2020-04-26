@@ -57,7 +57,6 @@ public class CameraRotator : MonoBehaviour
         if (fieldOfView > maxFieldOfView) fieldOfView = maxFieldOfView;
         
         _mainCamera.fieldOfView = fieldOfView;
-        
     }
 
     private void RotateCamera(InputAction.CallbackContext context)

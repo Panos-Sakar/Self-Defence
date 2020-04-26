@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RotateToMouse : MonoBehaviour
 {
-    private Camera _mainCamera;
+    private Camera _mainCamera = null;
     private Ray _rayMouse;
 
-    private Vector3 _position;
-    private Vector3 _direction;
-    private Quaternion _rotation;
+    private Vector3 _position = new Vector3(0,0,0);
+    private Vector3 _direction = new Vector3(0,0,0);
+    private Quaternion _rotation = new Quaternion();
 
-    [SerializeField] private float maximumLength;
+    [SerializeField] private float maximumLength = 40;
 
     void Awake()
     {

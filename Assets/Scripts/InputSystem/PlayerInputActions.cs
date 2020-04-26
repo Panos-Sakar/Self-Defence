@@ -293,7 +293,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""UIControls1"",
+            ""name"": ""UIControls"",
             ""id"": ""5c4372d1-6c91-425a-9a59-3f7c69053871"",
             ""actions"": [
                 {
@@ -302,7 +302,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""8d1d5823-9315-41c1-adc2-a2f703e5b3fb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -373,9 +373,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_CameraControls_Zoom = m_CameraControls.FindAction("Zoom", throwIfNotFound: true);
         m_CameraControls_RotateCameraWithMouse = m_CameraControls.FindAction("RotateCameraWithMouse", throwIfNotFound: true);
         m_CameraControls_RotateCameraWithButtons = m_CameraControls.FindAction("RotateCameraWithButtons", throwIfNotFound: true);
-        // UIControls1
-        m_UIControls1 = asset.FindActionMap("UIControls1", throwIfNotFound: true);
-        m_UIControls1_ExitGame = m_UIControls1.FindAction("ExitGame", throwIfNotFound: true);
+        // UIControls
+        m_UIControls = asset.FindActionMap("UIControls", throwIfNotFound: true);
+        m_UIControls_ExitGame = m_UIControls.FindAction("ExitGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -536,29 +536,29 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     }
     public CameraControlsActions @CameraControls => new CameraControlsActions(this);
 
-    // UIControls1
-    private readonly InputActionMap m_UIControls1;
-    private IUIControls1Actions m_UIControls1ActionsCallbackInterface;
-    private readonly InputAction m_UIControls1_ExitGame;
-    public struct UIControls1Actions
+    // UIControls
+    private readonly InputActionMap m_UIControls;
+    private IUIControlsActions m_UIControlsActionsCallbackInterface;
+    private readonly InputAction m_UIControls_ExitGame;
+    public struct UIControlsActions
     {
         private @PlayerInputActions m_Wrapper;
-        public UIControls1Actions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ExitGame => m_Wrapper.m_UIControls1_ExitGame;
-        public InputActionMap Get() { return m_Wrapper.m_UIControls1; }
+        public UIControlsActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ExitGame => m_Wrapper.m_UIControls_ExitGame;
+        public InputActionMap Get() { return m_Wrapper.m_UIControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UIControls1Actions set) { return set.Get(); }
-        public void SetCallbacks(IUIControls1Actions instance)
+        public static implicit operator InputActionMap(UIControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IUIControlsActions instance)
         {
-            if (m_Wrapper.m_UIControls1ActionsCallbackInterface != null)
+            if (m_Wrapper.m_UIControlsActionsCallbackInterface != null)
             {
-                @ExitGame.started -= m_Wrapper.m_UIControls1ActionsCallbackInterface.OnExitGame;
-                @ExitGame.performed -= m_Wrapper.m_UIControls1ActionsCallbackInterface.OnExitGame;
-                @ExitGame.canceled -= m_Wrapper.m_UIControls1ActionsCallbackInterface.OnExitGame;
+                @ExitGame.started -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnExitGame;
+                @ExitGame.performed -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnExitGame;
+                @ExitGame.canceled -= m_Wrapper.m_UIControlsActionsCallbackInterface.OnExitGame;
             }
-            m_Wrapper.m_UIControls1ActionsCallbackInterface = instance;
+            m_Wrapper.m_UIControlsActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @ExitGame.started += instance.OnExitGame;
@@ -567,7 +567,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
             }
         }
     }
-    public UIControls1Actions @UIControls1 => new UIControls1Actions(this);
+    public UIControlsActions @UIControls => new UIControlsActions(this);
     private int m_MouseSchemeIndex = -1;
     public InputControlScheme MouseScheme
     {
@@ -600,7 +600,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnRotateCameraWithMouse(InputAction.CallbackContext context);
         void OnRotateCameraWithButtons(InputAction.CallbackContext context);
     }
-    public interface IUIControls1Actions
+    public interface IUIControlsActions
     {
         void OnExitGame(InputAction.CallbackContext context);
     }
