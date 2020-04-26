@@ -1,45 +1,45 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
 public class PlayerLogicScript : MonoBehaviour
 {
-    private Transform _myTransform;
-    [SerializeField] private float headRotationSpeed = 50f;
+    [Header("References")]
+    [SerializeField] private PlayerInput _playerInputVar = null;
     [SerializeField] private SpawnProjectiles projectileSystem = null;
-    [SerializeField] private GameObject userInterfaceCanvas;
+    [SerializeField] private GameObject headInnerTransform = null;
+    [SerializeField] private GameObject headGridTransform = null;
     [SerializeField] private GameObject uberKillObject = null;
-    public GameObject headInnerTransform = null;
-    public GameObject headGridTransform = null;
     
+    private PlayerInputActions _inputActionsVar = null;
+    
+    [Header("Player Attributes")]
+    [SerializeField] private float headRotationSpeed = 50f;
+    [SerializeField] private float maxLife = 10;
+    private float life = 0;
+    
+    [SerializeField] private float maxStamina = 10;
+    private float stamina = 0;
+    
+    [SerializeField] private int maxMoney = 1000;
+    private int money = 0;
+    
+    [SerializeField] private float staminaRegenPeriod;
+    
+    private Transform _myTransform;
     private Slider _healthRef;
     private Slider _staminaRef;
     private TextMeshProUGUI _moneyRef;
     private TextMeshProUGUI _titleRef;
-    private string _padding = "    ";
+    private const string Padding = "    ";
 
-    private PlayerInputActions _inputActionsVar;
-
-
-    [SerializeField] public float maxLife = 10;
-    private float life = 0;
-    
-    [SerializeField] public float maxStamina = 10;
-    private float stamina = 0;
-    
-    [SerializeField] public int maxMoney = 1000;
-    private int money = 0;
-    
-    [SerializeField] public float staminaRegenPeriod;
-    
     // Start is called before the first frame update
     void Awake()
     {
         _myTransform = transform;
         InitializeInputSystem();
-
     }
     
     void Start()
@@ -50,33 +50,48 @@ public class PlayerLogicScript : MonoBehaviour
         GetTextFields();
 
         InitializeValues();
-
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        headGridTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
-        headInnerTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
+        RotatePlayerHead();
         
-
         if (life <=0)
         {
-            life = 0;
-            stamina = 0;
-            money = 0;
-            
-            _healthRef.value = life;
-            _staminaRef.value = stamina;
-            _titleRef.text = _padding + "CPhage is DEAD :(";
-            _moneyRef.text = _padding + money.ToString();
+            KillPlayer();
         }
         else
         {
-            _healthRef.value = life;
-            _staminaRef.value = stamina;
-            _moneyRef.text = _padding + money.ToString();
+            UpdatePlayerStats();
         }
+
+    }
+    
+    private void RotatePlayerHead()
+    {
+        headGridTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
+        headInnerTransform.transform.Rotate(Vector3.up * (Time.deltaTime * headRotationSpeed));
+    }
+
+    private void UpdatePlayerStats()
+    {
+        _healthRef.value = life;
+        _staminaRef.value = stamina;
+        _moneyRef.text = Padding + money.ToString();
+    }
+
+    private void KillPlayer()
+    {
+        life = 0;
+        stamina = 0;
+        money = 0;
+
+        _healthRef.value = life;
+        _staminaRef.value = stamina;
+        _titleRef.text = Padding + "CPhage is DEAD :(";
+        _moneyRef.text = Padding + money.ToString();
     }
 
     private void GetSliders()
@@ -127,10 +142,10 @@ public class PlayerLogicScript : MonoBehaviour
         _staminaRef.value = stamina;
         
         // Title Init -----------------------------------------------------
-        _titleRef.text = _padding + "Defend the CPhage!";
+        _titleRef.text = Padding + "Defend the CPhage!";
 
         // Money Init -----------------------------------------------------
-        _moneyRef.text = _padding + money.ToString();
+        _moneyRef.text = Padding + money.ToString();
     }
 
     private  void IncreaseStamina()
@@ -140,7 +155,7 @@ public class PlayerLogicScript : MonoBehaviour
         if (stamina > maxStamina) stamina = maxStamina; 
     }
 
-    public void giveMoney(int amount)
+    public void GiveMoney(int amount)
     {
         money += amount;
     }
@@ -148,11 +163,13 @@ public class PlayerLogicScript : MonoBehaviour
     private void OnEnable()
     {
         _inputActionsVar.Enable();
+        InputUser.onChange += OnInputDeviceChange;
     }
 
     private void OnDisable()
     {
         _inputActionsVar.Disable();
+        InputUser.onChange -= OnInputDeviceChange;
     }
 
     private void FireProjectile(InputAction.CallbackContext context)
@@ -168,15 +185,19 @@ public class PlayerLogicScript : MonoBehaviour
     {
         if (stamina >= 5)
         {
-            Vector3 pos = _myTransform.position + new Vector3(0,2,0);
-            Vector3 forward = _myTransform.forward;
-            Vector3 right = _myTransform.right;
-            Vector3 up = _myTransform.up;
-        
-            Instantiate(uberKillObject, pos, Quaternion.LookRotation (forward));
-            Instantiate(uberKillObject, pos, Quaternion.LookRotation (-forward));
-            Instantiate(uberKillObject, pos, Quaternion.LookRotation (right));
-            Instantiate(uberKillObject, pos, Quaternion.LookRotation (-right));
+            Vector3[] position = new []
+            {
+                _myTransform.position + new Vector3(0,2,0), 
+                _myTransform.forward,
+                _myTransform.right,
+                -_myTransform.forward,
+                -_myTransform.right
+            };
+
+            for (int i = 1; i < 5; i++)
+            {
+                Instantiate(uberKillObject, position[0], Quaternion.LookRotation (position[i]));
+            }
             
             stamina -= 5;
         }
@@ -186,13 +207,18 @@ public class PlayerLogicScript : MonoBehaviour
     private void InitializeInputSystem()
     {
         _inputActionsVar = new PlayerInputActions();
+        
         _inputActionsVar.PlayerControls.Fire.performed += FireProjectile;
         _inputActionsVar.PlayerControls.ContextMenu.performed += UberKill;
     }
+    
+    private void OnInputDeviceChange(InputUser user, InputUserChange change, InputDevice device) {
+        if (change == InputUserChange.ControlSchemeChanged) {UserInterfaceHandler.Instance.ToggleInputIcon(_playerInputVar.currentControlScheme);}
+    }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider otherCollider)
     {
-        if (other.CompareTag("Enemy"))
+        if (otherCollider.CompareTag("Enemy"))
         {
             float damage = headRotationSpeed;
             

@@ -37,7 +37,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -59,7 +59,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "ContextMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -140,7 +140,7 @@
                     "path": "<Mouse>/middleButton",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "RotateEnable",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -151,7 +151,7 @@
                     "path": "<Mouse>/delta/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "RotateCameraWithMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -162,7 +162,7 @@
                     "path": "<Mouse>/middleButton",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "RotateDisable",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -217,7 +217,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "RotateCameraWithButtons",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -228,7 +228,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "RotateCameraWithButtons",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -239,7 +239,7 @@
                     "path": "<Mouse>/scroll/y",
                     "interactions": "",
                     "processors": "Invert,Clamp(min=-1,max=1),Scale(factor=5)",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -299,7 +299,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse",
+                    "groups": "KeyboardAndMouse",
                     "action": "ExitGame",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -320,8 +320,8 @@
     ],
     "controlSchemes": [
         {
-            "name": "Mouse",
-            "bindingGroup": "Mouse",
+            "name": "KeyboardAndMouse",
+            "bindingGroup": "KeyboardAndMouse",
             "devices": [
                 {
                     "devicePath": "<Mouse>",

@@ -95,10 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd06b39e6793fe0478622bce1dadf328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyMe: 0
   explosionParticle: {fileID: 641640498708556364, guid: b4213bd1860f1234fbe86313689ba088,
     type: 3}
-  hitParticle: {fileID: 641640498708556364, guid: 0dd66047dfcaddb4ebb6d36f76ae1b19,
+  hitParticle: {fileID: 641640498708556364, guid: 5ac6bc35f5a6719409602bd878833dce,
     type: 3}
   damageAmount: 2
   life: 1

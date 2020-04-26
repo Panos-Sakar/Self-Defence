@@ -5,10 +5,18 @@ using UnityEngine;
 
 public class MoveProjectile : MonoBehaviour
 {
+    enum projectileTypeEnum // your custom enumeration
+    {
+        SmallImpactProjectile,
+        BigImpactProjectile
+    };
+
     [SerializeField] private float speed = 0;
     [SerializeField] private float timeToSelfDestroy = 10;
     [SerializeField] private GameObject impactEffect = null;
     [SerializeField] private GameObject startEffect = null;
+    [SerializeField] private GameObject explodeCollider;
+    [SerializeField] private projectileTypeEnum projectileType;
     private Transform _myTransform;
     private Vector3 _startPos;
     
@@ -43,12 +51,32 @@ public class MoveProjectile : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             speed = 0;
-            Instantiate(impactEffect, _myTransform.position, _myTransform.rotation);
+            Vector3 pos = _myTransform.position;
+            quaternion rot = _myTransform.rotation;
+
+            Instantiate(impactEffect, pos, rot);
+            if (projectileType == projectileTypeEnum.SmallImpactProjectile)
+            {
+                Instantiate(explodeCollider, pos, rot); 
+            }
+
+            
             Destroy(gameObject);
         }
         else if (other.CompareTag("Player"))
         {
             Instantiate(startEffect, _startPos,  Quaternion.LookRotation(_startPos, Vector3.up));
+        }
+        else if (other.CompareTag("Enemy") && projectileType == projectileTypeEnum.SmallImpactProjectile)
+        {
+            speed = 0;
+            Vector3 pos = _myTransform.position;
+            quaternion rot = _myTransform.rotation;
+
+            Instantiate(impactEffect, pos, rot);
+            Instantiate(explodeCollider, pos, rot);
+            
+            Destroy(gameObject);
         }
     }
 }

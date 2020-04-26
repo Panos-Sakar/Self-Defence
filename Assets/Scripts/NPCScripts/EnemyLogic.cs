@@ -62,7 +62,7 @@ public class EnemyLogic : MonoBehaviour
                 _particlePosition = _myTransform.position;
                 _particleRotation = _myTransform.rotation;
 
-                _player.GetComponent<PlayerLogicScript>().giveMoney(1);
+                _player.GetComponent<PlayerLogicScript>().GiveMoney(1);
                 Instantiate(hitParticle, _particlePosition, _particleRotation);
                 gameObject.SetActive(false);
             }

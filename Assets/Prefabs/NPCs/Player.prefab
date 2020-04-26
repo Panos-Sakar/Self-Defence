@@ -83,10 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533119c327368b949854fc82090b46e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 1506751263}
-  rotateToMouse: {fileID: 56187576}
   spawnEffects:
   - {fileID: 359624065364460398, guid: ec368fb74997f734394ac5bdfc9227a1, type: 3}
+  rotateToMouse: {fileID: 56187576}
+  spawnPoint: {fileID: 1506751263}
 --- !u!23 &1177216895
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1e-45}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: NaN, w: 1.01e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 1
   m_ShadowAngle: 0
@@ -5349,13 +5349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723828c112d99a8468dbb975bb02789a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headRotationSpeed: 1.26
+  _playerInputVar: {fileID: 2466855064957449025}
   projectileSystem: {fileID: 56187577}
-  userInterfaceCanvas: {fileID: 0}
-  uberKillObject: {fileID: 359624065364460398, guid: 74f11737944d4d5469d0c129c42a1f6e,
-    type: 3}
   headInnerTransform: {fileID: 8281133305307704872}
   headGridTransform: {fileID: 7368862045931481766}
+  uberKillObject: {fileID: 359624065364460398, guid: 74f11737944d4d5469d0c129c42a1f6e,
+    type: 3}
+  headRotationSpeed: 1.26
   maxLife: 50
   maxStamina: 20
   maxMoney: 1000
@@ -5475,7 +5475,7 @@ MonoBehaviour:
     m_ActionId: 8d1d5823-9315-41c1-adc2-a2f703e5b3fb
     m_ActionName: UICOntrols/ExitGame[/Keyboard/escape,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: KeyboardAndMouse
   m_DefaultActionMap: Player Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 963194227}

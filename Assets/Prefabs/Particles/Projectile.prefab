@@ -4808,6 +4808,9 @@ MonoBehaviour:
     type: 3}
   startEffect: {fileID: 1960320341734588940, guid: 405a8eeaff204264d9e72f675a3eae62,
     type: 3}
+  explodeCollider: {fileID: 6088423174146811472, guid: 88f2f00744b32c7469106ac2a5a8927c,
+    type: 3}
+  projectileType: 0
   damageAmount: 1
 --- !u!65 &3212585957654976831
 BoxCollider:

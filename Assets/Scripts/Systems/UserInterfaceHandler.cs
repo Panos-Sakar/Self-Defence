@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UserInterfaceHandler : MonoBehaviour
 {
@@ -11,7 +12,13 @@ public class UserInterfaceHandler : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private List<TextMeshProUGUI> debugTextFields = null;
-    
+    [SerializeField] private Slider healthBar= null;
+    [SerializeField] private Slider staminaBar= null;
+    [SerializeField] private TextMeshProUGUI titleField= null;
+    [SerializeField] private TextMeshProUGUI moneyField= null;
+    [SerializeField] private Image gamepadImage = null;
+    [SerializeField] private Image keyboardAndMouseImage= null;
+
     private PlayerInputActions _inputActionsVar;
     private CanvasGroup _mainCanvas;
     
@@ -78,6 +85,28 @@ public class UserInterfaceHandler : MonoBehaviour
         if (pos >= 0 && pos <= debugTextFields.Count)
         {
             debugTextFields[pos].text = text;
+        }
+    }
+    [ContextMenu("ToggleInputIcon")]
+    public void ToggleInputIcon(string inputScheme)
+    {
+        debugTextFields[4].text = inputScheme;
+
+        if (keyboardAndMouseImage.IsActive())
+        {
+            keyboardAndMouseImage.enabled = false;
+            gamepadImage.enabled = true;
+
+        }
+        else if (gamepadImage.IsActive())
+        {
+            keyboardAndMouseImage.enabled = true;
+            gamepadImage.enabled = false;
+        }
+        else
+        {
+            keyboardAndMouseImage.enabled = true;
+            gamepadImage.enabled = false;
         }
     }
 }
