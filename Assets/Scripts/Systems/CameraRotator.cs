@@ -1,39 +1,29 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class CameraRotator : MonoBehaviour
 {
-    private Transform _myTransform;
     private PlayerInputActions _inputActionsVar;
-    private readonly List<TextMeshProUGUI> _uiDebugTextMeshPro = new List<TextMeshProUGUI>();
-    private GameObject _temp;
-    private GameObject _uiDebug;
+    private Transform _myTransform;
     private Camera _mainCamera;
     
+    [Header("Camera Properties")]
     [SerializeField] private float fieldOfView = 50f;
     [SerializeField] private float maxFieldOfView = 60f;
     [SerializeField] private float minFieldOfView = 25f;
-    
     [SerializeField][Range(10,50)] private float rotateAmount = 30f;
-    private float _mouseValue = 0f;
-    private int _toggleRotate = 0;
-    private bool _canRotate = false;
-    private float _zoomLevel = 0f;
-    // Start is called before the first frame update
+    
+    private float _mouseValue;
+    private int _toggleRotate;
+    private bool _canRotate;
+    private float _zoomLevel;
+    
     void Awake()
     {
         InitializeInputSystem();
-        
-        _uiDebug = GameObject.FindGameObjectWithTag("UIDebug");
-        foreach (Transform child in _uiDebug.transform)
-        {
-            _temp = child.gameObject;
-            _uiDebugTextMeshPro.Add(_temp.GetComponent<TextMeshProUGUI>());
-        }
 
         _myTransform = transform;
         _mainCamera = Camera.main;
@@ -44,7 +34,7 @@ public class CameraRotator : MonoBehaviour
         if (_canRotate)
         {
             _myTransform.transform.Rotate(new Vector3(0, _mouseValue, 0) * (Time.deltaTime * rotateAmount));
-            _uiDebugTextMeshPro[0].text = "Mouse Axis X Delta: " + _mouseValue;
+            UserInterfaceHandler.Instance.PrintToDebug(1,"Mouse Axis X Delta: " + _mouseValue);
         }else 
         if (_toggleRotate != 0)
         {
@@ -81,7 +71,7 @@ public class CameraRotator : MonoBehaviour
     private void ToggleRotate(InputAction.CallbackContext context)
     {
         _toggleRotate = (int)context.ReadValue<float>();
-        _uiDebugTextMeshPro[1].text = "Toggle Rotate Value: " + _toggleRotate;
+        UserInterfaceHandler.Instance.PrintToDebug(2,"Toggle Rotate Value: " + _toggleRotate);
     }
     private void OnEnable()
     {

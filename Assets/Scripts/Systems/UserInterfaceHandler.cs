@@ -1,31 +1,51 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UserInterfaceHandler : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup mainCanvas = null;
+    public static UserInterfaceHandler Instance { get; private  set; }
+
+    [Header("References")]
+    [SerializeField] private List<TextMeshProUGUI> debugTextFields = null;
+    
+    private PlayerInputActions _inputActionsVar;
+    private CanvasGroup _mainCanvas;
+    
+    [Header("Properties")]
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private float fadeDelay = 0.1f;
-
-    private int _animationIdCanvas = 0;
-    private PlayerInputActions _inputActionsVar;
+    
+    [Header("Cashing")]
     private Transform _myTransform;
 
-    // Start is called before the first frame update
+    [Header("Private variables")]
+    private int _animationIdCanvas = 0;
+
     void Awake()
     {
+        if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
+
+        _mainCanvas = gameObject.GetComponent<CanvasGroup>();
+        
+        //Initialize Fields
         _myTransform = transform;
         InitializeInputSystem();
-        mainCanvas.alpha = 0;
-        _animationIdCanvas = LeanTween.alphaCanvas(mainCanvas, 1, fadeDuration).id;
+        _mainCanvas.alpha = 0;
+
+        //Create Tween Animations
+        _animationIdCanvas = LeanTween.alphaCanvas(_mainCanvas, 1, fadeDuration).id;
         LeanTween.pause(_animationIdCanvas);
-        StartCoroutine(FaidMainCanvasIn());
+        
+        //Start Tween animations
+        StartCoroutine(FadeMainCanvas());
+        
     }
     
-    private IEnumerator FaidMainCanvasIn()
+    private IEnumerator FadeMainCanvas()
     {
         yield return new WaitForSeconds(fadeDelay);
         LeanTween.resume(_animationIdCanvas);
@@ -51,5 +71,13 @@ public class UserInterfaceHandler : MonoBehaviour
     {
         Debug.Log("Exiting Game Now");
         Application.Quit();
+    }
+
+    public void PrintToDebug(int pos, string text)
+    {
+        if (pos >= 0 && pos <= debugTextFields.Count)
+        {
+            debugTextFields[pos].text = text;
+        }
     }
 }

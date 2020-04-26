@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class SpawnProjectiles : MonoBehaviour
 {
-    [SerializeField] private GameObject spawnPoint = null;
-    private GameObject _projectile = null;
-    [SerializeField] private RotateToMouse rotateToMouse = null;
+    private GameObject _projectile;
     [SerializeField] private List<GameObject> spawnEffects= new List<GameObject>();
+    [SerializeField] private RotateToMouse rotateToMouse = null;
+    [SerializeField] private GameObject spawnPoint = null;
 
     private Transform _spawnPointTransform;
     private GameObject _projectileInstance;
