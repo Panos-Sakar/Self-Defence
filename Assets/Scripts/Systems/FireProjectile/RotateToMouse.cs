@@ -14,8 +14,8 @@ public class RotateToMouse : MonoBehaviour
     private Vector3 _direction = new Vector3(0,0,0);
     private Quaternion _rotation = new Quaternion();
 
-    [SerializeField] private float maximumLength = 20;
-
+    [SerializeField] private float maximumLength = 100;
+    [SerializeField] private LayerMask hitLayerMasks;
     void Awake()
     {
         _mainCamera = Camera.main;
@@ -26,18 +26,33 @@ public class RotateToMouse : MonoBehaviour
     {
         var mousePos = Input.mousePosition;
         _rayMouse = _mainCamera.ScreenPointToRay(mousePos);
-        if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out hit, maximumLength))
+        UserInterfaceHandler.Instance.PrintToDebug(8,_rayMouse.ToString());
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        {
+            UserInterfaceHandler.Instance.PrintToDebug(7,"over game object");
+        }
+        else
+        {
+            UserInterfaceHandler.Instance.PrintToDebug(7,"");
+        }
+        if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out hit, maximumLength, hitLayerMasks))
         {
             _correctedPos = hit.point - new Vector3(0, 2, 0);
             RotateToMouseDirection(gameObject,_correctedPos);
-            UserInterfaceHandler.Instance.PrintToDebug(0,"RayCast: Hit -> " + hit.transform.name + " | Pos -> " + hit.point);
+            
+            #if UNITY_EDITOR
+            UserInterfaceHandler.Instance.PrintToDebug(0,"RayCast: Hit -> " + hit.transform.name + " | Pos -> " + _correctedPos);
+            #endif
         }
         else
         {
             
             _correctedPos = _rayMouse.GetPoint(maximumLength) - new Vector3(0, 2, 0);
             RotateToMouseDirection(gameObject,_correctedPos);
-            UserInterfaceHandler.Instance.PrintToDebug(0,"RayCast: Hit -> <Nothing>" + " | Pos -> " + hit.point);
+            
+            #if UNITY_EDITOR
+            UserInterfaceHandler.Instance.PrintToDebug(0,"RayCast: Hit -> <Nothing>" + " | Pos -> " + _correctedPos);
+            #endif
         }
 
     }
@@ -52,14 +67,5 @@ public class RotateToMouse : MonoBehaviour
     public Quaternion GetRotation()
     {
         return _rotation;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // Draws a 5 unit long red line in front of the object
-        Gizmos.color = Color.red;
-        Vector3 direction = transform.TransformDirection(Vector3.forward) * maximumLength;
-        Gizmos.DrawRay(transform.position, direction);
-        //Gizmos.DrawIcon(hit.point,  "010-target");
     }
 }

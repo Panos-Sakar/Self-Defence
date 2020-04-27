@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Initializer : MonoBehaviour
 {
+    public static Initializer Instance { get; private  set; }
+    
     // Start is called before the first frame update
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
+    
     private void Awake()
     {
+        if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
+        
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         DontDestroyOnLoad(this.gameObject);
     }

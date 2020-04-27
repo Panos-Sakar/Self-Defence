@@ -18,6 +18,7 @@ public class UserInterfaceHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moneyField= null;
     [SerializeField] private Image gamepadImage = null;
     [SerializeField] private Image keyboardAndMouseImage= null;
+    [SerializeField] private List<Button> upgradeButtons = null;
 
     private PlayerInputActions _inputActionsVar;
     private CanvasGroup _mainCanvas;
@@ -76,7 +77,6 @@ public class UserInterfaceHandler : MonoBehaviour
 
     private void ExitGame(InputAction.CallbackContext context)
     {
-        Debug.Log("Exiting Game Now");
         Application.Quit();
     }
 
@@ -87,7 +87,6 @@ public class UserInterfaceHandler : MonoBehaviour
             debugTextFields[pos].text = text;
         }
     }
-    [ContextMenu("ToggleInputIcon")]
     public void ToggleInputIcon(string inputScheme)
     {
         debugTextFields[4].text = inputScheme;
@@ -107,6 +106,17 @@ public class UserInterfaceHandler : MonoBehaviour
         {
             keyboardAndMouseImage.enabled = true;
             gamepadImage.enabled = false;
+        }
+    }
+
+    public void ActivateButton(string buttonName)
+    {
+        foreach (Button button in upgradeButtons)
+        {
+            if (button.name == buttonName)
+            {
+                button.interactable = true;
+            }
         }
     }
 }

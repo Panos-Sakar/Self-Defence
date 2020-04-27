@@ -15,8 +15,8 @@ public class MoveProjectile : MonoBehaviour
     [SerializeField] private float timeToSelfDestroy = 10;
     [SerializeField] private GameObject impactEffect = null;
     [SerializeField] private GameObject startEffect = null;
-    [SerializeField] private GameObject explodeCollider;
-    [SerializeField] private projectileTypeEnum projectileType;
+    [SerializeField] private GameObject explodeCollider = null;
+    [SerializeField] private projectileTypeEnum projectileType = projectileTypeEnum.SmallImpactProjectile;
     private Transform _myTransform;
     private Vector3 _startPos;
     
@@ -55,7 +55,7 @@ public class MoveProjectile : MonoBehaviour
             quaternion rot = _myTransform.rotation;
 
             Instantiate(impactEffect, pos, rot);
-            if (projectileType == projectileTypeEnum.SmallImpactProjectile)
+            if (projectileType == projectileTypeEnum.SmallImpactProjectile && PlayerUpgrades.Instance.explodeOnImpact)
             {
                 Instantiate(explodeCollider, pos, rot); 
             }

@@ -34,7 +34,10 @@ public class CameraRotator : MonoBehaviour
         if (_canRotate)
         {
             _myTransform.transform.Rotate(new Vector3(0, _mouseValue, 0) * (Time.deltaTime * rotateAmount));
+         
+            #if UNITY_EDITOR
             UserInterfaceHandler.Instance.PrintToDebug(1,"Mouse Axis X Delta: " + _mouseValue);
+            #endif
         }else 
         if (_toggleRotate != 0)
         {
@@ -71,7 +74,10 @@ public class CameraRotator : MonoBehaviour
     private void ToggleRotate(InputAction.CallbackContext context)
     {
         _toggleRotate = (int)context.ReadValue<float>();
+        
+        #if UNITY_EDITOR
         UserInterfaceHandler.Instance.PrintToDebug(2,"Toggle Rotate Value: " + _toggleRotate);
+        #endif
     }
     private void OnEnable()
     {

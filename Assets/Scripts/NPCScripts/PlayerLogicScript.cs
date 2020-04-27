@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerLogicScript : MonoBehaviour
 {
+    public static PlayerLogicScript Instance { get; private  set; }
+    
     [Header("References")]
     [SerializeField] private PlayerInput _playerInputVar = null;
     [SerializeField] private SpawnProjectiles projectileSystem = null;
@@ -23,8 +25,8 @@ public class PlayerLogicScript : MonoBehaviour
     [SerializeField] private float maxStamina = 10;
     private float stamina = 0;
     
-    [SerializeField] private int maxMoney = 1000;
-    private int money = 0;
+    [ExecuteInEditMode]
+    public int money = 0;
     
     [SerializeField] private float staminaRegenPeriod;
     
@@ -38,6 +40,7 @@ public class PlayerLogicScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
         _myTransform = transform;
         InitializeInputSystem();
     }
@@ -67,6 +70,15 @@ public class PlayerLogicScript : MonoBehaviour
             UpdatePlayerStats();
         }
 
+        if (money > 10 && !PlayerUpgrades.Instance.explodeOnImpact)
+        {
+            UserInterfaceHandler.Instance.ActivateButton("ImpactExplosion");
+        }
+        
+        if (money > 20 && !PlayerUpgrades.Instance.ultimate)
+        {
+            UserInterfaceHandler.Instance.ActivateButton("Ultimate");
+        }
     }
     
     private void RotatePlayerHead()
@@ -80,6 +92,9 @@ public class PlayerLogicScript : MonoBehaviour
         _healthRef.value = life;
         _staminaRef.value = stamina;
         _moneyRef.text = Padding + money.ToString();
+        #if UNITY_EDITOR
+        UserInterfaceHandler.Instance.PrintToDebug(2,"Life: " + life + " Stamina: " + stamina);
+        #endif
     }
 
     private void KillPlayer()
@@ -159,7 +174,35 @@ public class PlayerLogicScript : MonoBehaviour
     {
         money += amount;
     }
+    
+    public void TakeMoney(int amount)
+    {
+        money -= amount;
+    }
 
+    public void GiveLife(int amount)
+    {
+        
+        life += amount;
+    }
+    
+    public void IncreaseLife(int amount)
+    {
+        maxLife += amount;
+        life += amount;
+    }
+    
+    public void GiveStamina(int amount)
+    {
+        
+        stamina += amount;
+    }
+    
+    public void IncreaseStamina(int amount)
+    {
+        maxStamina += amount;
+        stamina += amount;
+    }
     private void OnEnable()
     {
         _inputActionsVar.Enable();
@@ -183,7 +226,7 @@ public class PlayerLogicScript : MonoBehaviour
     
     private void UberKill(InputAction.CallbackContext context)
     {
-        if (stamina >= 5)
+        if (stamina >= 5 && PlayerUpgrades.Instance.ultimate)
         {
             Vector3[] position = new []
             {
