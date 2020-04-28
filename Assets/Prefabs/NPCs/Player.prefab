@@ -217,7 +217,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.3510647e-38, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 6.28e-43, y: 1.1920995e+24, z: 6.26e-43, w: 9.5382405e-26}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 1
   m_ShadowAngle: 0
@@ -5353,7 +5353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723828c112d99a8468dbb975bb02789a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerInputVar: {fileID: 2466855064957449025}
+  playerInputVar: {fileID: 2466855064957449025}
   projectileSystem: {fileID: 56187577}
   headInnerTransform: {fileID: 8281133305307704872}
   headGridTransform: {fileID: 7368862045931481766}
@@ -5362,8 +5362,9 @@ MonoBehaviour:
   headRotationSpeed: 1.26
   maxLife: 50
   maxStamina: 20
-  maxMoney: 1000
+  money: 0
   staminaRegenPeriod: 0.5
+  fireRate: 0.3
 --- !u!81 &1568876178829890536
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5495,6 +5496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2e6e05534e39e428b02411977520b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explodeOnImpact: 0
+  ultimate: 0
 --- !u!1 &7990973289053876159
 GameObject:
   m_ObjectHideFlags: 0

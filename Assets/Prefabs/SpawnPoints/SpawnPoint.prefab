@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: SpawnPoint
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 2800000, guid: 56a8dc8520e5c99419840b9e515fb12f, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -43,5 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb9bde83f4a80240bba46a3b9c56397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefub: {fileID: 7869919903464110282, guid: 7115765531f0e684488186b8d243b068,
-    type: 3}
+  enemyPool: {fileID: 0}

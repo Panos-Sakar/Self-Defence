@@ -410,6 +410,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnPoints
       objectReference: {fileID: 0}
+    - target: {fileID: 3345903276308470297, guid: 96adaa14d4d51804e876515b077b8385,
+        type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 7869919903464110282, guid: 7115765531f0e684488186b8d243b068,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96adaa14d4d51804e876515b077b8385, type: 3}
 --- !u!4 &1015601025 stripped
