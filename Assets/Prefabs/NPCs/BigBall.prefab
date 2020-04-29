@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: damageAmount
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -6217519010643101419, guid: 7115765531f0e684488186b8d243b068,
+        type: 3}
+      propertyPath: enemyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1622810478409364136, guid: 7115765531f0e684488186b8d243b068,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -96,6 +101,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Speed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5262915146743965424, guid: 7115765531f0e684488186b8d243b068,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108868916399649428, guid: 7115765531f0e684488186b8d243b068,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6108868916399649428, guid: 7115765531f0e684488186b8d243b068,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 7869919903464110282, guid: 7115765531f0e684488186b8d243b068,
         type: 3}

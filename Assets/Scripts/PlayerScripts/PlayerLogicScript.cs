@@ -1,7 +1,5 @@
-﻿using Systems;
-using Systems.FireProjectile;
+﻿using Systems.FireProjectile;
 using Systems.UI;
-using NPCScripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;

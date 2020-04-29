@@ -102,6 +102,7 @@ MonoBehaviour:
   damageAmount: 2
   life: 1
   maxLife: 1
+  enemyType: 1
 --- !u!195 &5262915146743965424
 NavMeshAgent:
   m_ObjectHideFlags: 0

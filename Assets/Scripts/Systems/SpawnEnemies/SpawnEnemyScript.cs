@@ -23,12 +23,6 @@ namespace Systems.SpawnEnemies
             InvokeRepeating("SpawnEnemy", 1f + _randomSeed, 3f*_randomSeed);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
-    
         void SpawnEnemy()
         {
             GameObject enemy = enemyPool.GetAvailableObject();

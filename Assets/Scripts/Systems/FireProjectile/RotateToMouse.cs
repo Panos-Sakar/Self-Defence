@@ -14,7 +14,7 @@ namespace Systems.FireProjectile
         
         private Quaternion _rotation;
 
-        [SerializeField] private float maximumLength = 1000;
+        [SerializeField] private float maximumLength = 100;
         [SerializeField] private LayerMask hitLayerMasks;
         void Awake()
         {
@@ -28,22 +28,19 @@ namespace Systems.FireProjectile
             var mousePos = Input.mousePosition;
             _rayMouse = _mainCamera.ScreenPointToRay(mousePos);
             
-#if UNITY_EDITOR
-            Debug.DrawLine(_rayMouse.origin, _rayMouse.direction, Color.red);
-#endif
             if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
 #if UNITY_EDITOR
-                UserInterfaceHandler.Instance.PrintToDebug(2,"Mouse over Ui Element");
+                UserInterfaceHandler.Instance.PrintToDebug(2,"Mouse over UI Element");
 #endif
             }
             else
             {
                 UserInterfaceHandler.Instance.PrintToDebug(2,"");
             }
-            if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out _hit, maximumLength, hitLayerMasks))
+            if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out _hit, hitLayerMasks))
             {
-                _correctedPos = _hit.point - new Vector3(0, 2, 0);
+                _correctedPos = _hit.point - new Vector3(0, 1.95f, 0);
                 RotateToMouseDirection(gameObject,_correctedPos);
             
 #if UNITY_EDITOR

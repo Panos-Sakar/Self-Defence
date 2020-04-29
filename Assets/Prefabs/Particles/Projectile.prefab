@@ -4810,7 +4810,7 @@ MonoBehaviour:
     type: 3}
   explodeCollider: {fileID: 6088423174146811472, guid: 88f2f00744b32c7469106ac2a5a8927c,
     type: 3}
-  projectileType: 0
+  projectileType: 1
   damageAmount: 1
 --- !u!65 &3212585957654976831
 BoxCollider:

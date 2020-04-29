@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 56187576}
   - component: {fileID: 56187577}
   - component: {fileID: 1177216895}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ProjectileSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 1385692723}
   - component: {fileID: 1385692722}
   - component: {fileID: 1385692721}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1506751264}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

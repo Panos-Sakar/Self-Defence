@@ -1,0 +1,47 @@
+{
+    "enemyIDs": [
+        "Default",
+        "SmallBall",
+        "BigBall"
+    ],
+    "points": [
+        {
+            "pointName": "Alpha",
+            "spawnRate": 1.2999999523162842,
+            "position": {
+                "x": 60.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "pattern": [
+                "SmallBall",
+                "SmallBall",
+                "BigBall"
+            ]
+        },
+        {
+            "pointName": "Beta",
+            "spawnRate": 2.0,
+            "position": {
+                "x": -60.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "pattern": [
+                "BigBall"
+            ]
+        }
+    ],
+    "pools": [
+        {
+            "enemyName": "SmallBall",
+            "size": 3,
+            "canGrow": false
+        },
+        {
+            "enemyName": "BigBall",
+            "size": 2,
+            "canGrow": true
+        }
+    ]
+}

@@ -8,7 +8,7 @@ namespace Systems.Loading
     {
 #pragma warning disable CS0649
         public static LoadingHandler Instance { get; private  set; }
-    
+        
         [SerializeField] private GameObject[] debugObjects;
         private Scene _activeLevel;
         private string _activeLevelName;
@@ -48,9 +48,8 @@ namespace Systems.Loading
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
-    
-        [ContextMenu("ActivateDebug")]
-        public void ActivateDebug()
+        
+        private void ActivateDebug()
         {
             foreach (GameObject obj in debugObjects)
             {
