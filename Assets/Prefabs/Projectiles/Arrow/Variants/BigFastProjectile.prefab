@@ -34,6 +34,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
         type: 3}
+      propertyPath: canPassThruEnemy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: hasStartEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: hasImpactEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
       propertyPath: startEffect
       value: 
       objectReference: {fileID: 1960320341734588940, guid: 141488569f760d9469654a92a471ad51,
@@ -44,17 +59,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 641640498708556364, guid: fdf62b4ab5c697f439b75ac913dce249,
         type: 3}
-    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
-        type: 3}
-      propertyPath: explodeEffect
-      value: 
-      objectReference: {fileID: 6088423174146811472, guid: 02a6e163e7b22f74d81149699bd7cd4a,
-        type: 3}
-    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
-        type: 3}
-      propertyPath: canPassThruEnemy
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8520671044177436917, guid: 5fdf6093d3245584ea1ff7e669c6c949,
         type: 3}
       propertyPath: m_Size.x

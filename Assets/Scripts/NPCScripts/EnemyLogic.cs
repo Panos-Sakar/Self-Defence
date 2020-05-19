@@ -1,5 +1,6 @@
 ﻿using PlayerScripts;
 using Prefabs.Projectiles.Arrow.Prefab;
+using Prefabs.Projectiles.Arrow.Prefab.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
 

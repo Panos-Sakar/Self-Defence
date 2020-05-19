@@ -34,9 +34,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
         type: 3}
-      propertyPath: impactEffect
+      propertyPath: hasStartEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: hasImpactEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: hasExplodeEffect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: explodeEffect
       value: 
-      objectReference: {fileID: 641640498708556364, guid: fdf62b4ab5c697f439b75ac913dce249,
+      objectReference: {fileID: 5711486152281176771, guid: a933b852f3cb7634c9dd9178be8f1e5e,
         type: 3}
     - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
         type: 3}
@@ -46,9 +61,9 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
         type: 3}
-      propertyPath: explodeEffect
+      propertyPath: impactEffect
       value: 
-      objectReference: {fileID: 5711486152281176771, guid: a933b852f3cb7634c9dd9178be8f1e5e,
+      objectReference: {fileID: 641640498708556364, guid: fdf62b4ab5c697f439b75ac913dce249,
         type: 3}
     - target: {fileID: 8520671044177436917, guid: 5fdf6093d3245584ea1ff7e669c6c949,
         type: 3}
