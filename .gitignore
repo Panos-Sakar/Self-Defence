@@ -108,5 +108,8 @@ ehthumbs.db
 [Dd]esktop.ini
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
-Assets/Scenes/Levels/*Lightmap*
 
+#Lightmap data in folder "Assets/Scenes/Levels/"
+Assets/Scenes/Levels/**/Lightmap*
+Assets/Scenes/Levels/**/ReflectionProbe*
+Assets/Scenes/Levels/**/LightingData*
