@@ -1,5 +1,4 @@
-﻿using Systems.UI;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Systems.FireProjectile
 {
@@ -16,49 +15,28 @@ namespace Systems.FireProjectile
 
         [SerializeField] private float maximumLength = 100;
         [SerializeField] private LayerMask hitLayerMasks;
+        
+#pragma warning restore CS0649
         private void Awake()
         {
             _mainCamera = UnityEngine.Camera.main;
         }
-
-#pragma warning restore CS0649
-        // Update is called once per frame
+        
         private void Update()
         {
             var mousePos = Input.mousePosition;
             _rayMouse = _mainCamera.ScreenPointToRay(mousePos);
-            
-            if(UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-            {
-#if UNITY_EDITOR
-                UserInterfaceHandler.Instance.PrintToDebug(2,"Mouse over UI Element");
-#endif
-            }
-            else
-            {
-#if UNITY_EDITOR
-                UserInterfaceHandler.Instance.PrintToDebug(2,"");
-#endif
-            }
-            
+
             if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out _hit, hitLayerMasks))
             {
                 _correctedPos = _hit.point - new Vector3(0, 1.95f, 0);
                 RotateToMouseDirection(gameObject,_correctedPos);
-            
-#if UNITY_EDITOR
-                UserInterfaceHandler.Instance.PrintToDebug(1,"RayCast: Hit -> " + _hit.transform.name + " | Pos -> " + _correctedPos);
-#endif
             }
             else
             {
             
                 _correctedPos = _rayMouse.GetPoint(maximumLength) - new Vector3(0, 1.95f, 0);
                 RotateToMouseDirection(gameObject,_correctedPos);
-            
-#if UNITY_EDITOR
-                UserInterfaceHandler.Instance.PrintToDebug(1,"RayCast: Hit -> <Nothing>" + " | Pos -> " + _correctedPos);
-#endif
             }
 
         }

@@ -18,8 +18,7 @@ namespace PlayerScripts
         [SerializeField] private SpawnProjectiles projectileSystem;
         [SerializeField] private GameObject headInnerTransform;
         [SerializeField] private GameObject headGridTransform;
-        [SerializeField] private GameObject ultimateProjectile;
-    
+
         private PlayerInputActions _inputActionsVar;
     
         [Header("Player Attributes")]
@@ -55,7 +54,7 @@ namespace PlayerScripts
     
         private void Start()
         {
-            InvokeRepeating("IncreaseStamina",0,staminaRegenPeriod );
+            InvokeRepeating(nameof(IncreaseStamina),0,staminaRegenPeriod );
         
             GetSliders();
             GetTextFields();
@@ -101,7 +100,7 @@ namespace PlayerScripts
         {
             _healthRef.value = _life;
             _staminaRef.value = _stamina;
-            _moneyRef.text = Padding + money.ToString();
+            _moneyRef.text = Padding + money;
 #if UNITY_EDITOR
             UserInterfaceHandler.Instance.PrintToDebug(0,"Life: " + _life + " Stamina: " + _stamina);
 #endif
@@ -116,41 +115,41 @@ namespace PlayerScripts
             _healthRef.value = _life;
             _staminaRef.value = _stamina;
             _titleRef.text = Padding + "CPhage is DEAD :(";
-            _moneyRef.text = Padding + money.ToString();
+            _moneyRef.text = Padding + money;
         }
 
         private void GetSliders()
         {
-            Slider[] allSliders = GameObject.FindObjectsOfType<Slider>();
+            var allSliders = GameObject.FindObjectsOfType<Slider>();
         
-            foreach (Slider slider in allSliders)
+            foreach (var slider in allSliders)
             {
-                if (slider.name == "Health")
+                switch (slider.name)
                 {
-                    _healthRef = slider;
-                }
-                else if (slider.name == "Stamina")
-                {
-                    _staminaRef = slider;
-
+                    case "Health":
+                        _healthRef = slider;
+                        break;
+                    case "Stamina":
+                        _staminaRef = slider;
+                        break;
                 }
             }
         }
 
         private void GetTextFields()
         {
-            TextMeshProUGUI[] allTextFields = GameObject.FindObjectsOfType<TextMeshProUGUI>();
-            foreach (TextMeshProUGUI textField in allTextFields)
+            var allTextFields = GameObject.FindObjectsOfType<TextMeshProUGUI>();
+            foreach (var textField in allTextFields)
             {
-                if (textField.name == "Title")
+                switch (textField.name)
                 {
-                    _titleRef = textField;
+                    case "Title":
+                        _titleRef = textField;
+                        break;
+                    case "MoneyAmount":
+                        _moneyRef = textField;
+                        break;
                 }
-                else if (textField.name == "MoneyAmount")
-                {
-                    _moneyRef = textField;
-                }
-
             }
         }
 
@@ -163,6 +162,7 @@ namespace PlayerScripts
             _healthRef.value = _life;
         
             // Stamina Init -----------------------------------------------------
+            _stamina = maxStamina / 2;
             _staminaRef.maxValue = maxStamina;
             _staminaRef.value = _stamina;
         
@@ -170,7 +170,7 @@ namespace PlayerScripts
             _titleRef.text = Padding + "Defend the CPhage!";
 
             // Money Init -----------------------------------------------------
-            _moneyRef.text = Padding + money.ToString();
+            _moneyRef.text = Padding + money;
         }
 
         private  void IncreaseStamina()
@@ -213,6 +213,7 @@ namespace PlayerScripts
             maxStamina += amount;
             _stamina += amount;
         }
+        
         private void OnEnable()
         {
             _inputActionsVar.Enable();
@@ -224,19 +225,12 @@ namespace PlayerScripts
             _inputActionsVar.Disable();
             InputUser.onChange -= OnInputDeviceChange;
         }
-
-        private void FireProjectile(InputAction.CallbackContext context)
-        {
-            if (PlayerCanFire())
-            {
-                projectileSystem.SpawnFireEffect();
-                _stamina -= 1;
-            }
-        }
-
+        
         private bool PlayerCanFire()
         {
-            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject() && (_timeToFire < 0) && (_stamina > 0))
+            var cursorIsOverUi = UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject();
+            
+            if (!cursorIsOverUi && (_timeToFire < 0) && (_stamina > 0))
             {
                 _timeToFire = fireRate;
                 return true;
@@ -245,29 +239,23 @@ namespace PlayerScripts
             return false;
         }
         
+        private void FireProjectile(InputAction.CallbackContext context)
+        {
+            if (PlayerCanFire())
+            {
+                projectileSystem.SpawnFireEffect();
+                _stamina -= 1;
+            }
+        }
+        
         private void SpecialAction(InputAction.CallbackContext context)
         {
             if (PlayerCanFire() && PlayerUpgrades.Instance.ultimate)
             {
-                Vector3 pos = _myTransform.position + new Vector3(0, 2, 0);
-                Vector3 forward =_myTransform.forward;
-                Vector3 right = _myTransform.right;
                 
-                Vector3[] position = {
-                    forward,
-                    right,
-                    -forward,
-                    -right
-                };
-
-                for (int i = 0; i < 4; i++)
-                {
-                    Instantiate(ultimateProjectile, pos, Quaternion.LookRotation (position[i]));
-                }
-            
+                projectileSystem.SpawnUltimateEffect(_myTransform);
                 _stamina -= 5;
             }
-
         }
 
         private void InitializeInputSystem()
@@ -287,7 +275,5 @@ namespace PlayerScripts
             _life -= amount;
             if (_life < 0) _life = 0;
         }
-        
-        
     }
 }

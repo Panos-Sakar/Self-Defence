@@ -84,9 +84,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533119c327368b949854fc82090b46e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 1506751263}
   mainProjectile: {fileID: 3931231433426459102, guid: ad7b2ac8389aab44c833fd15c3ed6dc0,
     type: 3}
-  spawnPoint: {fileID: 1506751263}
+  ultimateProjectile: {fileID: 4500178547244774835, guid: 45ca9cf5e9dc4014190b64ed92306d4b,
+    type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,8 +333,6 @@ MonoBehaviour:
   projectileSystem: {fileID: 56187577}
   headInnerTransform: {fileID: 8281133305307704872}
   headGridTransform: {fileID: 7368862045931481766}
-  ultimateProjectile: {fileID: 4500178547244774835, guid: 45ca9cf5e9dc4014190b64ed92306d4b,
-    type: 3}
   headRotationSpeed: 2
   maxLife: 50
   maxStamina: 20
@@ -438,10 +438,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2
+  m_Radius: 1.69
   m_Height: 10
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -2, z: 0}
 --- !u!208 &136838497652498038
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -452,11 +452,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 1.3, y: 5, z: 1.3}
+  m_Extents: {x: 1.5, y: 5, z: 1.5}
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -2, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1 &7990973289053876159
 GameObject:

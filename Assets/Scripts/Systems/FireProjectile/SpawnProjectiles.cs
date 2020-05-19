@@ -5,25 +5,48 @@ namespace Systems.FireProjectile
     public class SpawnProjectiles : MonoBehaviour
     {
 #pragma warning disable CS0649
-        [SerializeField] private GameObject mainProjectile;
+        
         [SerializeField] private GameObject spawnPoint;
+        
+        [Header("Projectiles")]
+        [SerializeField] private GameObject mainProjectile;
+        [SerializeField] private GameObject ultimateProjectile;
 
-        private RotateToMouse _rotateToMouse ;
+        private RotateToMouse _rotateToMouseComponent;
         private Transform _spawnPointTransform;
         private GameObject _projectileInstance;
 
 #pragma warning restore CS0649
-        // Start is called before the first frame update
-        void Start()
+
+        private void Start()
         {
             _spawnPointTransform = spawnPoint.transform;
-            _rotateToMouse = gameObject.GetComponentInParent<RotateToMouse>();
+            _rotateToMouseComponent = gameObject.GetComponentInParent<RotateToMouse>();
         }
 
         public void SpawnFireEffect()
         {
             _projectileInstance = Instantiate(mainProjectile, _spawnPointTransform.position, _spawnPointTransform.rotation);
-            _projectileInstance.transform.localRotation = _rotateToMouse.GetRotation();
+            _projectileInstance.transform.localRotation = _rotateToMouseComponent.GetRotation();
+        }
+        
+        public void SpawnUltimateEffect(Transform playerTransform)
+        {
+            Vector3 pos = playerTransform.position + new Vector3(0, 2, 0);
+            Vector3 forward =playerTransform.forward;
+            Vector3 right = playerTransform.right;
+                
+            Vector3[] position = {
+                forward,
+                right,
+                -forward,
+                -right
+            };
+
+            for (int i = 0; i < 4; i++)
+            {
+                Instantiate(ultimateProjectile, pos, Quaternion.LookRotation (position[i]));
+            }
         }
     }
 }

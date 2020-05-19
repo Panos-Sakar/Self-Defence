@@ -15,8 +15,7 @@ namespace Prefabs.Projectiles.Arrow.Prefab.Scripts
 
     
 #pragma warning restore CS0649
-    
-        // Start is called before the first frame update
+        
         private void Start()
         {
             _myTransform = transform;
@@ -31,8 +30,7 @@ namespace Prefabs.Projectiles.Arrow.Prefab.Scripts
                 _timeToSelfDestroy = myProperties.expireIn;
             }
         }
-
-        // Update is called once per frame
+        
         private void Update()
         {
             if (myProperties.speed > 0)
