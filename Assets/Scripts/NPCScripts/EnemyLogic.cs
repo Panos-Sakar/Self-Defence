@@ -1,4 +1,5 @@
 ﻿using PlayerScripts;
+using Prefabs.Projectiles.Arrow.Prefab;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -34,7 +35,7 @@ namespace NPCScripts
         
 #pragma warning restore CS0649
         // Start is called before the first frame update
-        void OnEnable()
+        private void OnEnable()
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             _enemyNavMesh = GetComponent<NavMeshAgent>();
@@ -43,7 +44,7 @@ namespace NPCScripts
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (gameObject.activeInHierarchy.Equals(true))
             {
@@ -63,6 +64,11 @@ namespace NPCScripts
                 
                 Instantiate(explosionParticle, _particlePosition, _particleRotation);
                 gameObject.SetActive(false);  
+            }
+
+            if (other.gameObject.CompareTag("Projectile"))
+            {
+                DamageEnemy(other.GetComponent<ProjectileProperties>().damage);
             }
         }
 

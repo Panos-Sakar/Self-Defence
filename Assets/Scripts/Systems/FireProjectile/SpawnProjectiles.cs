@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Systems.FireProjectile
 {
     public class SpawnProjectiles : MonoBehaviour
     {
 #pragma warning disable CS0649
-        private GameObject _projectile;
-        [SerializeField] private List<GameObject> spawnEffects= new List<GameObject>();
-        [SerializeField] private RotateToMouse rotateToMouse ;
+        [SerializeField] private GameObject mainProjectile;
         [SerializeField] private GameObject spawnPoint;
 
+        private RotateToMouse _rotateToMouse ;
         private Transform _spawnPointTransform;
         private GameObject _projectileInstance;
 
@@ -18,14 +16,14 @@ namespace Systems.FireProjectile
         // Start is called before the first frame update
         void Start()
         {
-            _projectile = spawnEffects[0];
             _spawnPointTransform = spawnPoint.transform;
+            _rotateToMouse = gameObject.GetComponentInParent<RotateToMouse>();
         }
 
         public void SpawnFireEffect()
         {
-            _projectileInstance = Instantiate(_projectile, _spawnPointTransform.position, _spawnPointTransform.rotation);
-            _projectileInstance.transform.localRotation = rotateToMouse.GetRotation();
+            _projectileInstance = Instantiate(mainProjectile, _spawnPointTransform.position, _spawnPointTransform.rotation);
+            _projectileInstance.transform.localRotation = _rotateToMouse.GetRotation();
         }
     }
 }

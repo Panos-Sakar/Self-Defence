@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Systems.UI;
-using Scenes.Levels;
 using UnityEngine;
 
 namespace Systems.SpawnSystem
@@ -26,6 +24,7 @@ namespace Systems.SpawnSystem
 #pragma warning restore CS0649
         private void Awake()
         {
+            
             _pathToJson = "Assets/Scenes/Levels/" + levelIndex + "/LevelData.json";
             LoadFromJason();
 
@@ -51,8 +50,6 @@ namespace Systems.SpawnSystem
 
                 _enemyWave += spawnPoint.pattern.Length;
             }
-            
-            UserInterfaceHandler.Instance.PrintToDebug(4,_enemyWave.ToString());
         }
 
         [ContextMenu("SaveToJson")]

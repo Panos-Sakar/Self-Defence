@@ -48,4 +48,6 @@ MonoBehaviour:
     type: 3}
   spawnPointPrefab: {fileID: 5039159761280523716, guid: 91da9db700dc235478b6ea42d4f8b93d,
     type: 3}
-  enemyPrefabs: []
+  enemyPrefabs:
+  - {fileID: 5603545967499408624, guid: 7b6f6c3488d46a44da8191e8ae744671, type: 3}
+  - {fileID: 4672923178144442080, guid: 93e5ed4caa2819e4fb6eab28b3ab7231, type: 3}

@@ -41,7 +41,7 @@ namespace Systems.Loading
 #if UNITY_EDITOR
             UserInterfaceHandler.Instance.PrintToDebug(4,"");
 #endif
-        }
+        } 
     
         void OnDisable()
         {

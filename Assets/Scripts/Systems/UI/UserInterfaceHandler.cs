@@ -14,10 +14,10 @@ namespace Systems.UI
 
         [Header("References")]
         [SerializeField] private List<TextMeshProUGUI> debugTextFields;
-        //[SerializeField] private Slider healthBar;
-        //[SerializeField] private Slider staminaBar;
-        //[SerializeField] private TextMeshProUGUI titleField;
-        //[SerializeField] private TextMeshProUGUI moneyField;
+        [SerializeField] private Slider healthBar;
+        [SerializeField] private Slider staminaBar;
+        [SerializeField] private TextMeshProUGUI titleField;
+        [SerializeField] private TextMeshProUGUI moneyField;
         [SerializeField] private Image gamepadImage;
         [SerializeField] private Image keyboardAndMouseImage;
         [SerializeField] private List<Button> upgradeButtons;
@@ -36,7 +36,7 @@ namespace Systems.UI
         private int _animationIdCanvas;
 
 #pragma warning restore CS0649
-        void Awake()
+        private void Awake()
         {
             if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
 
@@ -77,7 +77,7 @@ namespace Systems.UI
             _inputActionsVar.Disable();
         }
 
-        private void ExitGame(InputAction.CallbackContext context)
+        private static void ExitGame(InputAction.CallbackContext context)
         {
             Application.Quit();
         }
@@ -91,8 +91,6 @@ namespace Systems.UI
         }
         public void ToggleInputIcon(string inputScheme)
         {
-            debugTextFields[4].text = inputScheme;
-
             if (keyboardAndMouseImage.IsActive())
             {
                 keyboardAndMouseImage.enabled = false;

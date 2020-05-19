@@ -18,12 +18,12 @@ namespace PlayerScripts
         [SerializeField] private SpawnProjectiles projectileSystem;
         [SerializeField] private GameObject headInnerTransform;
         [SerializeField] private GameObject headGridTransform;
-        [SerializeField] private GameObject uberKillObject;
+        [SerializeField] private GameObject ultimateProjectile;
     
         private PlayerInputActions _inputActionsVar;
     
         [Header("Player Attributes")]
-        [SerializeField] private float headRotationSpeed = 50f;
+        [SerializeField] private float headRotationSpeed;
         [SerializeField] private float maxLife = 10;
         private float _life;
     
@@ -45,7 +45,7 @@ namespace PlayerScripts
         
 #pragma warning restore CS0649
 
-        void Awake()
+        private void Awake()
         {
             _timeToFire = 0;
             if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
@@ -53,7 +53,7 @@ namespace PlayerScripts
             InitializeInputSystem();
         }
     
-        void Start()
+        private void Start()
         {
             InvokeRepeating("IncreaseStamina",0,staminaRegenPeriod );
         
@@ -65,7 +65,7 @@ namespace PlayerScripts
         }
 
         // Update is called once per frame
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             RotatePlayerHead();
         
@@ -245,7 +245,7 @@ namespace PlayerScripts
             return false;
         }
         
-        private void UberKill(InputAction.CallbackContext context)
+        private void SpecialAction(InputAction.CallbackContext context)
         {
             if (PlayerCanFire() && PlayerUpgrades.Instance.ultimate)
             {
@@ -262,7 +262,7 @@ namespace PlayerScripts
 
                 for (int i = 0; i < 4; i++)
                 {
-                    Instantiate(uberKillObject, pos, Quaternion.LookRotation (position[i]));
+                    Instantiate(ultimateProjectile, pos, Quaternion.LookRotation (position[i]));
                 }
             
                 _stamina -= 5;
@@ -275,7 +275,7 @@ namespace PlayerScripts
             _inputActionsVar = new PlayerInputActions();
         
             _inputActionsVar.PlayerControls.Fire.performed += FireProjectile;
-            _inputActionsVar.PlayerControls.ContextMenu.performed += UberKill;
+            _inputActionsVar.PlayerControls.ContextMenu.performed += SpecialAction;
         }
     
         private void OnInputDeviceChange(InputUser user, InputUserChange change, InputDevice device) {

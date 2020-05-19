@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4661519198615042337
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7195188046791526714, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195188046791526714, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195188046791526714, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: maxDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195188046791526714, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: expireIn
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195188046791526714, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: projectileType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: impactEffect
+      value: 
+      objectReference: {fileID: 641640498708556364, guid: fdf62b4ab5c697f439b75ac913dce249,
+        type: 3}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: startEffect
+      value: 
+      objectReference: {fileID: 1960320341734588940, guid: 141488569f760d9469654a92a471ad51,
+        type: 3}
+    - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: explodeEffect
+      value: 
+      objectReference: {fileID: 5711486152281176771, guid: a933b852f3cb7634c9dd9178be8f1e5e,
+        type: 3}
+    - target: {fileID: 8520671044177436917, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.43328762
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436917, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.03335619
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436920, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: projectileType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436920, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: speed
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436920, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: maxDistance
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436920, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436921, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520671044177436922, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: explodeEffect
+      value: 
+      objectReference: {fileID: 5711486152281176771, guid: a933b852f3cb7634c9dd9178be8f1e5e,
+        type: 3}
+    - target: {fileID: 8520671044177436922, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: startEffect
+      value: 
+      objectReference: {fileID: 1960320341734588940, guid: 405a8eeaff204264d9e72f675a3eae62,
+        type: 3}
+    - target: {fileID: 8520671044177436922, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: impactEffect
+      value: 
+      objectReference: {fileID: 641640498708556364, guid: 9e9e8a3f5f107b646add30e9471e0f5d,
+        type: 3}
+    - target: {fileID: 8520671044177436927, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: m_Name
+      value: SmallExplodingtProjectile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fdf6093d3245584ea1ff7e669c6c949, type: 3}

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Scenes.Levels;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -37,15 +35,15 @@ namespace Systems.SpawnSystem
             InvokeRepeating(nameof(SpawnEnemy), _spawnRate + _randomize, _spawnRate + _randomize);
         }
         
-        void SpawnEnemy()
+        private void SpawnEnemy()
         {
             GameObject enemy = _pools[_pattern[_patternPosition]].GetComponent<EnemyPool>().GetAvailableObject();
-        
+
             enemy.transform.position = _myTransform.position;
             enemy.SetActive(true);
-            
-            _patternPosition++;
 
+            if (enemy.name != "PinPong") _patternPosition++;
+            
             if (_patternPosition >= _pattern.Length)
             {
                 CancelInvoke(nameof(SpawnEnemy));

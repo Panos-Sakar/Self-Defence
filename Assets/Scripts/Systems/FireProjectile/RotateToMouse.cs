@@ -16,19 +16,19 @@ namespace Systems.FireProjectile
 
         [SerializeField] private float maximumLength = 100;
         [SerializeField] private LayerMask hitLayerMasks;
-        void Awake()
+        private void Awake()
         {
             _mainCamera = UnityEngine.Camera.main;
         }
 
 #pragma warning restore CS0649
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             var mousePos = Input.mousePosition;
             _rayMouse = _mainCamera.ScreenPointToRay(mousePos);
             
-            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            if(UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
 #if UNITY_EDITOR
                 UserInterfaceHandler.Instance.PrintToDebug(2,"Mouse over UI Element");
@@ -36,8 +36,11 @@ namespace Systems.FireProjectile
             }
             else
             {
+#if UNITY_EDITOR
                 UserInterfaceHandler.Instance.PrintToDebug(2,"");
+#endif
             }
+            
             if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out _hit, hitLayerMasks))
             {
                 _correctedPos = _hit.point - new Vector3(0, 1.95f, 0);
@@ -50,7 +53,7 @@ namespace Systems.FireProjectile
             else
             {
             
-                _correctedPos = _rayMouse.GetPoint(maximumLength) - new Vector3(0, 2, 0);
+                _correctedPos = _rayMouse.GetPoint(maximumLength) - new Vector3(0, 1.95f, 0);
                 RotateToMouseDirection(gameObject,_correctedPos);
             
 #if UNITY_EDITOR
@@ -60,7 +63,7 @@ namespace Systems.FireProjectile
 
         }
 
-        void RotateToMouseDirection(GameObject obj, Vector3 destination)
+        private  void RotateToMouseDirection(GameObject obj, Vector3 destination)
         {
             _rotation = Quaternion.LookRotation(destination);
             obj.transform.localRotation = Quaternion.Lerp(obj.transform.rotation, _rotation,1);
