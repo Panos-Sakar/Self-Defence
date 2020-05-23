@@ -1,4 +1,5 @@
-﻿using Systems.UI;
+﻿using System.Collections;
+using Systems.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,38 +13,43 @@ namespace Systems.Loading
         [SerializeField] private GameObject[] debugObjects;
         private Scene _activeLevel;
         private string _activeLevelName;
-        private bool _firstLoad;
-    
+
 #pragma warning restore CS0649
-        void Awake()
+        private void Awake()
         {
             if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
-
-            _firstLoad = true;
         }
-    
-        void OnEnable()
+
+        private void OnEnable()
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
-    
-        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
             ActivateDebug();
 #endif
         }
-    
-        void Start()
+
+        private void Start()
         {
-            LoadLevel("Menu_Level");
+            var menuLevel = SceneManager.GetSceneByName("Menu_Level");
+            
+            if (!menuLevel.isLoaded)
+            {
+                Debug.Log("Loading Menu level");
+                SceneManager.LoadScene("Menu_Level", LoadSceneMode.Additive);
+            }
+            
+            _activeLevelName = "Menu_Level";
             
 #if UNITY_EDITOR
             UserInterfaceHandler.Instance.PrintToDebug(4,"");
 #endif
-        } 
-    
-        void OnDisable()
+        }
+
+        private void OnDisable()
         {
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -51,29 +57,35 @@ namespace Systems.Loading
         
         private void ActivateDebug()
         {
-            foreach (GameObject obj in debugObjects)
+            foreach (var obj in debugObjects)
             {
                 obj.SetActive(true);
             }
         }
 
-        public void LoadLevel(string levelName)
+        public IEnumerator StartLoadSequence(int levelIndex, Transform loaderObject)
         {
-            if (levelName != _activeLevelName)
-            {
-                if (_firstLoad)
-                {
-                    _firstLoad = false;
-                }
-                else
-                {
-                    SceneManager.UnloadSceneAsync(_activeLevelName);
-                }
+            var levelName = "Level_" + levelIndex;
             
-                SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
-                _activeLevelName = levelName;
+            yield return StartCoroutine(UserInterfaceHandler.Instance.HideViewOfGame());
+            
+            loaderObject.position = new Vector3(0,100,0);
 
-            }
+            yield return LoadLevel(levelName);
+            
+            yield return StartCoroutine(UserInterfaceHandler.Instance.ShowViewOfGame());
+            
+            loaderObject.gameObject.SetActive(false);
+        }
+
+        private IEnumerator LoadLevel(string levelName)
+        {
+            if (levelName == _activeLevelName) yield return null;
+
+            SceneManager.UnloadSceneAsync(_activeLevelName);
+            SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
+            _activeLevelName = levelName;
+            yield return null;
         }
     }
 }

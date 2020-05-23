@@ -52,6 +52,8 @@ MonoBehaviour:
   speed: 0
   maxDistance: 0
   expireIn: 0
+  changeLevel: 1
+  toggleMasterVolume: 0
 --- !u!114 &7791773924494857050
 MonoBehaviour:
   m_ObjectHideFlags: 0

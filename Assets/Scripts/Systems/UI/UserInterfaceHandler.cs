@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,8 @@ namespace Systems.UI
 #pragma warning disable CS0649
         public static UserInterfaceHandler Instance { get; private  set; }
 
-        [Header("References")]
+        [Header("References")] 
+        [SerializeField] private CanvasGroup loadingCover;
         [SerializeField] private List<TextMeshProUGUI> debugTextFields;
         [SerializeField] private Slider healthBar;
         [SerializeField] private Slider staminaBar;
@@ -111,13 +113,31 @@ namespace Systems.UI
 
         public void ActivateButton(string buttonName)
         {
-            foreach (Button button in upgradeButtons)
+            foreach (var button in upgradeButtons.Where(button => button.name == buttonName))
             {
-                if (button.name == buttonName)
-                {
-                    button.interactable = true;
-                }
+                button.interactable = true;
             }
         }
+
+        public IEnumerator HideViewOfGame()
+        {
+            var id = LeanTween.alphaCanvas(loadingCover, 1, fadeDuration/4).id;
+
+            while (LeanTween.isTweening( id ))
+            {
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        public IEnumerator ShowViewOfGame()
+        {
+            var id = LeanTween.alphaCanvas(loadingCover, 0, fadeDuration/4).id;
+
+            while (LeanTween.isTweening( id ))
+            {
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        
     }
 }
