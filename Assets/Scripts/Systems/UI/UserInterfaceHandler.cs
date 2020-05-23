@@ -13,26 +13,29 @@ namespace Systems.UI
 #pragma warning disable CS0649
         public static UserInterfaceHandler Instance { get; private  set; }
 
-        [Header("References")] 
-        [SerializeField] private CanvasGroup loadingCover;
-        [SerializeField] private List<TextMeshProUGUI> debugTextFields;
-        [SerializeField] private Slider healthBar;
-        [SerializeField] private Slider staminaBar;
-        [SerializeField] private TextMeshProUGUI titleField;
-        [SerializeField] private TextMeshProUGUI moneyField;
-        [SerializeField] private Image gamepadImage;
-        [SerializeField] private Image keyboardAndMouseImage;
-        [SerializeField] private List<Button> upgradeButtons;
+        [Header("Status References")]
+        [SerializeField] public Slider healthBar;
+        [SerializeField] public Slider staminaBar;
+        [SerializeField] public TextMeshProUGUI titleField;
+        [SerializeField] public TextMeshProUGUI moneyField;
 
-        private PlayerInputActions _inputActionsVar;
-        private CanvasGroup _mainCanvas;
-    
-        [Header("Properties")]
+        [Header("Loading and control References")]
+        [SerializeField] private CanvasGroup loadingCover;
         [SerializeField] private float fadeDuration = 1f;
         [SerializeField] private float fadeDelay = 0.1f;
-    
+        [SerializeField] private Image gamepadImage;
+        [SerializeField] private Image keyboardAndMouseImage;
+
+        [Header("upgrade References")]
+        [SerializeField] private List<Button> upgradeButtons;
+        
+        [Header("Debug")]
+        [SerializeField] private List<TextMeshProUGUI> debugTextFields;
+
         [Header("Cashing")]
         private Transform _myTransform;
+        private PlayerInputActions _inputActionsVar;
+        private CanvasGroup _mainCanvas;
 
         [Header("Private variables")]
         private int _animationIdCanvas;
@@ -106,7 +109,7 @@ namespace Systems.UI
             }
             else
             {
-                keyboardAndMouseImage.enabled = true;
+                keyboardAndMouseImage.enabled = false;
                 gamepadImage.enabled = false;
             }
         }

@@ -11,7 +11,7 @@ namespace PlayerScripts
         public bool ultimate;
         
 #pragma warning restore CS0649
-        void Awake()
+        private void Awake()
         {
             if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
 

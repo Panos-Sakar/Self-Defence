@@ -53,16 +53,16 @@ namespace Systems.SpawnSystem
         }
 
         [ContextMenu("SaveToJson")]
-        void SaveToJson()
+        private void SaveToJson()
         {
-            string contents = JsonUtility.ToJson(_spawnData, true);
+            var contents = JsonUtility.ToJson(_spawnData, true);
             System.IO.File.WriteAllText(_pathToJson,contents);
         }
         
         [ContextMenu("LoadFromJason")]
-        void LoadFromJason()
+        private void LoadFromJason()
         {
-            string contents = System.IO.File.ReadAllText(_pathToJson);
+            var contents = System.IO.File.ReadAllText(_pathToJson);
             _spawnData = JsonUtility.FromJson<SpawnData>(contents);
         }
     }

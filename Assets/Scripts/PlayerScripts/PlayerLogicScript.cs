@@ -36,6 +36,7 @@ namespace PlayerScripts
         private float _timeToFire;
     
         private Transform _myTransform;
+        private UserInterfaceHandler _uiInstance;
         private Slider _healthRef;
         private Slider _staminaRef;
         private TextMeshProUGUI _moneyRef;
@@ -54,17 +55,15 @@ namespace PlayerScripts
     
         private void Start()
         {
+            GetUiRefs();
+            
             InvokeRepeating(nameof(IncreaseStamina),0,staminaRegenPeriod );
-        
-            GetSliders();
-            GetTextFields();
 
             InitializeValues();
         
         }
-
-        // Update is called once per frame
-        private void FixedUpdate()
+        
+        private void Update()
         {
             RotatePlayerHead();
         
@@ -79,12 +78,12 @@ namespace PlayerScripts
 
             if (money > 10 && !PlayerUpgrades.Instance.explodeOnImpact)
             {
-                UserInterfaceHandler.Instance.ActivateButton("ImpactExplosion");
+                _uiInstance.ActivateButton("ImpactExplosion");
             }
         
             if (money > 20 && !PlayerUpgrades.Instance.ultimate)
             {
-                UserInterfaceHandler.Instance.ActivateButton("Ultimate");
+                _uiInstance.ActivateButton("Ultimate");
             }
 
             _timeToFire -= Time.deltaTime;
@@ -102,7 +101,7 @@ namespace PlayerScripts
             _staminaRef.value = _stamina;
             _moneyRef.text = Padding + money;
 #if UNITY_EDITOR
-            UserInterfaceHandler.Instance.PrintToDebug(0,"Life: " + _life + " Stamina: " + _stamina);
+            _uiInstance.PrintToDebug(0,"Life: " + _life + " Stamina: " + _stamina);
 #endif
         }
 
@@ -118,41 +117,18 @@ namespace PlayerScripts
             _moneyRef.text = Padding + money;
         }
 
-        private void GetSliders()
+        private void GetUiRefs()
         {
-            var allSliders = GameObject.FindObjectsOfType<Slider>();
+            _uiInstance = UserInterfaceHandler.Instance;
+           
+            _healthRef = _uiInstance.healthBar;
+            _staminaRef = _uiInstance.staminaBar;
+
+            _titleRef = _uiInstance.titleField;
+            _moneyRef = _uiInstance.moneyField;
+
+        }
         
-            foreach (var slider in allSliders)
-            {
-                switch (slider.name)
-                {
-                    case "Health":
-                        _healthRef = slider;
-                        break;
-                    case "Stamina":
-                        _staminaRef = slider;
-                        break;
-                }
-            }
-        }
-
-        private void GetTextFields()
-        {
-            var allTextFields = GameObject.FindObjectsOfType<TextMeshProUGUI>();
-            foreach (var textField in allTextFields)
-            {
-                switch (textField.name)
-                {
-                    case "Title":
-                        _titleRef = textField;
-                        break;
-                    case "MoneyAmount":
-                        _moneyRef = textField;
-                        break;
-                }
-            }
-        }
-
         private void InitializeValues()
         {
             _life = maxLife;
@@ -267,7 +243,7 @@ namespace PlayerScripts
         }
     
         private void OnInputDeviceChange(InputUser user, InputUserChange change, InputDevice device) {
-            if (change == InputUserChange.ControlSchemeChanged) {UserInterfaceHandler.Instance.ToggleInputIcon(playerInputVar.currentControlScheme);}
+            if (change == InputUserChange.ControlSchemeChanged) {_uiInstance.ToggleInputIcon(playerInputVar.currentControlScheme);}
         }
 
         public void DamagePlayer(float amount)

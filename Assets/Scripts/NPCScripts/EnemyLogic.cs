@@ -1,5 +1,4 @@
 ﻿using PlayerScripts;
-using Prefabs.Projectiles.Arrow.Prefab;
 using Prefabs.Projectiles.Arrow.Prefab.Scripts;
 using UnityEngine;
 using UnityEngine.AI;
@@ -35,11 +34,16 @@ namespace NPCScripts
         [SerializeField] public EnemyTypeEnum enemyType = EnemyTypeEnum.Default;
         
 #pragma warning restore CS0649
-        // Start is called before the first frame update
+        private void Awake()
+        {
+            //_player = GameObject.FindGameObjectWithTag("Player");
+            _player = PlayerUpgrades.Instance.gameObject;
+            
+            _enemyNavMesh = GetComponent<NavMeshAgent>();
+        }
+        
         private void OnEnable()
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
-            _enemyNavMesh = GetComponent<NavMeshAgent>();
             _playerTransform = _player.transform;
             _myTransform = transform;
         }

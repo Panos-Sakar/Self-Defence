@@ -32,9 +32,9 @@ namespace Systems.FireProjectile
         
         public void SpawnUltimateEffect(Transform playerTransform)
         {
-            Vector3 pos = playerTransform.position + new Vector3(0, 2, 0);
-            Vector3 forward =playerTransform.forward;
-            Vector3 right = playerTransform.right;
+            var pos = playerTransform.position + new Vector3(0, 2, 0);
+            var forward =playerTransform.forward;
+            var right = playerTransform.right;
                 
             Vector3[] position = {
                 forward,

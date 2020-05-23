@@ -9,8 +9,8 @@ namespace Systems.Loading
     {
 #pragma warning disable CS0649
         public static LoadingHandler Instance { get; private  set; }
-        
-        [SerializeField] private GameObject[] debugObjects;
+
+        [SerializeField] private GameObject debugCanvas;
         private Scene _activeLevel;
         private string _activeLevelName;
 
@@ -18,6 +18,8 @@ namespace Systems.Loading
         private void Awake()
         {
             if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
+            
+            debugCanvas.SetActive(false);
         }
 
         private void OnEnable()
@@ -28,7 +30,7 @@ namespace Systems.Loading
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-            ActivateDebug();
+            debugCanvas.SetActive(true);
 #endif
         }
 
@@ -43,24 +45,12 @@ namespace Systems.Loading
             }
             
             _activeLevelName = "Menu_Level";
-            
-#if UNITY_EDITOR
-            UserInterfaceHandler.Instance.PrintToDebug(4,"");
-#endif
         }
 
         private void OnDisable()
         {
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-        
-        private void ActivateDebug()
-        {
-            foreach (var obj in debugObjects)
-            {
-                obj.SetActive(true);
-            }
         }
 
         public IEnumerator StartLoadSequence(int levelIndex, Transform loaderObject)
