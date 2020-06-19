@@ -45,6 +45,5 @@ namespace SelfDef.Systems.SpawnSystemV2
         public int size;
         public EnemyTypes enemyType;
         public float spawnRate;
-        
     }
 }

@@ -6,8 +6,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
     // ReSharper disable once InconsistentNaming
     public class SpawnDataOfLevel_InspectorWindow : ExtendedEditorWindow
     {
-        private static SpawnDataOfLevel _target;
-        
         private SerializedProperty _spawnPoints;
         private SerializedProperty _enemyPools;
         
@@ -17,14 +15,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         {
             var window = GetWindow<SpawnDataOfLevel_InspectorWindow>("Spawn editor window");
             window.SerializedObject = new SerializedObject(dataObject);
-            _target = dataObject;
         }
-
-        private void OnSelectionChange()
-        {
-            Open(_target);
-        }
-
+        
         private void OnGUI()
         {
             
@@ -54,7 +46,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                     {
                         DrawField("pointName", true);
                         EditorGUILayout.Separator();
-                        AddDeleteButton();
+                        if(AddDeleteButton()) break;
                     }
                         EditorGUILayout.EndHorizontal();
                         
@@ -115,9 +107,39 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                     }
                         EditorGUILayout.EndVertical();
                         break;
-                    
+
                     case "EnemyPool":
-                        DrawProperties(SelectedProperty,true);
+                        CurrentProperty = SelectedProperty;
+                        
+                        EditorGUILayout.LabelField("Edit Pool: ");
+                        EditorGUILayout.Space(5);
+                        
+                        EditorGUILayout.BeginHorizontal("box");
+                    {
+                        DrawField("poolName", true);
+                        EditorGUILayout.Separator();
+                        if(AddDeleteButton()) break;
+                    }
+                        EditorGUILayout.EndHorizontal();
+                        
+                        EditorGUILayout.Space(10);
+                        
+                        EditorGUILayout.BeginVertical("box");
+                    {
+                        EditorGUILayout.BeginHorizontal();
+                        
+                        DrawFieldWithLabel("enemyPrefab","Enemy Prefab",300,100 );
+                        DrawFieldWithLabel("enemyType", " of type ", 200,50);
+                        
+                        EditorGUILayout.EndHorizontal();
+                        
+                        EditorGUILayout.Space(10);
+                        
+                        DrawFieldWithLabel("size","Size ",200,100);
+                        DrawFieldWithLabel("canGrow","Can Grow " ,100,100);
+                    }
+                        EditorGUILayout.EndVertical();
+
                         break;
                 }
             }
@@ -134,57 +156,53 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
 
         private bool AddDeleteWaveButton(SerializedProperty waves, int index)
         {
-            if (GUILayout.Button("Delete Wave",GUILayout.Width(100)))
-            {
-                waves.DeleteArrayElementAtIndex(index);
-                _currentWaveIndex--;
-                if (waves.arraySize == index)
-                {
-                    return true;
-                }
-            }
-            return false;
+            if (!GUILayout.Button("Delete Wave", GUILayout.Width(100))) return false;
+            
+            waves.DeleteArrayElementAtIndex(index);
+            _currentWaveIndex--;
+            
+            return waves.arraySize == index;
         }
         
-        private void AddWaveButton(SerializedProperty waves)
+        private static void AddWaveButton(SerializedProperty waves)
         {
-            if (GUILayout.Button("Add new Wave",GUILayout.Width(100)))
-            {
-                waves.InsertArrayElementAtIndex(waves.arraySize);
+            if (!GUILayout.Button("Add new Wave", GUILayout.Width(100))) return;
+            
+            waves.InsertArrayElementAtIndex(waves.arraySize);
 
-                var element = waves.GetArrayElementAtIndex(waves.arraySize-1);
-                var pos = int.Parse(element.displayName.TrimStart('W','a','v','e',' ','>'));
-                var propertyRelative = element.FindPropertyRelative("waveName");
-                propertyRelative.stringValue = $"Wave > {pos + 1}";
-                propertyRelative = element.FindPropertyRelative("waveDelay");
-                propertyRelative.floatValue = 0f;
-                propertyRelative = element.FindPropertyRelative("size");
-                propertyRelative.intValue = 0;
-                propertyRelative = element.FindPropertyRelative("enemyType");
-                propertyRelative.enumValueIndex = 0;
-                propertyRelative = element.FindPropertyRelative("spawnRate");
-                propertyRelative.floatValue = 0f;
+            var element = waves.GetArrayElementAtIndex(waves.arraySize-1);
+            
+            var pos = waves.arraySize == 1 ? 0 : int.Parse(element.displayName.TrimStart('W','a','v','e',' ','>'));
 
-            }
+            var propertyRelative = element.FindPropertyRelative("waveName");
+            propertyRelative.stringValue = $"Wave > {pos + 1}";
+            propertyRelative = element.FindPropertyRelative("waveDelay");
+            propertyRelative.floatValue = 0f;
+            propertyRelative = element.FindPropertyRelative("size");
+            propertyRelative.intValue = 0;
+            propertyRelative = element.FindPropertyRelative("enemyType");
+            propertyRelative.enumValueIndex = 0;
+            propertyRelative = element.FindPropertyRelative("spawnRate");
+            propertyRelative.floatValue = 0f;
         }
         
-        private void AddDeleteButton()
+        private bool AddDeleteButton()
         {
-            if (GUILayout.Button("Delete Element"))
+            if (!GUILayout.Button("Delete Element")) return false;
+            
+            switch (PropertyType)
             {
-                switch (PropertyType)
-                {
-                    case "Spawn Point":
-                        _spawnPoints.DeleteArrayElementAtIndex(CurrentPointIndex);
-                        break;
-                    case "Object Pool":
-                        _enemyPools.DeleteArrayElementAtIndex(CurrentPoolIndex);
-                        break;
-                }
+                case "Spawn Point":
+                    _spawnPoints.DeleteArrayElementAtIndex(CurrentPointIndex);
+                    break;
+                case "Object Pool":
+                    _enemyPools.DeleteArrayElementAtIndex(CurrentPoolIndex);
+                    break;
             }
+            return true;
         }
         
-        private void AddUpdateButton(SerializedProperty transform)
+        private static void AddUpdateButton(SerializedProperty transform)
         {
             if (GUILayout.Button("Get Position") && Selection.activeGameObject != null)
             {

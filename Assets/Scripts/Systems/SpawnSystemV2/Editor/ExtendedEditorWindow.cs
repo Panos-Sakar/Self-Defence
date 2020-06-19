@@ -1,12 +1,10 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using System;
 
 namespace SelfDef.Systems.SpawnSystemV2.Editor
 {
     public class ExtendedEditorWindow : EditorWindow
     {
-        protected int EnemyTypesCount = Enum.GetNames(typeof(EnemyTypes)).Length;
         protected SerializedObject SerializedObject;
         // ReSharper disable once MemberCanBePrivate.Global
         // ReSharper disable once UnassignedField.Global
@@ -74,40 +72,22 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             }
             
             DrawUiLine(Color.gray);
-            if (Selection.activeObject == null)
+
+            if (GUILayout.Button("Add Point"))
             {
-                if (GUILayout.Button("Add Point"))
-                {
-                    var point = SerializedObject.FindProperty("spawnPoints");
-                        point.InsertArrayElementAtIndex(point.arraySize);
+                var point = SerializedObject.FindProperty("spawnPoints");
+                point.InsertArrayElementAtIndex(point.arraySize);
 
-                        var element = point.GetArrayElementAtIndex(point.arraySize - 1);
+                var element = point.GetArrayElementAtIndex(point.arraySize - 1);
 
-                        var propertyRelative = element.FindPropertyRelative("pointName");
-                        propertyRelative.stringValue = $"new{point.arraySize - 1}";
-                        propertyRelative = element.FindPropertyRelative("spawnPointTransform");
-                
-                        propertyRelative.vector3Value = Vector3.zero;
-                }
+                var propertyRelative = element.FindPropertyRelative("pointName");
+                propertyRelative.stringValue = $"new{point.arraySize - 1}";
+                propertyRelative = element.FindPropertyRelative("spawnPointTransform");
+                propertyRelative.vector3Value = Vector3.zero;
+                propertyRelative = element.FindPropertyRelative("waves");
+                propertyRelative.arraySize = 0;
             }
-            else
-            {
-                if (GUILayout.Button("Add Points from Selection"))
-                {
-                    var point = SerializedObject.FindProperty("spawnPoints");
-                    point.InsertArrayElementAtIndex(point.arraySize);
-
-                    var element = point.GetArrayElementAtIndex(point.arraySize - 1);
-
-                    var propertyRelative = element.FindPropertyRelative("pointName");
-                    propertyRelative.stringValue = $"new{point.arraySize - 1}";
-                    propertyRelative = element.FindPropertyRelative("spawnPointTransform");
-                
-                    propertyRelative.vector3Value = Selection.activeGameObject.transform.position;
-                }  
-            }
-
-
+            
             GUILayout.Space(10); //------------------------------------------------------------------------
             
             _poolsIndex = 0;
@@ -135,6 +115,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 
                 var propertyRelative = element.FindPropertyRelative("poolName");
                 propertyRelative.stringValue = $"new{pool.arraySize-1}";
+                propertyRelative = element.FindPropertyRelative("enemyType");
+                propertyRelative.enumValueIndex = 0;
                 propertyRelative = element.FindPropertyRelative("enemyPrefab");
                 propertyRelative.objectReferenceValue = null;
                 propertyRelative = element.FindPropertyRelative("size");
@@ -163,17 +145,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 EditorGUILayout.PropertyField(SerializedObject.FindProperty(propName), true);
             }
         }
-        protected void DrawField(string propName, bool relative, int width)
-        {
-            if (relative & CurrentProperty != null)
-            {
-                EditorGUILayout.PropertyField(CurrentProperty.FindPropertyRelative(propName), true,GUILayout.Width(width));
-            }
-            else if (SerializedObject != null)
-            {
-                EditorGUILayout.PropertyField(SerializedObject.FindProperty(propName), true,GUILayout.Width(width));
-            }
-        }
+
         protected void DrawFieldWithLabel(string propName, string label, int width, int labelWidth = 75)
         {
             var tempWidth = EditorGUIUtility.labelWidth;
@@ -184,7 +156,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         
         private static void DrawUiLine(Color color, int thickness = 2, int padding = 10)
         {
-            Rect r = EditorGUILayout.GetControlRect(GUILayout.Height(padding+thickness));
+            var r = EditorGUILayout.GetControlRect(GUILayout.Height(padding+thickness));
             r.height = thickness;
             r.y+=padding/2f;
             r.x-=2;
