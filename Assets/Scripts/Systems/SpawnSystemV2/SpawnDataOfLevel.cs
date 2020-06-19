@@ -2,9 +2,15 @@
 using UnityEngine;
 // ReSharper disable NotAccessedField.Global
 
-
 namespace SelfDef.Systems.SpawnSystemV2
 {
+
+    public enum EnemyTypes
+    {
+        SmallBall = 0,
+        BigBall = 1
+    }
+    
     [Serializable]
     [CreateAssetMenu]
     public class SpawnDataOfLevel : ScriptableObject
@@ -17,6 +23,7 @@ namespace SelfDef.Systems.SpawnSystemV2
     public class EnemyPool
     {
         public string poolName;
+        public EnemyTypes enemyType;
         public GameObject enemyPrefab;
         public int size;
         public bool canGrow;
@@ -27,6 +34,17 @@ namespace SelfDef.Systems.SpawnSystemV2
     {
         public string pointName;
         public Vector3 spawnPointTransform;
-        public int[] enemies;
+        public Wave[] waves;
+    }
+    
+    [Serializable]
+    public class Wave
+    {
+        public string waveName;
+        public float waveDelay;
+        public int size;
+        public EnemyTypes enemyType;
+        public float spawnRate;
+        
     }
 }

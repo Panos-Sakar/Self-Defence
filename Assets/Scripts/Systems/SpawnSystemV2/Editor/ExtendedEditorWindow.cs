@@ -1,10 +1,12 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using System;
 
 namespace SelfDef.Systems.SpawnSystemV2.Editor
 {
     public class ExtendedEditorWindow : EditorWindow
     {
+        protected int EnemyTypesCount = Enum.GetNames(typeof(EnemyTypes)).Length;
         protected SerializedObject SerializedObject;
         // ReSharper disable once MemberCanBePrivate.Global
         // ReSharper disable once UnassignedField.Global
@@ -21,6 +23,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         protected int CurrentPoolIndex;
         
         protected string PropertyType;
+
+        private Vector2 _sidebarScrollPos;
 
         protected static void DrawProperties(SerializedProperty properties , bool drawChildren)
         {
@@ -53,6 +57,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
 
         protected void DrawSidebar(SerializedProperty spawnPoints, SerializedProperty availablePools)
         {
+            _sidebarScrollPos = EditorGUILayout.BeginScrollView(_sidebarScrollPos,GUILayout.Width(225));
             _spawnPointsIndex = 0;
             GUILayout.Label("Spawn Points",EditorStyles.boldLabel);
             foreach (SerializedProperty prop in spawnPoints)
@@ -138,6 +143,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 propertyRelative.boolValue = false;
 
             }
+            
+            EditorGUILayout.EndScrollView();
 
             if (!string.IsNullOrEmpty(_selectedPropertyPath))
             {
@@ -155,6 +162,24 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             {
                 EditorGUILayout.PropertyField(SerializedObject.FindProperty(propName), true);
             }
+        }
+        protected void DrawField(string propName, bool relative, int width)
+        {
+            if (relative & CurrentProperty != null)
+            {
+                EditorGUILayout.PropertyField(CurrentProperty.FindPropertyRelative(propName), true,GUILayout.Width(width));
+            }
+            else if (SerializedObject != null)
+            {
+                EditorGUILayout.PropertyField(SerializedObject.FindProperty(propName), true,GUILayout.Width(width));
+            }
+        }
+        protected void DrawFieldWithLabel(string propName, string label, int width, int labelWidth = 75)
+        {
+            var tempWidth = EditorGUIUtility.labelWidth;
+            EditorGUIUtility.labelWidth = labelWidth;
+            EditorGUILayout.PropertyField(CurrentProperty.FindPropertyRelative(propName),new GUIContent(label),false,GUILayout.Width(width),GUILayout.ExpandWidth (false));
+            EditorGUIUtility.labelWidth = tempWidth;
         }
         
         private static void DrawUiLine(Color color, int thickness = 2, int padding = 10)
