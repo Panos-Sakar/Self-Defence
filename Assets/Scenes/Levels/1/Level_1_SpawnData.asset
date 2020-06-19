@@ -522,3 +522,8 @@ MonoBehaviour:
     enemyPrefab: {fileID: 0}
     size: 0
     canGrow: 0
+  - poolName: new2
+    enemyType: 0
+    enemyPrefab: {fileID: 0}
+    size: 0
+    canGrow: 0
