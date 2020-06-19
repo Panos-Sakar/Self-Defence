@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab930be1497170546a49fd7b661c3669, type: 3}
+  m_Name: Level_1_SpawnData
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - pointName: new0
+    spawnPointTransform: {x: 0, y: 0, z: 0}
+    enemies: 
+  - pointName: new1
+    spawnPointTransform: {x: 0, y: 0, z: 0}
+    enemies: 0000000000000000
+  - pointName: new2
+    spawnPointTransform: {x: 0, y: 0, z: 0}
+    enemies: 000000000000000000000000
+  availablePools: []

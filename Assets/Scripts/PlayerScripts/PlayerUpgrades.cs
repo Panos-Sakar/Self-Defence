@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using PlayerScripts;
+using UnityEngine;
 
-namespace PlayerScripts
+namespace SelfDef.PlayerScripts
 {
     public class PlayerUpgrades : MonoBehaviour
     {

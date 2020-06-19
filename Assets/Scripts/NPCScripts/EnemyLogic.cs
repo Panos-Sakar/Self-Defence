@@ -1,9 +1,11 @@
-﻿using PlayerScripts;
+﻿using Systems.UI;
+using PlayerScripts;
 using Prefabs.Projectiles.Arrow.Prefab.Scripts;
+using SelfDef.PlayerScripts;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace NPCScripts
+namespace SelfDef.NPCScripts
 {
     public class EnemyLogic : MonoBehaviour
     {
@@ -18,6 +20,7 @@ namespace NPCScripts
         
         private GameObject _player;
         private NavMeshAgent _enemyNavMesh;
+        private Animator _enemyAnimator;
         private Transform _playerTransform;
         private Transform _myTransform;
         
@@ -32,30 +35,35 @@ namespace NPCScripts
         private Quaternion _particleRotation;
 
         [SerializeField] public EnemyTypeEnum enemyType = EnemyTypeEnum.Default;
-        
+        private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+        private static readonly int Vertical = Animator.StringToHash("Vertical");
+
 #pragma warning restore CS0649
         private void Awake()
         {
             //_player = GameObject.FindGameObjectWithTag("Player");
-            _player = PlayerUpgrades.Instance.gameObject;
+            
             
             _enemyNavMesh = GetComponent<NavMeshAgent>();
+            _enemyAnimator = GetComponent<Animator>();
         }
         
         private void OnEnable()
         {
+            _player = PlayerUpgrades.Instance.gameObject;
             _playerTransform = _player.transform;
             _myTransform = transform;
+            
+            _enemyNavMesh.destination = _playerTransform.position;
+
+            
         }
 
         // Update is called once per frame
         private void Update()
         {
-            if (gameObject.activeInHierarchy.Equals(true))
-            {
-                _enemyNavMesh.destination = _playerTransform.position;
-            }
-
+            _enemyAnimator.SetFloat(Horizontal,_enemyNavMesh.velocity.x);
+            _enemyAnimator.SetFloat(Vertical,_enemyNavMesh.velocity.z);
         }
 
         private void OnTriggerEnter(Collider other)

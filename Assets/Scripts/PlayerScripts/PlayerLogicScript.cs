@@ -1,5 +1,6 @@
 ﻿using Systems.FireProjectile;
 using Systems.UI;
+using SelfDef.PlayerScripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
