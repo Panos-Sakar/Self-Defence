@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000002, guid: 14a6f6554a1cedb4497aacf62b908979,
+  m_LightingDataAsset: {fileID: 112000002, guid: 65aee944428f14445b9a01a8d455bb18,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -121,7 +121,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 40931a9f9017f0743b1f8c1dbaeadc3c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 80292a6c43f848e4f8920af427e9a7ab, type: 2}
 --- !u!1 &17307390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,6 +2091,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugCanvas: {fileID: 1354591900}
+  menuLevelIndex: 2
+  loadMenu: 0
 --- !u!1 &854657555
 GameObject:
   m_ObjectHideFlags: 0
@@ -6697,17 +6699,27 @@ PrefabInstance:
     - target: {fileID: 6074777838975521751, guid: 2060ab72bbf4f2342a4876249b78fa52,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.258819
+      value: 0.96501654
       objectReference: {fileID: 0}
     - target: {fileID: 6074777838975521751, guid: 2060ab72bbf4f2342a4876249b78fa52,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -30
+      value: 210.4
       objectReference: {fileID: 0}
     - target: {fileID: 6074777838975521751, guid: 2060ab72bbf4f2342a4876249b78fa52,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659259
+      value: -0.26218906
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074777838975521751, guid: 2060ab72bbf4f2342a4876249b78fa52,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074777838975521751, guid: 2060ab72bbf4f2342a4876249b78fa52,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2060ab72bbf4f2342a4876249b78fa52, type: 3}

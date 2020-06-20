@@ -12,7 +12,7 @@ namespace SelfDef.Systems.SpawnSystemV2
     }
     
     [Serializable]
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Data Asset/Spawn Data",fileName = "SpawnData_Level")]
     public class SpawnDataOfLevel : ScriptableObject
     {
         public SpawnPoint[] spawnPoints;

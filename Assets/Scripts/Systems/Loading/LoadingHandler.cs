@@ -3,7 +3,7 @@ using Systems.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Systems.Loading
+namespace SelfDef.Systems.Loading
 {
     public class LoadingHandler : MonoBehaviour
     {
@@ -11,8 +11,10 @@ namespace Systems.Loading
         public static LoadingHandler Instance { get; private  set; }
 
         [SerializeField] private GameObject debugCanvas;
+        [SerializeField] private int menuLevelIndex;
+        [SerializeField] private bool loadMenu;
         private Scene _activeLevel;
-        private string _activeLevelName;
+        private int _activeLevelIndex;
 
 #pragma warning restore CS0649
         private void Awake()
@@ -36,15 +38,16 @@ namespace Systems.Loading
 
         private void Start()
         {
+            if (!loadMenu) return;
+            
             var menuLevel = SceneManager.GetSceneByName("Menu_Level");
             
             if (!menuLevel.isLoaded)
             {
-                Debug.Log("Loading Menu level");
-                SceneManager.LoadScene("Menu_Level", LoadSceneMode.Additive);
+                SceneManager.LoadScene(menuLevelIndex, LoadSceneMode.Additive);
             }
             
-            _activeLevelName = "Menu_Level";
+            _activeLevelIndex = menuLevelIndex;
         }
 
         private void OnDisable()
@@ -55,26 +58,24 @@ namespace Systems.Loading
 
         public IEnumerator StartLoadSequence(int levelIndex, Transform loaderObject)
         {
-            var levelName = "Level_" + levelIndex;
-            
+
             yield return StartCoroutine(UserInterfaceHandler.Instance.HideViewOfGame());
             
             loaderObject.position = new Vector3(0,100,0);
 
-            yield return LoadLevel(levelName);
+            yield return LoadLevel(levelIndex);
             
             yield return StartCoroutine(UserInterfaceHandler.Instance.ShowViewOfGame());
             
             loaderObject.gameObject.SetActive(false);
         }
 
-        private IEnumerator LoadLevel(string levelName)
+        private IEnumerator LoadLevel(int levelIndex)
         {
-            if (levelName == _activeLevelName) yield return null;
-
-            SceneManager.UnloadSceneAsync(_activeLevelName);
-            SceneManager.LoadScene(levelName, LoadSceneMode.Additive);
-            _activeLevelName = levelName;
+            levelIndex += menuLevelIndex;
+            SceneManager.UnloadSceneAsync(_activeLevelIndex);
+            SceneManager.LoadScene(levelIndex, LoadSceneMode.Additive);
+            _activeLevelIndex = levelIndex;
             yield return null;
         }
     }

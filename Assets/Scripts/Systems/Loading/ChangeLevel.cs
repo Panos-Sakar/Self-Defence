@@ -1,8 +1,7 @@
-﻿using Systems.UI;
-using Interfaces;
+﻿using Interfaces;
 using UnityEngine;
 
-namespace Systems.Loading
+namespace SelfDef.Systems.Loading
 {
     public class ChangeLevel : MonoBehaviour
     {

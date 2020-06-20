@@ -4,6 +4,10 @@ using SelfDef.PlayerScripts;
 using UnityEngine;
 using UnityEngine.AI;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace SelfDef.NPCScripts
 {
     public class EnemyLogic : MonoBehaviour
@@ -99,5 +103,13 @@ namespace SelfDef.NPCScripts
                 gameObject.SetActive(false);
             }
         }
+#if UNITY_EDITOR
+
+        private void OnDrawGizmos()
+        {
+            Handles.Label(_myTransform.position + Vector3.up * 0.125f,$"HP: {life} / {maxLife}");
+        }  
+#endif
+
     }
 }
