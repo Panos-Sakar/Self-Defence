@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - pointName: Alpha
-    spawnPointTransform: {x: -2.5, y: 5.75, z: 7.5}
+    spawnPointTransform: {x: 1, y: 1, z: 1}
     waves:
     - waveName: Wave > 1
       waveDelay: 2
@@ -62,468 +62,49 @@ MonoBehaviour:
       enemyType: 0
       spawnRate: 0
   - pointName: Bravo
-    spawnPointTransform: {x: 7.415509, y: 2.6804848, z: 4.1320744}
+    spawnPointTransform: {x: 2, y: 2, z: 2}
     waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
+    - waveName: Wave > 1
       waveDelay: 0
       size: 0
       enemyType: 0
       spawnRate: 0
-    - waveName: wave 2
+    - waveName: Wave > 2
       waveDelay: 0
       size: 0
       enemyType: 0
       spawnRate: 0
-  - pointName: Charlie
-    spawnPointTransform: {x: 7.415509, y: 2.6804848, z: 4.1320744}
+  - pointName: Charlie2
+    spawnPointTransform: {x: 0, y: 34, z: 0}
     waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
+    - waveName: Wave > 1
       waveDelay: 0
       size: 0
       enemyType: 0
       spawnRate: 0
-    - waveName: wave 2
+    - waveName: Wave > 2
+      waveDelay: 0
+      size: 0
+      enemyType: 0
+      spawnRate: 0
+    - waveName: Wave > 3
       waveDelay: 0
       size: 0
       enemyType: 0
       spawnRate: 0
   - pointName: new3
-    spawnPointTransform: {x: 7.415509, y: 2.6804848, z: 4.1320744}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new4
-    spawnPointTransform: {x: 7.415509, y: 2.6804848, z: 4.1320744}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new5
     spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new6
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new7
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new8
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new9
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new10
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new11
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new12
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new13
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new14
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new15
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new16
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new17
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new18
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new19
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new20
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new21
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new22
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new23
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new24
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: new25
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves:
-    - waveName: wave 1
-      waveDelay: 0
-      size: 42
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-    - waveName: wave 2
-      waveDelay: 0
-      size: 0
-      enemyType: 0
-      spawnRate: 0
+    waves: []
   availablePools:
   - poolName: Small Ball Pool
     enemyType: 0
-    enemyPrefab: {fileID: 0}
-    size: 0
+    enemyPrefab: {fileID: 5603545967499408624, guid: 7b6f6c3488d46a44da8191e8ae744671,
+      type: 3}
+    size: 15
     canGrow: 0
   - poolName: Big Ball Pool
-    enemyType: 0
-    enemyPrefab: {fileID: 0}
-    size: 0
-    canGrow: 0
-  - poolName: new2
-    enemyType: 0
-    enemyPrefab: {fileID: 0}
-    size: 0
+    enemyType: 1
+    enemyPrefab: {fileID: 4672923178144442080, guid: 93e5ed4caa2819e4fb6eab28b3ab7231,
+      type: 3}
+    size: 2
     canGrow: 0

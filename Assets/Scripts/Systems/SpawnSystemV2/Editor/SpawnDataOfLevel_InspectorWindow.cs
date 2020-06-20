@@ -19,7 +19,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         
         private void OnGUI()
         {
-            
+            SerializedObject.Update();
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.BeginVertical("box", GUILayout.MaxWidth(150), GUILayout.ExpandHeight(true));
             
@@ -119,6 +119,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                         DrawField("poolName", true);
                         EditorGUILayout.Separator();
                         if(AddDeleteButton()) break;
+                        
                     }
                         EditorGUILayout.EndHorizontal();
                         
@@ -201,10 +202,11 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             }
             return true;
         }
+
         
         private static void AddUpdateButton(SerializedProperty transform)
         {
-            if (GUILayout.Button("Get Position") && Selection.activeGameObject != null)
+            if (GUILayout.Button("Get Selected Position") && Selection.activeGameObject != null)
             {
                 transform.vector3Value = Selection.activeGameObject.transform.position;
             }

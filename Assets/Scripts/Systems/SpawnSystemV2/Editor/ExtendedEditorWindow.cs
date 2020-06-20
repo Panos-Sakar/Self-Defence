@@ -81,12 +81,18 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 var element = point.GetArrayElementAtIndex(point.arraySize - 1);
 
                 var propertyRelative = element.FindPropertyRelative("pointName");
-                propertyRelative.stringValue = $"new{point.arraySize - 1}";
+                var targetName = $"new {point.arraySize - 1}";
+                propertyRelative.stringValue = targetName;
                 propertyRelative = element.FindPropertyRelative("spawnPointTransform");
                 propertyRelative.vector3Value = Vector3.zero;
                 propertyRelative = element.FindPropertyRelative("waves");
                 propertyRelative.arraySize = 0;
+
+                CreateNewPosGameObj(targetName);
+
             }
+            
+            AddUpdateAllPosButton();
             
             GUILayout.Space(10); //------------------------------------------------------------------------
             
@@ -123,7 +129,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 propertyRelative.intValue = 0;
                 propertyRelative = element.FindPropertyRelative("canGrow");
                 propertyRelative.boolValue = false;
-
             }
             
             EditorGUILayout.EndScrollView();
@@ -164,7 +169,38 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             EditorGUI.DrawRect(r, color);
         }
 
+        private void AddUpdateAllPosButton()
+        {
+            if (!GUILayout.Button("Update Spawn Point Positions")) return;
+            
+            SerializedObject.Update ();
+            
+            var points = GameObject.Find("SpawnPointsPos").GetComponentsInChildren<Transform>();
 
+            var spawnPoints = SerializedObject.FindProperty("spawnPoints");
+
+            foreach (var point in points)
+            {
+                for (var i = 0; i < spawnPoints.arraySize; i++)
+                {
+                    var spawnPoint = spawnPoints.GetArrayElementAtIndex(i);
+
+                    if (point.name == spawnPoint.displayName)
+                    {
+                        spawnPoint.FindPropertyRelative("spawnPointTransform").vector3Value = point.position;
+                    }
+                }
+            }
+        }
+
+        private static void CreateNewPosGameObj(string targetName)
+        {
+            var parent = GameObject.Find("SpawnPointsPos");
+            
+            var point = new GameObject(targetName);
+            point.transform.parent = parent.transform;
+        }
+        
         protected void Apply()
         {
             SerializedObject.ApplyModifiedProperties();
