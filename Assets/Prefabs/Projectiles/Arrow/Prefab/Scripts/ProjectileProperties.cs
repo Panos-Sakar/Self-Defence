@@ -1,7 +1,7 @@
-﻿using Interfaces;
+﻿using SelfDef.Interfaces;
 using UnityEngine;
 
-namespace Prefabs.Projectiles.Arrow.Prefab.Scripts
+namespace SelfDef.Prefabs.Projectiles.Arrow.Prefab.Scripts
 {
     public class ProjectileProperties : MonoBehaviour, IChangeSetting
     {

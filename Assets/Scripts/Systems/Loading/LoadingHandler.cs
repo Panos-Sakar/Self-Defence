@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Systems.UI;
+using SelfDef.Systems.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +10,7 @@ namespace SelfDef.Systems.Loading
 #pragma warning disable CS0649
         public static LoadingHandler Instance { get; private  set; }
 
+        [SerializeField] public GameObject playerRef;
         [SerializeField] private GameObject debugCanvas;
         [SerializeField] private int menuLevelIndex;
         [SerializeField] private bool loadMenu;
@@ -38,6 +39,9 @@ namespace SelfDef.Systems.Loading
 
         private void Start()
         {
+#if !UNITY_EDITOR
+            loadMenu = true;
+#endif
             if (!loadMenu) return;
             
             var menuLevel = SceneManager.GetSceneByName("Menu_Level");

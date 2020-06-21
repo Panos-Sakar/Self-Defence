@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000002, guid: 65aee944428f14445b9a01a8d455bb18,
+  m_LightingDataAsset: {fileID: 112000002, guid: 14a6f6554a1cedb4497aacf62b908979,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -113,7 +113,7 @@ NavMeshSettings:
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
-    minRegionArea: 2
+    minRegionArea: 0
     manualCellSize: 0
     cellSize: 0.16666667
     manualTileSize: 0
@@ -121,7 +121,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 80292a6c43f848e4f8920af427e9a7ab, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5079638431f6fd84c815a0450511626e, type: 2}
 --- !u!1 &17307390
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 348823636135183645}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1907456502}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 723828c112d99a8468dbb975bb02789a, type: 3}
@@ -2090,6 +2090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659349a3414b0a44ba978279195532b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRef: {fileID: 1907456502}
   debugCanvas: {fileID: 1354591900}
   menuLevelIndex: 2
   loadMenu: 0
@@ -6041,6 +6042,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901797688}
   m_CullTransparentMesh: 0
+--- !u!1 &1907456502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6050108014788145123, guid: 2060ab72bbf4f2342a4876249b78fa52,
+    type: 3}
+  m_PrefabInstance: {fileID: 348823636135183645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909889639
 GameObject:
   m_ObjectHideFlags: 0
@@ -6534,7 +6541,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 348823636135183645}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1907456502}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a2e6e05534e39e428b02411977520b7, type: 3}

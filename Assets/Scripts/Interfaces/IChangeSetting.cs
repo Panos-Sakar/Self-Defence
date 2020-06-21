@@ -1,5 +1,5 @@
 ﻿
-namespace Interfaces
+namespace SelfDef.Interfaces
 {
     public interface IChangeSetting
     {

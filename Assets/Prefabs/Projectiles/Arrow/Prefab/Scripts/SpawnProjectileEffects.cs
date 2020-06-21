@@ -1,9 +1,8 @@
-﻿using PlayerScripts;
-using SelfDef.PlayerScripts;
+﻿using SelfDef.PlayerScripts;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Prefabs.Projectiles.Arrow.Prefab.Scripts
+namespace SelfDef.Prefabs.Projectiles.Arrow.Prefab.Scripts
 {
     public class SpawnProjectileEffects : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-﻿namespace Systems.SpawnSystem
+﻿namespace SelfDef.Systems.SpawnSystem
 {
     [System.Serializable]
     public class SpawnData

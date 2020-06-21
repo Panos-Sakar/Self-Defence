@@ -1,5 +1,4 @@
-﻿using PlayerScripts;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SelfDef.PlayerScripts
 {

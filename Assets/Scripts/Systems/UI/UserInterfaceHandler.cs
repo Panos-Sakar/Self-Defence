@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Systems.UI
+namespace SelfDef.Systems.UI
 {
     public class UserInterfaceHandler : MonoBehaviour
     {
