@@ -23,6 +23,9 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             if(SerializedObject == null) return;
             
             SerializedObject.Update();
+            
+            EditorGUILayout.LabelField(SerializedObject.targetObject.name);
+            
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.BeginVertical("box", GUILayout.MaxWidth(150), GUILayout.ExpandHeight(true));
             

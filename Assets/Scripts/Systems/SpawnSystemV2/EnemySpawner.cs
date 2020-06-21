@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SelfDef.Systems.Loading;
 using UnityEngine;
 
 namespace SelfDef.Systems.SpawnSystemV2
@@ -60,6 +61,8 @@ namespace SelfDef.Systems.SpawnSystemV2
                     yield return new WaitForSeconds(wave.spawnRate);
                 } 
             }
+            
+            LoadingHandler.Instance.playerFinishedLevel.Invoke();
         }
     }
 }

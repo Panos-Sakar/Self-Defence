@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using SelfDef.Systems.UI;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace SelfDef.Systems.Loading
@@ -9,11 +10,14 @@ namespace SelfDef.Systems.Loading
     {
 #pragma warning disable CS0649
         public static LoadingHandler Instance { get; private  set; }
-
+        public UnityEvent playerFinishedLevel;
+        
         [SerializeField] public GameObject playerRef;
+        
         [SerializeField] private GameObject debugCanvas;
         [SerializeField] private int menuLevelIndex;
         [SerializeField] private bool loadMenu;
+        
         private Scene _activeLevel;
         private int _activeLevelIndex;
 
@@ -68,6 +72,8 @@ namespace SelfDef.Systems.Loading
             loaderObject.position = new Vector3(0,100,0);
 
             yield return LoadLevel(levelIndex);
+
+            NavigationManager.Instance.ChangeNavMesh(levelIndex);
             
             yield return StartCoroutine(UserInterfaceHandler.Instance.ShowViewOfGame());
             
