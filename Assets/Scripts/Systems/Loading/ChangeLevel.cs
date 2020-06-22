@@ -1,5 +1,4 @@
-﻿using System;
-using SelfDef.Interfaces;
+﻿using SelfDef.Interfaces;
 using UnityEngine;
 
 namespace SelfDef.Systems.Loading

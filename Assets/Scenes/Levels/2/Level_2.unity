@@ -832,7 +832,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65012
+  m_Name: pb_Mesh163760
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -995,7 +995,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh128428
+  m_Name: pb_Mesh163606
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1323,7 +1323,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65068
+  m_Name: pb_Mesh163772
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1486,7 +1486,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh64766
+  m_Name: pb_Mesh163712
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1688,7 +1688,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh64952
+  m_Name: pb_Mesh163618
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1851,7 +1851,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-142290
+  m_Name: pb_Mesh163654
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2014,7 +2014,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh64798
+  m_Name: pb_Mesh163790
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2171,13 +2171,93 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &507433000
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 560125069780606089, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_Name
+      value: NavMeshBaker
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -28.504337
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -62.70123
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -122.06093
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606090, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 560125069780606091, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: bakeOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2869139172465160545, guid: 3b7006cbc7b2a9d48913f481273a5b81,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: f479b8898e240a940a041a94ddaae72e,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b7006cbc7b2a9d48913f481273a5b81, type: 3}
 --- !u!43 &571136000
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh64786
+  m_Name: pb_Mesh163728
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2608,7 +2688,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh64886
+  m_Name: pb_Mesh-288304
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2771,7 +2851,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65048
+  m_Name: pb_Mesh163698
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2934,7 +3014,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh64968
+  m_Name: pb_Mesh163696
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3097,7 +3177,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh64874
+  m_Name: pb_Mesh163740
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3260,7 +3340,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh65022
+  m_Name: pb_Mesh163752
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3659,7 +3739,7 @@ GameObject:
   - component: {fileID: 1252812523}
   - component: {fileID: 1252812522}
   - component: {fileID: 1252812521}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: River
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -3982,7 +4062,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-128576
+  m_Name: pb_Mesh-288274
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4438,7 +4518,7 @@ GameObject:
   - component: {fileID: 1685993184}
   - component: {fileID: 1685993183}
   - component: {fileID: 1685993182}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: Bridge
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -4741,7 +4821,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh128350
+  m_Name: pb_Mesh163536
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4999,7 +5079,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh128384
+  m_Name: pb_Mesh163566
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5162,7 +5242,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh128406
+  m_Name: pb_Mesh163588
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5359,7 +5439,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh128464
+  m_Name: pb_Mesh163642
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5751,7 +5831,7 @@ GameObject:
   - component: {fileID: 5907413189194993979}
   - component: {fileID: 5907413189194993980}
   - component: {fileID: 5907413189194993981}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (5)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -5771,7 +5851,7 @@ GameObject:
   - component: {fileID: 5907413189289338228}
   - component: {fileID: 5907413189289338227}
   - component: {fileID: 5907413189289338226}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (0)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -5932,7 +6012,7 @@ GameObject:
   - component: {fileID: 5907413189296250220}
   - component: {fileID: 5907413189296250219}
   - component: {fileID: 5907413189296250218}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (6)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6173,7 +6253,7 @@ GameObject:
   - component: {fileID: 5907413189620962222}
   - component: {fileID: 5907413189620962217}
   - component: {fileID: 5907413189620962216}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (2)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6301,7 +6381,7 @@ GameObject:
   - component: {fileID: 5907413189641906976}
   - component: {fileID: 5907413189641906983}
   - component: {fileID: 5907413189641906982}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (3)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6499,7 +6579,7 @@ GameObject:
   - component: {fileID: 5907413189682578958}
   - component: {fileID: 5907413189682578953}
   - component: {fileID: 5907413189682578952}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (7)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6580,7 +6660,7 @@ GameObject:
   - component: {fileID: 5907413189855726260}
   - component: {fileID: 5907413189855726259}
   - component: {fileID: 5907413189855726258}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (1)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6741,7 +6821,7 @@ GameObject:
   - component: {fileID: 5907413190076477244}
   - component: {fileID: 5907413190076477243}
   - component: {fileID: 5907413190076477242}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (8)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -6963,7 +7043,7 @@ GameObject:
   - component: {fileID: 5907413190577187401}
   - component: {fileID: 5907413190577187406}
   - component: {fileID: 5907413190577187407}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: FloorTile (4)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
