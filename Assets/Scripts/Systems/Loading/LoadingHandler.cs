@@ -73,8 +73,6 @@ namespace SelfDef.Systems.Loading
 
             yield return LoadLevel(levelIndex);
 
-            NavigationManager.Instance.ChangeNavMesh(levelIndex);
-            
             yield return StartCoroutine(UserInterfaceHandler.Instance.ShowViewOfGame());
             
             loaderObject.gameObject.SetActive(false);

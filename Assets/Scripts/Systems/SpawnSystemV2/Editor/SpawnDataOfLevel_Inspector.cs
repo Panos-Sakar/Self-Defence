@@ -20,7 +20,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         }
     }
     
-
     // ReSharper disable once InconsistentNaming
     [CustomEditor(typeof(LevelSpawnData))]
     public class SpawnDataOfLevel_Inspector : UnityEditor.Editor
@@ -29,7 +28,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         [SerializeField] private bool showInspector;
         public override void OnInspectorGUI()
         {
-            
             if (GUILayout.Button("Open Editor"))
             {
                 SpawnDataOfLevel_InspectorWindow.Open((LevelSpawnData)target);
@@ -44,7 +42,5 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 base.OnInspectorGUI();
             }
         }
-
-
     }
 }

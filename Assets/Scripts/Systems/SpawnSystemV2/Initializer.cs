@@ -59,5 +59,7 @@ namespace SelfDef.Systems.SpawnSystemV2
                 point.Value.SetActive(true);
             }
         }
+
+        public LevelSpawnData GetLevelData() => levelSpawnData;
     }
 }

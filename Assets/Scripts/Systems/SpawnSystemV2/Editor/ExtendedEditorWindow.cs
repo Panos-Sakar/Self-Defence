@@ -6,24 +6,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
     public class ExtendedEditorWindow : EditorWindow
     {
         protected SerializedObject SerializedObject;
-        // ReSharper disable once MemberCanBePrivate.Global
-        // ReSharper disable once UnassignedField.Global
         protected SerializedProperty CurrentProperty;
-
-        private string _selectedPropertyPath;
-        protected SerializedProperty SelectedProperty;
-
-
-        private int _spawnPointsIndex;
-        protected int CurrentPointIndex;
-
-        private int _poolsIndex;
-        protected int CurrentPoolIndex;
         
-        protected string PropertyType;
-
-        private Vector2 _sidebarScrollPos;
-
         protected static void DrawProperties(SerializedProperty properties , bool drawChildren)
         {
             var lastPropertyPath = string.Empty;
@@ -52,98 +36,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 }
             }
         }
-
-        protected void DrawSidebar(SerializedProperty spawnPoints, SerializedProperty availablePools)
-        {
-            _sidebarScrollPos = EditorGUILayout.BeginScrollView(_sidebarScrollPos,GUILayout.Width(225));
-
-            AddMakeObjectsButton();
-            AddUpdateAllPosButton();
-            
-            GUILayout.Space(10);
-            DrawUiLine(Color.gray);
-            GUILayout.Space(10);
-            
-            
-            _spawnPointsIndex = 0;
-            GUILayout.Label("Spawn Points",EditorStyles.boldLabel);
-            foreach (SerializedProperty prop in spawnPoints)
-            {
-                if (GUILayout.Button(prop.displayName))
-                {
-                    CurrentPointIndex = _spawnPointsIndex;
-                    PropertyType = "Spawn Point";
-                    
-                    EditorGUI.FocusTextInControl("");
-                    _selectedPropertyPath = prop.propertyPath;
-                }
-                _spawnPointsIndex++;
-            }
-            
-            DrawUiLine(Color.gray);
-
-            if (GUILayout.Button("Add Point"))
-            {
-                var point = SerializedObject.FindProperty("spawnPoints");
-                point.InsertArrayElementAtIndex(point.arraySize);
-
-                var element = point.GetArrayElementAtIndex(point.arraySize - 1);
-
-                var propertyRelative = element.FindPropertyRelative("pointName");
-                var targetName = $"new {point.arraySize - 1}";
-                propertyRelative.stringValue = targetName;
-                propertyRelative = element.FindPropertyRelative("spawnPointTransform");
-                propertyRelative.vector3Value = Vector3.zero;
-                propertyRelative = element.FindPropertyRelative("waves");
-                propertyRelative.arraySize = 0;
-
-            }
-
-            GUILayout.Space(10); //------------------------------------------------------------------------
-            
-            _poolsIndex = 0;
-            GUILayout.Label("Object Pools",EditorStyles.boldLabel);
-            foreach (SerializedProperty prop in availablePools)
-            {
-                if (GUILayout.Button(prop.displayName))
-                {
-                    CurrentPoolIndex = _poolsIndex;
-                    PropertyType = "Object Pool";
-                    
-                    EditorGUI.FocusTextInControl("");
-                    _selectedPropertyPath = prop.propertyPath;
-                }
-                _poolsIndex++;
-            }
-
-            DrawUiLine(Color.gray);
-            if(GUILayout.Button("Add Pool"))
-            {
-                var pool  = SerializedObject.FindProperty("availablePools");
-                pool.InsertArrayElementAtIndex(pool.arraySize);
-                
-                var element = pool.GetArrayElementAtIndex(pool.arraySize-1);
-                
-                var propertyRelative = element.FindPropertyRelative("poolName");
-                propertyRelative.stringValue = $"new{pool.arraySize-1}";
-                propertyRelative = element.FindPropertyRelative("enemyType");
-                propertyRelative.enumValueIndex = 0;
-                propertyRelative = element.FindPropertyRelative("enemyPrefab");
-                propertyRelative.objectReferenceValue = null;
-                propertyRelative = element.FindPropertyRelative("size");
-                propertyRelative.intValue = 0;
-                propertyRelative = element.FindPropertyRelative("canGrow");
-                propertyRelative.boolValue = false;
-            }
-            
-            EditorGUILayout.EndScrollView();
-
-            if (!string.IsNullOrEmpty(_selectedPropertyPath))
-            {
-                SelectedProperty = SerializedObject.FindProperty(_selectedPropertyPath);
-            }
-        }
-
+        
         protected void DrawField(string propName, bool relative)
         {
             if (relative & CurrentProperty != null)
@@ -155,16 +48,26 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 EditorGUILayout.PropertyField(SerializedObject.FindProperty(propName), true);
             }
         }
-
-        protected void DrawFieldWithLabel(string propName, string label, int width, int labelWidth = 75)
+        
+        protected void DrawFieldWithLabel(string propName, string label, int width, int labelWidth = 75, bool relative = true)
         {
-            var tempWidth = EditorGUIUtility.labelWidth;
-            EditorGUIUtility.labelWidth = labelWidth;
-            EditorGUILayout.PropertyField(CurrentProperty.FindPropertyRelative(propName),new GUIContent(label),true,GUILayout.Width(width),GUILayout.ExpandWidth (false));
-            EditorGUIUtility.labelWidth = tempWidth;
+            if (relative & CurrentProperty != null)
+            {
+                var tempWidth = EditorGUIUtility.labelWidth;
+                EditorGUIUtility.labelWidth = labelWidth;
+                EditorGUILayout.PropertyField(CurrentProperty.FindPropertyRelative(propName),new GUIContent(label),true,GUILayout.Width(width),GUILayout.ExpandWidth (false));
+                EditorGUIUtility.labelWidth = tempWidth;
+            }
+            else if (SerializedObject != null)
+            {
+                var tempWidth = EditorGUIUtility.labelWidth;
+                EditorGUIUtility.labelWidth = labelWidth;
+                EditorGUILayout.PropertyField(SerializedObject.FindProperty(propName),new GUIContent(label),true,GUILayout.Width(width),GUILayout.ExpandWidth (false));
+                EditorGUIUtility.labelWidth = tempWidth;
+            }
         }
         
-        private static void DrawUiLine(Color color, int thickness = 2, int padding = 10)
+        protected static void DrawUiLine(Color color, int thickness = 2, int padding = 10)
         {
             var r = EditorGUILayout.GetControlRect(GUILayout.Height(padding+thickness));
             r.height = thickness;
@@ -173,62 +76,14 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             r.width +=6;
             EditorGUI.DrawRect(r, color);
         }
-
-        private void AddUpdateAllPosButton()
+        
+        protected static void DrawVerticalSeparator()
         {
-            if (!GUILayout.Button("Update Spawn Point Positions")) return;
-            
-            SerializedObject.Update ();
-            
-            var points = 
-                GameObject.Find("PositionalObjects (Temporary)")?.GetComponentsInChildren<Transform>() ??
-                GameObject.Find("SpawnPoints")?.GetComponentsInChildren<Transform>();
-            if(points == null) return;
-
-            var spawnPoints = SerializedObject.FindProperty("spawnPoints");
-
-            foreach (var point in points)
-            {
-                for (var i = 0; i < spawnPoints.arraySize; i++)
-                {
-                    var spawnPoint = spawnPoints.GetArrayElementAtIndex(i);
-
-                    if (point.name == spawnPoint.displayName)
-                    {
-                        spawnPoint.FindPropertyRelative("spawnPointTransform").vector3Value = point.position;
-                    }
-                }
-            }
+            GUILayout.Space(10);
+            DrawUiLine(Color.gray);
+            GUILayout.Space(10);
         }
-
-        private void AddMakeObjectsButton()
-        {
-            
-            var spawnPoints = SerializedObject.FindProperty("spawnPoints");
-            
-            GUILayout.Label("Positional Objects");
-            
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Crate"))
-            {
-                var parent = new GameObject("PositionalObjects (Temporary)");
-                for (var i = 0; i < spawnPoints.arraySize; i++)
-                {
-                    var realPoint = spawnPoints.GetArrayElementAtIndex(i);
-                    var point = new GameObject(realPoint.displayName);
-                    
-                    point.transform.parent = parent.transform;
-                    point.transform.position = realPoint.FindPropertyRelative("spawnPointTransform").vector3Value;
-                }
-            }
-            if (GUILayout.Button("Delete"))
-            {
-                var parent = GameObject.Find("PositionalObjects (Temporary)");
-                if(parent != null) DestroyImmediate(parent);
-            }
-            EditorGUILayout.EndHorizontal();
-        }
-
+        
         protected void Apply()
         {
             SerializedObject.ApplyModifiedProperties();
