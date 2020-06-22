@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Systems.Loading
+namespace SelfDef.Systems.Loading
 {
     public class Initializer : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Systems.FireProjectile
+namespace SelfDef.Systems.FireProjectile
 {
     public class SpawnProjectiles : MonoBehaviour
     {

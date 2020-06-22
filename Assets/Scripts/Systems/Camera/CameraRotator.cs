@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Systems.Camera
+namespace SelfDef.Systems.Camera
 {
     public class CameraRotator : MonoBehaviour
     {
@@ -22,7 +22,7 @@ namespace Systems.Camera
         private float _zoomLevel;
     
 #pragma warning restore CS0649
-        void Awake()
+        private void Awake()
         {
             InitializeInputSystem();
 
@@ -32,6 +32,7 @@ namespace Systems.Camera
 
         private void Update()
         {
+            //TODO: Rotate the camera to specific point in each level
             if (_canRotate)
             {
                 _myTransform.transform.Rotate(new Vector3(0, _mouseValue, 0) * (Time.deltaTime * rotateAmount));
@@ -49,6 +50,8 @@ namespace Systems.Camera
             _mainCamera.fieldOfView = fieldOfView;
         }
 
+        
+        
         private void RotateCamera(InputAction.CallbackContext context)
         {
             _mouseValue = context.ReadValue<float>();

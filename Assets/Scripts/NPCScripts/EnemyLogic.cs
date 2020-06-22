@@ -1,21 +1,18 @@
-﻿using PlayerScripts;
-using Prefabs.Projectiles.Arrow.Prefab.Scripts;
-using SelfDef.PlayerScripts;
+﻿using SelfDef.PlayerScripts;
+using SelfDef.Prefabs.Projectiles.Arrow.Prefab.Scripts;
+using SelfDef.Systems.SpawnSystemV2;
 using UnityEngine;
 using UnityEngine.AI;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace SelfDef.NPCScripts
 {
     public class EnemyLogic : MonoBehaviour
     {
 #pragma warning disable CS0649
-        
-        public enum EnemyTypeEnum
-        {
-            Default,
-            SmallBall,
-            BigBall
-        };
         
         private GameObject _player;
         private NavMeshAgent _enemyNavMesh;
@@ -29,19 +26,19 @@ namespace SelfDef.NPCScripts
         [SerializeField] public float damageAmount;
         [SerializeField] public float life;
         [SerializeField] public float maxLife;
+        [SerializeField] public int money;
         
         private Vector3 _particlePosition;
         private Quaternion _particleRotation;
 
-        [SerializeField] public EnemyTypeEnum enemyType = EnemyTypeEnum.Default;
+        [SerializeField] public EnemyTypes enemyType = EnemyTypes.Default;
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
 
 #pragma warning restore CS0649
         private void Awake()
         {
-            //_player = GameObject.FindGameObjectWithTag("Player");
-            
+            gameObject.SetActive(false);
             
             _enemyNavMesh = GetComponent<NavMeshAgent>();
             _enemyAnimator = GetComponent<Animator>();
@@ -49,15 +46,22 @@ namespace SelfDef.NPCScripts
         
         private void OnEnable()
         {
-            _player = PlayerUpgrades.Instance.gameObject;
+
+            if (_player == null) GameObject.FindGameObjectWithTag("Player");
+
             _playerTransform = _player.transform;
-            _myTransform = transform;
             
             _enemyNavMesh.destination = _playerTransform.position;
-
             
         }
 
+        public void Initialize(string newName, GameObject playerRef )
+        {
+            name = newName;
+            _player = playerRef;
+            
+            _myTransform = transform;
+        }
         // Update is called once per frame
         private void Update()
         {
@@ -80,24 +84,33 @@ namespace SelfDef.NPCScripts
 
             if (other.gameObject.CompareTag("Projectile"))
             {
-                DamageEnemy(other.GetComponent<ProjectileProperties>().damage);
+                DamageSelf(other.GetComponent<ProjectileProperties>().damage);
             }
         }
 
-        public void DamageEnemy(float amount)
+        private void DamageSelf(float amount)
         {
             life -= amount;
-            
-            if (life <= 0)
-            {
-                life = maxLife;
-                _particlePosition = _myTransform.position;
-                _particleRotation = _myTransform.rotation;
 
-                _player.GetComponent<PlayerLogicScript>().GiveMoney(1);
-                Instantiate(hitParticle, _particlePosition, _particleRotation);
-                gameObject.SetActive(false);
-            }
+            if (!(life <= 0)) return;
+            
+            life = maxLife;
+            
+            _particlePosition = _myTransform.position;
+            _particleRotation = _myTransform.rotation;
+
+            _player.GetComponent<PlayerLogicScript>().GiveMoney(money);
+            Instantiate(hitParticle, _particlePosition, _particleRotation);
+            gameObject.SetActive(false);
         }
+        
+#if UNITY_EDITOR
+
+        private void OnDrawGizmos()
+        {
+            Handles.Label(gameObject.transform.position + Vector3.up * 0.125f,$"HP: {life} / {maxLife}");
+        }  
+#endif
+
     }
 }

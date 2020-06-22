@@ -11,15 +11,21 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         
         private int _currentWaveIndex;
         private  Vector2 _waveScrollPos;
-        public static void Open(SpawnDataOfLevel dataObject)
+        public static void Open(LevelSpawnData dataObject)
         {
             var window = GetWindow<SpawnDataOfLevel_InspectorWindow>("Spawn editor window");
             window.SerializedObject = new SerializedObject(dataObject);
         }
         
+
         private void OnGUI()
         {
+            if(SerializedObject == null) return;
+            
             SerializedObject.Update();
+            
+            EditorGUILayout.LabelField(SerializedObject.targetObject.name);
+            
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.BeginVertical("box", GUILayout.MaxWidth(150), GUILayout.ExpandHeight(true));
             
@@ -137,7 +143,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                         EditorGUILayout.Space(10);
                         
                         DrawFieldWithLabel("size","Size ",200,100);
-                        DrawFieldWithLabel("canGrow","Can Grow " ,100,100);
+                        DrawFieldWithLabel("canGrow","Can Grow " ,100);
                     }
                         EditorGUILayout.EndVertical();
 

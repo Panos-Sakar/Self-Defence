@@ -56,6 +56,15 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         protected void DrawSidebar(SerializedProperty spawnPoints, SerializedProperty availablePools)
         {
             _sidebarScrollPos = EditorGUILayout.BeginScrollView(_sidebarScrollPos,GUILayout.Width(225));
+
+            AddMakeObjectsButton();
+            AddUpdateAllPosButton();
+            
+            GUILayout.Space(10);
+            DrawUiLine(Color.gray);
+            GUILayout.Space(10);
+            
+            
             _spawnPointsIndex = 0;
             GUILayout.Label("Spawn Points",EditorStyles.boldLabel);
             foreach (SerializedProperty prop in spawnPoints)
@@ -88,12 +97,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 propertyRelative = element.FindPropertyRelative("waves");
                 propertyRelative.arraySize = 0;
 
-                CreateNewPosGameObj(targetName);
-
             }
-            
-            AddUpdateAllPosButton();
-            
+
             GUILayout.Space(10); //------------------------------------------------------------------------
             
             _poolsIndex = 0;
@@ -155,7 +160,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         {
             var tempWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = labelWidth;
-            EditorGUILayout.PropertyField(CurrentProperty.FindPropertyRelative(propName),new GUIContent(label),false,GUILayout.Width(width),GUILayout.ExpandWidth (false));
+            EditorGUILayout.PropertyField(CurrentProperty.FindPropertyRelative(propName),new GUIContent(label),true,GUILayout.Width(width),GUILayout.ExpandWidth (false));
             EditorGUIUtility.labelWidth = tempWidth;
         }
         
@@ -175,7 +180,10 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             
             SerializedObject.Update ();
             
-            var points = GameObject.Find("SpawnPointsPos").GetComponentsInChildren<Transform>();
+            var points = 
+                GameObject.Find("PositionalObjects (Temporary)")?.GetComponentsInChildren<Transform>() ??
+                GameObject.Find("SpawnPoints")?.GetComponentsInChildren<Transform>();
+            if(points == null) return;
 
             var spawnPoints = SerializedObject.FindProperty("spawnPoints");
 
@@ -193,14 +201,34 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             }
         }
 
-        private static void CreateNewPosGameObj(string targetName)
+        private void AddMakeObjectsButton()
         {
-            var parent = GameObject.Find("SpawnPointsPos");
             
-            var point = new GameObject(targetName);
-            point.transform.parent = parent.transform;
+            var spawnPoints = SerializedObject.FindProperty("spawnPoints");
+            
+            GUILayout.Label("Positional Objects");
+            
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Crate"))
+            {
+                var parent = new GameObject("PositionalObjects (Temporary)");
+                for (var i = 0; i < spawnPoints.arraySize; i++)
+                {
+                    var realPoint = spawnPoints.GetArrayElementAtIndex(i);
+                    var point = new GameObject(realPoint.displayName);
+                    
+                    point.transform.parent = parent.transform;
+                    point.transform.position = realPoint.FindPropertyRelative("spawnPointTransform").vector3Value;
+                }
+            }
+            if (GUILayout.Button("Delete"))
+            {
+                var parent = GameObject.Find("PositionalObjects (Temporary)");
+                if(parent != null) DestroyImmediate(parent);
+            }
+            EditorGUILayout.EndHorizontal();
         }
-        
+
         protected void Apply()
         {
             SerializedObject.ApplyModifiedProperties();

@@ -1,13 +1,12 @@
-﻿using Systems.FireProjectile;
-using Systems.UI;
-using SelfDef.PlayerScripts;
+﻿using SelfDef.Systems.FireProjectile;
+using SelfDef.Systems.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
-namespace PlayerScripts
+namespace SelfDef.PlayerScripts
 {
     public class PlayerLogicScript : MonoBehaviour
     {
