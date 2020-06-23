@@ -56,6 +56,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
 
         private void AddCrateButton()
         {
+            SpawnDataOfLevel_InspectorWindow.Open(_target.data);
+            
             var PositionalObjectsExists = GameObject.Find("PositionalObjects (Temporary)");
             if (GUILayout.Button("Crate")) _target.createPositionalObjects = true;
 
@@ -64,7 +66,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 if (PositionalObjectsExists == null)
                 {
                     selectedObject = Selection.activeGameObject;
-                    ActiveEditorTracker.sharedTracker.isLocked = true;
+                    Debug.Log(selectedObject);
+                    if(_target.autoLockInspector) ActiveEditorTracker.sharedTracker.isLocked = true;
             
                     var spawnPoints = _serializedObject.FindProperty("spawnPoints");
                     var parent = new GameObject("PositionalObjects (Temporary)");
@@ -88,6 +91,12 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 
                         var meshComp = point.AddComponent<MeshFilter>();
                         meshComp.mesh = _target.positionItemMesh;
+
+                        var updaterComp = point.AddComponent<AutoUpdatePointPosition>();
+                        updaterComp.positionName = realPoint.displayName;
+                        updaterComp.spawnPointTransform = _serializedObject;
+                        updaterComp.pointPosition = point.transform.position;
+                        
                 
                         SelectObject(point);
                     }
@@ -102,7 +111,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
 
             if (_target.deletePositionalObjects)
             {
-                ActiveEditorTracker.sharedTracker.isLocked = false;
+                if(_target.autoLockInspector) ActiveEditorTracker.sharedTracker.isLocked = false;
+                
                 SelectObject(selectedObject);
 
                 var parent = GameObject.Find("PositionalObjects (Temporary)");
@@ -141,7 +151,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                     }
                 }
             
-                _serializedObject.ApplyModifiedProperties();
+                _serializedObject.ApplyModifiedPropertiesWithoutUndo();
 
                 if (!EditorWindow.HasOpenInstances<SpawnDataOfLevel_InspectorWindow>()) return;
             
@@ -154,7 +164,8 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         
         private static void SelectObject(Object obj)
         {
-            Selection.activeObject = obj;
+            if(obj == null) return;
+            if(Selection.activeObject.name != obj.name) Selection.activeObject = obj;
         }
     }
 }

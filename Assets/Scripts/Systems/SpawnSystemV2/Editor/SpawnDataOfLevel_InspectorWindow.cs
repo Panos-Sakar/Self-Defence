@@ -12,18 +12,17 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
 
         private string _selectedPropertyPath;
         private SerializedProperty _selectedProperty;
-        private string _propertyType;
-        
+
         private  Vector2 _waveScrollPos;
         private Vector2 _sidebarScrollPos;
         
         private int _spawnPointsIndex;
         private int _currentPointIndex;
-
-        private int _poolsIndex;
-        private int _currentPoolIndex;
         
         private int _currentWaveIndex;
+        
+        private int _poolsIndex;
+        private int _currentPoolIndex;
 
         private LevelSpawnData _targetAsset;
         private LevelSpawnData _tempTarget;
@@ -113,10 +112,12 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                     if (GUILayout.Button(prop.displayName))
                     {
                         _currentPointIndex = _spawnPointsIndex;
-                        _propertyType = "Spawn Point";
 
                         EditorGUI.FocusTextInControl("");
+                        
                         _selectedPropertyPath = prop.propertyPath;
+
+                        FocusOnPoint(prop.displayName);
                     }
 
                     _spawnPointsIndex++;
@@ -136,9 +137,9 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                     if (GUILayout.Button(prop.displayName))
                     {
                         _currentPoolIndex = _poolsIndex;
-                        _propertyType = "Object Pool";
 
                         EditorGUI.FocusTextInControl("");
+                        
                         _selectedPropertyPath = prop.propertyPath;
                     }
 
@@ -241,7 +242,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         private void DrawSpawnPointEditor()
         {
             CurrentProperty = _selectedProperty;
-            
             EditorGUILayout.LabelField($"Editing Point: {CurrentProperty.displayName}");
             
             EditorGUILayout.Space(5);
@@ -380,7 +380,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             var targetName = $"new {point.arraySize - 1}";
             propertyRelative.stringValue = targetName;
             propertyRelative = element.FindPropertyRelative("spawnPointTransform");
-            propertyRelative.vector3Value = Vector3.zero;
+            propertyRelative.vector3Value = new Vector3(2,0,2);
             propertyRelative = element.FindPropertyRelative("waves");
             propertyRelative.arraySize = 0;
         }
@@ -498,16 +498,18 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         private bool AddDeleteElementButton()
         {
             if (!GUILayout.Button("Delete Element",GUILayout.Width(150))) return false;
+            if (_selectedProperty == null) return true;
             
-            switch (_propertyType)
+            switch (_selectedProperty.type)
             {
-                case "Spawn Point":
+                case "SpawnPoint":
                     _spawnPoints.DeleteArrayElementAtIndex(_currentPointIndex);
                     break;
-                case "Object Pool":
+                case "EnemyPool":
                     _enemyPools.DeleteArrayElementAtIndex(_currentPoolIndex);
                     break;
             }
+
             return true;
         }
         
@@ -517,6 +519,41 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             {
                 transform.vector3Value = Selection.activeGameObject.transform.position;
             }
+        }
+        
+        public void EditNewPoint(string pointName)
+        {
+            
+            if(_spawnPoints == null) return;
+            
+            var index = 0;
+            
+            foreach (SerializedProperty spawnPoint in _spawnPoints)
+            {
+                
+                if (spawnPoint.FindPropertyRelative("pointName").stringValue == pointName)
+                {
+                    _currentPointIndex = index;
+                    
+                    _selectedPropertyPath = spawnPoint.propertyPath;
+                    
+                    EditorGUI.FocusTextInControl("");
+                    Repaint();
+                }
+                
+                index++;
+            }
+        }
+
+        private void FocusOnPoint(string pointName)
+        {
+            var parent = GameObject.Find("PositionalObjects (Temporary)");
+            if (parent == null) return;
+
+            var point = parent.transform.Find(pointName).gameObject;
+            if(point == null) return;
+
+            Selection.activeGameObject = point;
         }
     }
 }
