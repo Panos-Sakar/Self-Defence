@@ -26,7 +26,15 @@ MonoBehaviour:
       size: 0
       enemyType: 0
       spawnRate: 0
-  lastPointIndex: 5
+  - pointName: Foxtrot
+    spawnPointTransform: {x: 17.319925, y: 0, z: -14.479818}
+    waves:
+    - waveName: Wave > 1
+      waveDelay: 3
+      size: 1
+      enemyType: 3
+      spawnRate: 0
+  lastPointIndex: 6
   availablePools:
   - poolName: SmallBalls
     enemyType: 1
@@ -40,4 +48,10 @@ MonoBehaviour:
       type: 3}
     size: 1
     canGrow: 0
-  lastPoolIndex: 0
+  - poolName: Tetrahedron
+    enemyType: 3
+    enemyPrefab: {fileID: 5939270994957301801, guid: ead33c267dc10ce44a8d2939a8ee756a,
+      type: 3}
+    size: 1
+    canGrow: 0
+  lastPoolIndex: 1

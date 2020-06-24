@@ -71,6 +71,7 @@ namespace SelfDef.NPCScripts
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log("test");
             if (other.gameObject.CompareTag("Player"))
             {
                 PlayerLogicScript.Instance.DamagePlayer(damageAmount);

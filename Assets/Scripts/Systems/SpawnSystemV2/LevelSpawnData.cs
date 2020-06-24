@@ -45,7 +45,8 @@ namespace SelfDef.Systems.SpawnSystemV2
     {
         Default = 0,
         SmallBall = 1,
-        BigBall = 2
+        BigBall = 2,
+        Tetrahedron = 3
     }
 
     public enum MCodes
