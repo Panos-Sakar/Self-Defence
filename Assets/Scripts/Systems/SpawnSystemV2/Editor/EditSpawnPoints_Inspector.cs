@@ -56,17 +56,16 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
 
         private void AddCrateButton()
         {
-            SpawnDataOfLevel_InspectorWindow.Open(_target.data);
-            
-            var PositionalObjectsExists = GameObject.Find("PositionalObjects (Temporary)");
             if (GUILayout.Button("Crate")) _target.createPositionalObjects = true;
-
             if (_target.createPositionalObjects)
             {
+                SpawnDataOfLevel_InspectorWindow.Open(_target.data);
+            
+                var PositionalObjectsExists = GameObject.Find("PositionalObjects (Temporary)");
+                
                 if (PositionalObjectsExists == null)
                 {
                     selectedObject = Selection.activeGameObject;
-                    Debug.Log(selectedObject);
                     if(_target.autoLockInspector) ActiveEditorTracker.sharedTracker.isLocked = true;
             
                     var spawnPoints = _serializedObject.FindProperty("spawnPoints");
@@ -108,7 +107,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         private void AddDeleteButton()
         {
             if (GUILayout.Button("Delete")) _target.deletePositionalObjects = true;
-
             if (_target.deletePositionalObjects)
             {
                 if(_target.autoLockInspector) ActiveEditorTracker.sharedTracker.isLocked = false;
@@ -118,19 +116,17 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 var parent = GameObject.Find("PositionalObjects (Temporary)");
                 if(parent != null) DestroyImmediate(parent);
             }
-
             _target.deletePositionalObjects = false;
         }
         
         private void AddUpdateAllPosButton()
         {
             _target.UpdateData();
-            _serializedObject = new SerializedObject(_target.data);
-            
             if (GUILayout.Button("Update Spawn Point Positions")) _target.updatePositionalObjects = true;
-            
             if (_target.updatePositionalObjects)
             {
+                _serializedObject = new SerializedObject(_target.data);
+                
                 var points = 
                     GameObject.Find("PositionalObjects (Temporary)")?.GetComponentsInChildren<Transform>() ??
                     GameObject.Find("SpawnPoints")?.GetComponentsInChildren<Transform>();
@@ -158,7 +154,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 var window = (SpawnDataOfLevel_InspectorWindow)EditorWindow.GetWindow(typeof(SpawnDataOfLevel_InspectorWindow));
                 window.Repaint();
             }
-
             _target.updatePositionalObjects = false;
         }
         

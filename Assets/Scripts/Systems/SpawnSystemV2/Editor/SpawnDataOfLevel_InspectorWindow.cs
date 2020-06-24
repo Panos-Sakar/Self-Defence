@@ -7,6 +7,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
     // ReSharper disable once InconsistentNaming
     public class SpawnDataOfLevel_InspectorWindow : ExtendedEditorWindow
     {
+        //Section: Member variables
         private SerializedProperty _spawnPoints;
         private SerializedProperty _enemyPools;
 
@@ -45,7 +46,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             Apply();
         }
 
-        //Draw window Functions
+        //Section: Draw window Functions
         
         private void DrawTitlebar()
         {
@@ -149,7 +150,13 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 DrawUiLine(Color.gray);
 
                 AddPoolButton();
-
+                
+                DrawVerticalSeparator();
+                if (GUILayout.Button("Reset names"))
+                {
+                    SerializedObject.FindProperty("lastPointIndex").intValue = 0;
+                    SerializedObject.FindProperty("lastPoolIndex").intValue = 0;
+                }
                 EditorGUILayout.EndScrollView();
             }
             
@@ -365,7 +372,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             EditorGUILayout.EndVertical();
         }
         
-        //Add Button Functions
+        //Section: Add Button Functions
 
         private void AddPointButton()
         {
@@ -377,7 +384,9 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             var element = point.GetArrayElementAtIndex(point.arraySize - 1);
 
             var propertyRelative = element.FindPropertyRelative("pointName");
-            var targetName = $"new {point.arraySize - 1}";
+            var indexProp = SerializedObject.FindProperty("lastPointIndex");
+            var targetName = $"{(MCodes)indexProp.intValue}";
+            indexProp.intValue++;
             propertyRelative.stringValue = targetName;
             propertyRelative = element.FindPropertyRelative("spawnPointTransform");
             propertyRelative.vector3Value = new Vector3(2,0,2);
@@ -393,9 +402,10 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             pool.InsertArrayElementAtIndex(pool.arraySize);
 
             var element = pool.GetArrayElementAtIndex(pool.arraySize - 1);
-
+            var indexProp = SerializedObject.FindProperty("lastPoolIndex");
             var propertyRelative = element.FindPropertyRelative("poolName");
-            propertyRelative.stringValue = $"new{pool.arraySize - 1}";
+            propertyRelative.stringValue = $"Pool <{indexProp.intValue}>";
+            indexProp.intValue++;
             propertyRelative = element.FindPropertyRelative("enemyType");
             propertyRelative.enumValueIndex = 0;
             propertyRelative = element.FindPropertyRelative("enemyPrefab");
@@ -404,63 +414,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             propertyRelative.intValue = 0;
             propertyRelative = element.FindPropertyRelative("canGrow");
             propertyRelative.boolValue = false;
-        }
-        
-        // ReSharper disable once UnusedMember.Local
-        private void AddUpdateAllPosButton()
-        {
-            if (!GUILayout.Button("Update Spawn Point Positions")) return;
-            
-            SerializedObject.Update ();
-            
-            var points = 
-                GameObject.Find("PositionalObjects (Temporary)")?.GetComponentsInChildren<Transform>() ??
-                GameObject.Find("SpawnPoints")?.GetComponentsInChildren<Transform>();
-            if(points == null) return;
-
-            var spawnPoints = SerializedObject.FindProperty("spawnPoints");
-
-            foreach (var point in points)
-            {
-                for (var i = 0; i < spawnPoints.arraySize; i++)
-                {
-                    var spawnPoint = spawnPoints.GetArrayElementAtIndex(i);
-
-                    if (point.name == spawnPoint.displayName)
-                    {
-                        spawnPoint.FindPropertyRelative("spawnPointTransform").vector3Value = point.position;
-                    }
-                }
-            }
-        }
-        
-        // ReSharper disable once UnusedMember.Local
-        private void AddMakeObjectsButton()
-        {
-            
-            var spawnPoints = SerializedObject.FindProperty("spawnPoints");
-            
-            GUILayout.Label("Positional Objects");
-            
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Crate"))
-            {
-                var parent = new GameObject("PositionalObjects (Temporary)");
-                for (var i = 0; i < spawnPoints.arraySize; i++)
-                {
-                    var realPoint = spawnPoints.GetArrayElementAtIndex(i);
-                    var point = new GameObject(realPoint.displayName);
-                    
-                    point.transform.parent = parent.transform;
-                    point.transform.position = realPoint.FindPropertyRelative("spawnPointTransform").vector3Value;
-                }
-            }
-            if (GUILayout.Button("Delete"))
-            {
-                var parent = GameObject.Find("PositionalObjects (Temporary)");
-                if(parent != null) DestroyImmediate(parent);
-            }
-            EditorGUILayout.EndHorizontal();
         }
         
         private bool AddDeleteWaveButton(SerializedProperty waves, int index)
@@ -545,7 +498,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             }
         }
 
-        private void FocusOnPoint(string pointName)
+        private static void FocusOnPoint(string pointName)
         {
             var parent = GameObject.Find("PositionalObjects (Temporary)");
             if (parent == null) return;

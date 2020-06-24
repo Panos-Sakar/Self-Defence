@@ -9,7 +9,9 @@ namespace SelfDef.Systems.SpawnSystemV2
     public class LevelSpawnData : ScriptableObject
     {
         public SpawnPoint[] spawnPoints;
+        public int lastPointIndex;
         public EnemyPool[] availablePools;
+        public int lastPoolIndex;
     }
 
     [Serializable]
@@ -44,5 +46,35 @@ namespace SelfDef.Systems.SpawnSystemV2
         Default = 0,
         SmallBall = 1,
         BigBall = 2
+    }
+
+    public enum MCodes
+    {
+        Alfa,
+        Bravo,
+        Charlie,
+        Delta,
+        Echo,
+        Foxtrot,
+        Golf,
+        Hotel,
+        India,
+        Juliett,
+        Kilo,
+        Lima,
+        Mike,
+        November,
+        Oscar,
+        Papa,
+        Quebec,
+        Romeo,
+        Sierra,
+        Tango,
+        Uniform,
+        Victor,
+        Whiskey,
+        XRay,
+        Yankee,
+        Zulu
     }
 }

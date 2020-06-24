@@ -13,69 +13,20 @@ MonoBehaviour:
   m_Name: SpawnData_Level_1
   m_EditorClassIdentifier: 
   spawnPoints:
-  - pointName: Alpha
-    spawnPointTransform: {x: 6.4490795, y: 0, z: 1.736815}
+  - pointName: Alfa
+    spawnPointTransform: {x: -23.9798, y: 0, z: 23.300014}
     waves:
     - waveName: Wave > 1
-      waveDelay: 2
-      size: 2
+      waveDelay: 4
+      size: 4
       enemyType: 1
-      spawnRate: 1
+      spawnRate: 2
     - waveName: Wave > 2
-      waveDelay: 0
+      waveDelay: 5
       size: 0
       enemyType: 0
       spawnRate: 0
-  - pointName: new 1
-    spawnPointTransform: {x: -16.621922, y: 0, z: -23.303125}
-    waves:
-    - waveName: Wave > 1
-      waveDelay: 0
-      size: 0
-      enemyType: 1
-      spawnRate: 0
-  - pointName: new 4
-    spawnPointTransform: {x: 8.224909, y: 0, z: -1.5501127}
-    waves: []
-  - pointName: new 5
-    spawnPointTransform: {x: 12.667702, y: 0, z: 1.5645342}
-    waves: []
-  - pointName: new 6
-    spawnPointTransform: {x: 11.355683, y: 0, z: -12.600454}
-    waves: []
-  - pointName: new 7
-    spawnPointTransform: {x: 3.356812, y: 0, z: -7.187128}
-    waves: []
-  - pointName: new 8
-    spawnPointTransform: {x: -0.912019, y: 0, z: -8.63786}
-    waves: []
-  - pointName: new 9
-    spawnPointTransform: {x: 0.08382237, y: 0, z: 5.63915}
-    waves: []
-  - pointName: new 10
-    spawnPointTransform: {x: 17.92905, y: 0, z: 5.4164233}
-    waves: []
-  - pointName: new 11
-    spawnPointTransform: {x: 7.104439, y: 0, z: 6.908019}
-    waves: []
-  - pointName: new 13
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves: []
-  - pointName: new 14
-    spawnPointTransform: {x: -3.321694, y: 0, z: 4.0250983}
-    waves: []
-  - pointName: new 15
-    spawnPointTransform: {x: -6.640787, y: 0, z: 1.1565237}
-    waves: []
-  - pointName: new 13
-    spawnPointTransform: {x: 0, y: 0, z: 0}
-    waves: []
-  - pointName: new 14
-    spawnPointTransform: {x: 1, y: 0, z: 1}
-    waves: []
-  - pointName: new 15
-    spawnPointTransform: {x: 2, y: 0, z: 2}
-    waves: []
+  lastPointIndex: 5
   availablePools:
   - poolName: SmallBalls
     enemyType: 1
@@ -89,3 +40,4 @@ MonoBehaviour:
       type: 3}
     size: 1
     canGrow: 0
+  lastPoolIndex: 0
