@@ -14,9 +14,8 @@ namespace SelfDef.NPCScripts
     {
 #pragma warning disable CS0649
         
-        private GameObject _player;
+        public GameObject player;
         private NavMeshAgent _enemyNavMesh;
-        private Animator _enemyAnimator;
         private Transform _playerTransform;
         private Transform _myTransform;
         
@@ -32,8 +31,6 @@ namespace SelfDef.NPCScripts
         private Quaternion _particleRotation;
 
         [SerializeField] public EnemyTypes enemyType = EnemyTypes.Default;
-        private static readonly int Horizontal = Animator.StringToHash("Horizontal");
-        private static readonly int Vertical = Animator.StringToHash("Vertical");
 
 #pragma warning restore CS0649
         private void Awake()
@@ -41,16 +38,15 @@ namespace SelfDef.NPCScripts
             gameObject.SetActive(false);
             
             _enemyNavMesh = GetComponent<NavMeshAgent>();
-            _enemyAnimator = GetComponent<Animator>();
         }
         
         private void OnEnable()
         {
 
-            if (_player == null) GameObject.FindGameObjectWithTag("Player");
+            if (player == null) GameObject.FindGameObjectWithTag("Player");
 
-            _playerTransform = _player.transform;
-            
+            _playerTransform = player.transform;
+            _playerTransform.localScale = new Vector3(1,1,1);
             _enemyNavMesh.destination = _playerTransform.position;
             
         }
@@ -58,20 +54,14 @@ namespace SelfDef.NPCScripts
         public void Initialize(string newName, GameObject playerRef )
         {
             name = newName;
-            _player = playerRef;
+            player = playerRef;
             
             _myTransform = transform;
         }
         // Update is called once per frame
-        private void Update()
-        {
-            _enemyAnimator.SetFloat(Horizontal,_enemyNavMesh.velocity.x);
-            _enemyAnimator.SetFloat(Vertical,_enemyNavMesh.velocity.z);
-        }
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("test");
             if (other.gameObject.CompareTag("Player"))
             {
                 PlayerLogicScript.Instance.DamagePlayer(damageAmount);
@@ -100,7 +90,7 @@ namespace SelfDef.NPCScripts
             _particlePosition = _myTransform.position;
             _particleRotation = _myTransform.rotation;
 
-            _player.GetComponent<PlayerLogicScript>().GiveMoney(money);
+            player.GetComponent<PlayerLogicScript>().GiveMoney(money);
             Instantiate(hitParticle, _particlePosition, _particleRotation);
             gameObject.SetActive(false);
         }

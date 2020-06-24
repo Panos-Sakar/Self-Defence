@@ -43,6 +43,10 @@ namespace SelfDef.PlayerScripts
         private TextMeshProUGUI _titleRef;
         private const string Padding = "    ";
         
+        //Events 
+        public delegate void PlayerEventHandler();
+        public event PlayerEventHandler PlayerFiredProjectile;
+        
 #pragma warning restore CS0649
 
         private void Awake()
@@ -217,6 +221,8 @@ namespace SelfDef.PlayerScripts
         
         private void FireProjectile(InputAction.CallbackContext context)
         {
+            PlayerFiredProjectile?.Invoke();
+            
             if (PlayerCanFire())
             {
                 projectileSystem.SpawnFireEffect();

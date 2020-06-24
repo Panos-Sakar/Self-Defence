@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4618576811471665258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558270648972032768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fba2246a00994e4fbc5846d135c0c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4565266785925120227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,30 +122,42 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6a5b09a397cad0943b0137eed39241f8, type: 2}
+    - target: {fileID: 4881250983204570934, guid: 7115765531f0e684488186b8d243b068,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a5b09a397cad0943b0137eed39241f8, type: 2}
     - target: {fileID: 6108868916399649428, guid: 7115765531f0e684488186b8d243b068,
         type: 3}
       propertyPath: m_Radius
-      value: 0.9352901
+      value: 1.05
       objectReference: {fileID: 0}
-    - target: {fileID: 6108868916399649428, guid: 7115765531f0e684488186b8d243b068,
+    - target: {fileID: 6875276000345531586, guid: 7115765531f0e684488186b8d243b068,
         type: 3}
-      propertyPath: m_Center.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 6108868916399649428, guid: 7115765531f0e684488186b8d243b068,
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fbfff1e77cdcec74795cffd28ebfec2c, type: 2}
+    - target: {fileID: 6875276000345531586, guid: 7115765531f0e684488186b8d243b068,
         type: 3}
-      propertyPath: m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6108868916399649428, guid: 7115765531f0e684488186b8d243b068,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.11
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7869919903464110282, guid: 7115765531f0e684488186b8d243b068,
         type: 3}
       propertyPath: m_Name
       value: Tetrahedron
       objectReference: {fileID: 0}
+    - target: {fileID: 9117882086844539098, guid: 7115765531f0e684488186b8d243b068,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7178685034035712819, guid: 9b8ed55b4c5627a489a15d442da9397b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7115765531f0e684488186b8d243b068, type: 3}
+--- !u!1 &5558270648972032768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8248875160237636579, guid: 7115765531f0e684488186b8d243b068,
+    type: 3}
+  m_PrefabInstance: {fileID: 4565266785925120227}
+  m_PrefabAsset: {fileID: 0}
