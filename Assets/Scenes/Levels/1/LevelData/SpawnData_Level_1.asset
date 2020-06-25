@@ -14,27 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - pointName: Alfa
-    spawnPointTransform: {x: -23.9798, y: 0, z: 23.300014}
+    spawnPointTransform: {x: -26.979868, y: 0, z: 9.746466}
     waves:
     - waveName: Wave > 1
-      waveDelay: 4
-      size: 4
+      waveDelay: 1
+      size: 3
       enemyType: 1
-      spawnRate: 2
+      spawnRate: 3
     - waveName: Wave > 2
-      waveDelay: 5
-      size: 0
-      enemyType: 0
-      spawnRate: 0
-  - pointName: Foxtrot
-    spawnPointTransform: {x: 17.319925, y: 0, z: -14.479818}
-    waves:
-    - waveName: Wave > 1
       waveDelay: 3
       size: 1
-      enemyType: 3
+      enemyType: 1
       spawnRate: 0
-  lastPointIndex: 6
+  lastPointIndex: 1
   availablePools:
   - poolName: SmallBalls
     enemyType: 1
@@ -42,16 +34,4 @@ MonoBehaviour:
       type: 3}
     size: 10
     canGrow: 0
-  - poolName: BigBalls
-    enemyType: 2
-    enemyPrefab: {fileID: 4672923178144442080, guid: 93e5ed4caa2819e4fb6eab28b3ab7231,
-      type: 3}
-    size: 1
-    canGrow: 0
-  - poolName: Tetrahedron
-    enemyType: 3
-    enemyPrefab: {fileID: 5939270994957301801, guid: ead33c267dc10ce44a8d2939a8ee756a,
-      type: 3}
-    size: 1
-    canGrow: 0
-  lastPoolIndex: 1
+  lastPoolIndex: 0

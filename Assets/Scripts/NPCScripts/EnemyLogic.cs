@@ -15,7 +15,7 @@ namespace SelfDef.NPCScripts
 #pragma warning disable CS0649
         
         public GameObject player;
-        private NavMeshAgent _enemyNavMesh;
+        private NavMeshAgent _agent;
         private Transform _playerTransform;
         private Transform _myTransform;
         
@@ -37,7 +37,7 @@ namespace SelfDef.NPCScripts
         {
             gameObject.SetActive(false);
             
-            _enemyNavMesh = GetComponent<NavMeshAgent>();
+            _agent = GetComponent<NavMeshAgent>();
         }
         
         private void OnEnable()
@@ -47,7 +47,7 @@ namespace SelfDef.NPCScripts
 
             _playerTransform = player.transform;
             _playerTransform.localScale = new Vector3(1,1,1);
-            _enemyNavMesh.destination = _playerTransform.position;
+            _agent.destination = _playerTransform.position;
             
         }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SelfDef.Systems.FireProjectile
 {
-    public class ProjectileProperties : MonoBehaviour, IChangeSetting
+    public class ProjectileProperties : MonoBehaviour, IActivateSettings
     {
 #pragma warning disable CS0649
         
@@ -13,7 +13,7 @@ namespace SelfDef.Systems.FireProjectile
         [SerializeField] public float maxDistance;
         [SerializeField] public float expireIn;
         
-        [Header("IChangeSetting")]
+        [Header("IActivateSettings")]
         [SerializeField] private bool changeLevel;
         [SerializeField] private bool toggleMasterVolume;
         

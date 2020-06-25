@@ -503,7 +503,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             var parent = GameObject.Find("PositionalObjects (Temporary)");
             if (parent == null) return;
 
-            var point = parent.transform.Find(pointName).gameObject;
+            var point = parent.transform.Find(pointName)?.gameObject;
             if(point == null) return;
 
             Selection.activeGameObject = point;

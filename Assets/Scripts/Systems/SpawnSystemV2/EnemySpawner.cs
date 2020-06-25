@@ -61,7 +61,7 @@ namespace SelfDef.Systems.SpawnSystemV2
                     yield return new WaitForSeconds(wave.spawnRate);
                 } 
             }
-            
+            yield return new WaitForSeconds(1f);
             LoadingHandler.Instance.playerFinishedLevel.Invoke();
         }
     }

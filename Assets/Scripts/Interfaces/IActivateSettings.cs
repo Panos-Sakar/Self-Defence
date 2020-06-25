@@ -1,7 +1,7 @@
 ﻿
 namespace SelfDef.Interfaces
 {
-    public interface IChangeSetting
+    public interface IActivateSettings
     {
         bool ChangeLevel { get; set; }
 

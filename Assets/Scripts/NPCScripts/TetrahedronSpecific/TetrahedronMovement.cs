@@ -3,7 +3,7 @@ using SelfDef.PlayerScripts;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace SelfDef.NPCScripts
+namespace SelfDef.NPCScripts.TetrahedronSpecific
 {
     public class TetrahedronMovement : MonoBehaviour
     {
@@ -30,6 +30,7 @@ namespace SelfDef.NPCScripts
             if(!gameObject.activeInHierarchy) return;
             
             _animator.SetBool(Fire, true);
+            
             _agent.isStopped = false;
         }
 
@@ -39,6 +40,7 @@ namespace SelfDef.NPCScripts
             if(!gameObject.activeInHierarchy) return;
             
             _animator.SetBool(Fire, false);
+            
             _agent.isStopped = true;
             
         }
@@ -46,7 +48,8 @@ namespace SelfDef.NPCScripts
         private void OnEnable()
         {
             _animator.SetTrigger(Start);
-            _agent.isStopped = true;
+
+            if(_agent.isActiveAndEnabled) _agent.isStopped = true;
 
         }
 

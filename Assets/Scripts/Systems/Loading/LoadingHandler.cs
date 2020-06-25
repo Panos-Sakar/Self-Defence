@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using SelfDef.Interfaces;
 using SelfDef.Systems.UI;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,11 +16,12 @@ namespace SelfDef.Systems.Loading
         [SerializeField] public GameObject playerRef;
         
         [SerializeField] private GameObject debugCanvas;
-        [SerializeField] private int menuLevelIndex;
+        [SerializeField] public int indexOffset;
+        [SerializeField] public int menuLevelIndex;
         [SerializeField] private bool loadMenu;
         
         private Scene _activeLevel;
-        private int _activeLevelIndex;
+        public int activeLevelIndex;
 
 #pragma warning restore CS0649
         private void Awake()
@@ -55,7 +57,7 @@ namespace SelfDef.Systems.Loading
                 SceneManager.LoadScene(menuLevelIndex, LoadSceneMode.Additive);
             }
             
-            _activeLevelIndex = menuLevelIndex;
+            activeLevelIndex = menuLevelIndex;
         }
 
         private void OnDisable()
@@ -64,27 +66,49 @@ namespace SelfDef.Systems.Loading
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        public IEnumerator StartLoadSequence(int levelIndex, Transform loaderObject)
+        public IEnumerator StartLoadSequence(int levelIndex, ICanChangeSettings loaderObject)
         {
 
+            
+
+            //TODO: Spawn Cube on position depending on the level
+            levelIndex += indexOffset;
+            if (SceneManager.sceneCountInBuildSettings == levelIndex)
+            {
+                levelIndex = indexOffset;
+                loaderObject.LevelIndex = 1;
+
+            }
+            loaderObject.Explode(new Vector3(-10,20,-5),false);
+            yield return new WaitForSeconds(1f);
+            
             yield return StartCoroutine(UserInterfaceHandler.Instance.HideViewOfGame());
             
-            loaderObject.position = new Vector3(0,100,0);
-
-            yield return LoadLevel(levelIndex);
-
+            yield return LoadLevel(levelIndex, true);
+            
+            loaderObject.StopAnimation = true;
+            
             yield return StartCoroutine(UserInterfaceHandler.Instance.ShowViewOfGame());
             
-            loaderObject.gameObject.SetActive(false);
         }
 
-        private IEnumerator LoadLevel(int levelIndex)
+        public IEnumerator LoadLevel(int levelIndex, bool relative)
         {
-            levelIndex += menuLevelIndex;
-            SceneManager.UnloadSceneAsync(_activeLevelIndex);
-            SceneManager.LoadScene(levelIndex, LoadSceneMode.Additive);
-            _activeLevelIndex = levelIndex;
-            yield return null;
+            if(!relative) levelIndex += indexOffset;
+            
+            SceneManager.UnloadSceneAsync(activeLevelIndex);
+            var asyncLoad = SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
+            asyncLoad.allowSceneActivation = false;
+            activeLevelIndex = levelIndex;
+            
+            while (!asyncLoad.isDone)
+            {
+                if (asyncLoad.progress >= 0.9f)
+                {
+                    asyncLoad.allowSceneActivation = true;
+                }
+                yield return null;
+            }
         }
     }
 }
