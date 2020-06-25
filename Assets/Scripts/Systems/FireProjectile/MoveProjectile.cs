@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SelfDef.Prefabs.Projectiles.Arrow.Prefab.Scripts
+namespace SelfDef.Systems.FireProjectile
 {
     public class MoveProjectile : MonoBehaviour
     {

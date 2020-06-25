@@ -1,5 +1,5 @@
 ﻿using SelfDef.PlayerScripts;
-using SelfDef.Prefabs.Projectiles.Arrow.Prefab.Scripts;
+using SelfDef.Systems.FireProjectile;
 using SelfDef.Systems.SpawnSystemV2;
 using UnityEngine;
 using UnityEngine.AI;
