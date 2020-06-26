@@ -76,13 +76,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9403120c4aeec49a1141e2a1c7f941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistentVariable: {fileID: 11400000, guid: f9222b737b4bc664596a739f4d17d90e, type: 2}
   poolPrefab: {fileID: 8071603990359320415, guid: c36dfb4a4e48bb44c86468ce5ef7c3d7,
     type: 3}
   spawnPointPrefab: {fileID: 6108175844010262547, guid: 9d71bb22d1746cd4bbcf7ed9ab840b0a,
     type: 3}
   poolsTransform: {fileID: 1628222155287426294}
   spawnPointsTransform: {fileID: 1628222154505757494}
-  levelSpawnData: {fileID: 0}
+  levelSpawnData: {fileID: 11400000, guid: 549d6f6e73eefee42be2b5f9d84fc7c4, type: 2}
 --- !u!114 &8244382638400531223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62819e7341e25b418b01acf52b4c650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 549d6f6e73eefee42be2b5f9d84fc7c4, type: 2}
+  autoLockInspector: 0
   positionItemMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   positionItemMaterial: {fileID: 2100000, guid: 1a4419faea8b308419fd00ea015e90ee,
     type: 2}
@@ -167,6 +169,9 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 1
+  createPositionalObjects: 0
+  updatePositionalObjects: 0
+  deletePositionalObjects: 0
 --- !u!1 &1628222155287426293
 GameObject:
   m_ObjectHideFlags: 0

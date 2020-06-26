@@ -19,7 +19,9 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
             base.OnInspectorGUI();
             
             _target = (EditSpawnPoints) target;
+#if UNITY_EDITOR
             _target.UpdateData();
+#endif
             if (_target.data == null) return;
 
             GUILayout.Space(10);
@@ -40,7 +42,9 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         
         private void AddPositionalTools()
         {
+#if UNITY_EDITOR
             _target.UpdateData();
+#endif
             _serializedObject = new SerializedObject(_target.data);
             
             GUILayout.Label("Positional Objects");
@@ -93,10 +97,12 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
 
                         var updaterComp = point.AddComponent<AutoUpdatePointPosition>();
                         updaterComp.positionName = realPoint.displayName;
+#if UNITY_EDITOR
                         updaterComp.spawnPointTransform = _serializedObject;
+#endif
                         updaterComp.pointPosition = point.transform.position;
-                        
-                
+
+
                         SelectObject(point);
                     }
                 }
@@ -121,7 +127,9 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         
         private void AddUpdateAllPosButton()
         {
+#if UNITY_EDITOR
             _target.UpdateData();
+#endif
             if (GUILayout.Button("Update Spawn Point Positions")) _target.updatePositionalObjects = true;
             if (_target.updatePositionalObjects)
             {

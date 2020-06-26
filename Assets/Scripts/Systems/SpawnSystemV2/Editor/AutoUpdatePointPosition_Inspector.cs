@@ -16,12 +16,14 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
 
         private bool _toolActive;
 
+#pragma warning disable 414
         private bool _positionChanged;
+#pragma warning restore 414
         public void OnSceneGUI()
         {
             _targetPoint = (target as AutoUpdatePointPosition);
             if (_targetPoint == null || !_toolActive) return;
-            
+#if UNITY_EDITOR           
             var newEvent = Event.current;
 
             if (_positionChanged 
@@ -48,7 +50,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 
                 _positionChanged = false;
             }
-
+#endif
             EditorGUI.BeginChangeCheck();
             
             _newPosition = Handles.PositionHandle(_targetPoint.transform.position,Quaternion.identity);

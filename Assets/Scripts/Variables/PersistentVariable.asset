@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07a38986439f334081d3224e9a9f87f, type: 3}
   m_Name: PersistentVariable
   m_EditorClassIdentifier: 
-  currentLevelIndex: 3
-  activeEnemies: 1
-  enemySpawnFinished: 0
+  currentLevelIndex: 6
+  activeEnemies: 0
+  enemySpawnFinished: 1
+  loading: 1

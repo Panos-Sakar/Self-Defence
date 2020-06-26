@@ -12,7 +12,7 @@ namespace SelfDef.Variables
         
         [Header("Enemy Spawning")]
         public int activeEnemies;
-        public bool enemySpawnFinished;
+        public int enemySpawnFinished;
 
         [Header("Misc")] 
         public bool loading;

@@ -1,5 +1,6 @@
 ﻿using SelfDef.Systems.Loading;
 using System.Collections.Generic;
+using SelfDef.Variables;
 using UnityEngine;
 
 namespace SelfDef.Systems.SpawnSystemV2
@@ -8,7 +9,10 @@ namespace SelfDef.Systems.SpawnSystemV2
     {
 #pragma warning disable CS0649
         
+        [Header("Prefabs")] 
         private GameObject _playerRef;
+        [SerializeField] 
+        private PersistentVariables persistentVariable;
         
         [Header("Prefabs")] 
         [SerializeField] 
@@ -38,6 +42,8 @@ namespace SelfDef.Systems.SpawnSystemV2
 
         private void OnEnable()
         {
+            persistentVariable.enemySpawnFinished = levelSpawnData.spawnPoints.Length;
+            
             foreach (var pool in levelSpawnData.availablePools)
             {
                 var poolInstance = Instantiate(poolPrefab, poolsTransform);

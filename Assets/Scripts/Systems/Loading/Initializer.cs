@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SelfDef.Variables;
+using UnityEngine;
 
 namespace SelfDef.Systems.Loading
 {
@@ -7,7 +8,10 @@ namespace SelfDef.Systems.Loading
 #pragma warning disable CS0649
         public static Initializer Instance { get; private  set; }
         
-        [SerializeField] private Texture2D cursorTexture;
+        [SerializeField] 
+        private Texture2D cursorTexture;
+        [SerializeField]
+        private PersistentVariables persistentVariable;
 
         private const CursorMode CursorMode = UnityEngine.CursorMode.Auto;
         private readonly Vector2 _hotSpot = Vector2.zero;
@@ -16,6 +20,12 @@ namespace SelfDef.Systems.Loading
         private void Awake()
         {
             if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
+
+            persistentVariable.currentLevelIndex = 0;
+            persistentVariable.activeEnemies = 0;
+            persistentVariable.enemySpawnFinished = 0;
+            persistentVariable.loading = false;
+            
             DontDestroyOnLoad(this.gameObject);
             
             Cursor.SetCursor(cursorTexture, _hotSpot, CursorMode);

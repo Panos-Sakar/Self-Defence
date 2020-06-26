@@ -45,7 +45,6 @@ namespace SelfDef.Change_Cubes
 
             _loadingHandler = LoadingHandler.Instance ;
             _userInterfaceHandler = UserInterfaceHandler.Instance;
-            
             _loadingHandler.playerFinishedLevel.AddListener(ResetPosition);
         }
 

@@ -65,7 +65,7 @@ namespace SelfDef.Systems.SpawnSystemV2
                     yield return new WaitForSeconds(wave.spawnRate);
                 } 
             }
-            persistentVariable.enemySpawnFinished = true;
+            persistentVariable.enemySpawnFinished --;
         }
     }
 }

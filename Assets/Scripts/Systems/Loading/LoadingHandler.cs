@@ -59,7 +59,6 @@ namespace SelfDef.Systems.Loading
         {
             persistentVariable.currentLevelIndex = activeLevelIndex;
             persistentVariable.activeEnemies = 0;
-            persistentVariable.enemySpawnFinished = false;
             persistentVariable.loading = false;
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
             debugCanvas.SetActive(true);
@@ -68,7 +67,9 @@ namespace SelfDef.Systems.Loading
 
         private void Update()
         {
-            if (persistentVariable.enemySpawnFinished && persistentVariable.activeEnemies == 0 && !persistentVariable.loading)
+            if (persistentVariable.enemySpawnFinished ==0 
+                && persistentVariable.activeEnemies == 0 
+                && !persistentVariable.loading)
             {
                 persistentVariable.loading = true;
                 playerFinishedLevel.Invoke();
