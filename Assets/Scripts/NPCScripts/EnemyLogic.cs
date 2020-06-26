@@ -1,6 +1,7 @@
 ﻿using SelfDef.PlayerScripts;
 using SelfDef.Systems.FireProjectile;
 using SelfDef.Systems.SpawnSystemV2;
+using SelfDef.Variables;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,9 @@ namespace SelfDef.NPCScripts
     public class EnemyLogic : MonoBehaviour
     {
 #pragma warning disable CS0649
+        //TODO: Organize members here
+        [SerializeField]
+        private PersistentVariables persistentVariable;
         
         public GameObject player;
         private NavMeshAgent _agent;
@@ -92,6 +96,7 @@ namespace SelfDef.NPCScripts
 
             player.GetComponent<PlayerLogicScript>().GiveMoney(money);
             Instantiate(hitParticle, _particlePosition, _particleRotation);
+            persistentVariable.activeEnemies--;
             gameObject.SetActive(false);
         }
         

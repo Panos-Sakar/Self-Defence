@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using SelfDef.Interfaces;
 using SelfDef.Systems.UI;
+using SelfDef.Variables;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -11,16 +11,23 @@ namespace SelfDef.Systems.Loading
     {
 #pragma warning disable CS0649
         public static LoadingHandler Instance { get; private  set; }
+        [HideInInspector]
         public UnityEvent playerFinishedLevel;
+        [Header("References")]
+        [SerializeField] 
+        public GameObject playerRef;
+        [SerializeField] 
+        private GameObject debugCanvas;
+        [SerializeField]
+        private PersistentVariables persistentVariable;
         
-        [SerializeField] public GameObject playerRef;
-        
-        [SerializeField] private GameObject debugCanvas;
+        [Header("Level Indexing")]
         [SerializeField] public int indexOffset;
         [SerializeField] public int menuLevelIndex;
         [SerializeField] private bool loadMenu;
         
         private Scene _activeLevel;
+        [HideInInspector]
         public int activeLevelIndex;
 
 #pragma warning restore CS0649
@@ -29,18 +36,6 @@ namespace SelfDef.Systems.Loading
             if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
             
             debugCanvas.SetActive(false);
-        }
-
-        private void OnEnable()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
-            debugCanvas.SetActive(true);
-#endif
         }
 
         private void Start()
@@ -60,55 +55,58 @@ namespace SelfDef.Systems.Loading
             activeLevelIndex = menuLevelIndex;
         }
 
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            persistentVariable.currentLevelIndex = activeLevelIndex;
+            persistentVariable.activeEnemies = 0;
+            persistentVariable.enemySpawnFinished = false;
+            persistentVariable.loading = false;
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+            debugCanvas.SetActive(true);
+#endif
+        }
+
+        private void Update()
+        {
+            if (persistentVariable.enemySpawnFinished && persistentVariable.activeEnemies == 0 && !persistentVariable.loading)
+            {
+                persistentVariable.loading = true;
+                playerFinishedLevel.Invoke();
+            }
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
         private void OnDisable()
         {
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
 
-        public IEnumerator StartLoadSequence(int levelIndex, ICanChangeSettings loaderObject)
+        public void StartLoadSequence(int levelIndex, bool relative)
         {
-
-            
-
-            //TODO: Spawn Cube on position depending on the level
-            levelIndex += indexOffset;
-            if (SceneManager.sceneCountInBuildSettings == levelIndex)
-            {
-                levelIndex = indexOffset;
-                loaderObject.LevelIndex = 1;
-
-            }
-            loaderObject.Explode(new Vector3(-10,20,-5),false);
-            yield return new WaitForSeconds(1f);
-            
-            yield return StartCoroutine(UserInterfaceHandler.Instance.HideViewOfGame());
-            
-            yield return LoadLevel(levelIndex, true);
-            
-            loaderObject.StopAnimation = true;
-            
-            yield return StartCoroutine(UserInterfaceHandler.Instance.ShowViewOfGame());
-            
+            StartCoroutine(LoadLevel(levelIndex, relative));
         }
 
-        public IEnumerator LoadLevel(int levelIndex, bool relative)
+        private IEnumerator LoadLevel(int levelIndex, bool relative)
         {
-            if(!relative) levelIndex += indexOffset;
+            if(relative) levelIndex += indexOffset;
+
+            yield return StartCoroutine(UserInterfaceHandler.Instance.HideViewOfGame());
             
             SceneManager.UnloadSceneAsync(activeLevelIndex);
             var asyncLoad = SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
-            asyncLoad.allowSceneActivation = false;
             activeLevelIndex = levelIndex;
             
             while (!asyncLoad.isDone)
             {
-                if (asyncLoad.progress >= 0.9f)
-                {
-                    asyncLoad.allowSceneActivation = true;
-                }
                 yield return null;
             }
+            
+            yield return StartCoroutine(UserInterfaceHandler.Instance.ShowViewOfGame());
         }
     }
 }

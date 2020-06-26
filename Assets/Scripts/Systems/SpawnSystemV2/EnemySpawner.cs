@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using SelfDef.Systems.Loading;
+using SelfDef.Variables;
 using UnityEngine;
 
 namespace SelfDef.Systems.SpawnSystemV2
@@ -8,6 +8,9 @@ namespace SelfDef.Systems.SpawnSystemV2
     public class EnemySpawner : MonoBehaviour
     {
 #pragma warning disable CS0649
+
+        [SerializeField] 
+        private PersistentVariables persistentVariable;
         
         private Wave[] _waves;
         private Dictionary<EnemyTypes,GameObject> _availablePools;
@@ -56,13 +59,13 @@ namespace SelfDef.Systems.SpawnSystemV2
                         {
                             newEnemy.transform.position = _spawnPosition;
                             newEnemy.SetActive(true);
+                            persistentVariable.activeEnemies++;
                         }
                     }
                     yield return new WaitForSeconds(wave.spawnRate);
                 } 
             }
-            yield return new WaitForSeconds(1f);
-            LoadingHandler.Instance.playerFinishedLevel.Invoke();
+            persistentVariable.enemySpawnFinished = true;
         }
     }
 }

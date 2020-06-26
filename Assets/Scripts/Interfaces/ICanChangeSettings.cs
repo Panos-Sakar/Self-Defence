@@ -7,13 +7,11 @@ namespace SelfDef.Interfaces
     {
         Vector3 StartPosition { get; set; }
         int LevelIndex { get; set; }
-
         bool StopAnimation { set; get; }
 
+        IEnumerator Explode(float delay);
         void ResetPosition();
-        IEnumerator Explode(Vector3 newPosition , bool destroyAfterExplode);
-        void Kill();
-
         void Lock();
+        void Kill();
     }
 }

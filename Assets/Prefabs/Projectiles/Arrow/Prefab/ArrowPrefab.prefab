@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myProperties: {fileID: 7195188046791526714}
+  persistentVariable: {fileID: 11400000, guid: f9222b737b4bc664596a739f4d17d90e, type: 2}
   canPassThruEnemy: 0
   startsFromPlayer: 1
   hasStartEffect: 0

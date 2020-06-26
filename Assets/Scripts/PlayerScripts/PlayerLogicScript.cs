@@ -22,17 +22,24 @@ namespace SelfDef.PlayerScripts
         private PlayerInputActions _inputActionsVar;
     
         [Header("Player Attributes")]
-        [SerializeField] private float headRotationSpeed;
-        [SerializeField] private float maxLife = 10;
+        [SerializeField] 
+        private float headRotationSpeed;
+        
+        [SerializeField] 
+        private float maxLife = 10;
         private float _life;
     
-        [SerializeField] private float maxStamina = 10;
+        [SerializeField] 
+        private float maxStamina = 10;
         private float _stamina;
 
         public int money;
     
-        [SerializeField] private float staminaRegenPeriod;
-        [SerializeField] private float fireRate = 0.5f;
+        [SerializeField] 
+        private float staminaRegenPeriod;
+        [SerializeField] 
+        private float fireRate = 0.5f;
+        
         private float _timeToFire;
     
         private Transform _myTransform;
