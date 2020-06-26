@@ -24,6 +24,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Tools
         [HideInInspector]
         public bool deletePositionalObjects;
         
+#if UNITY_EDITOR
         private void OnValidate()
         {
             data = GetComponent<Initializer>().GetLevelData();
@@ -33,5 +34,6 @@ namespace SelfDef.Systems.SpawnSystemV2.Tools
         {
             data = GetComponent<Initializer>().GetLevelData();
         }
+#endif
     }
 }

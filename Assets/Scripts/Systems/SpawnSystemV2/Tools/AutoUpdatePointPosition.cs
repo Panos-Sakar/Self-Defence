@@ -1,5 +1,7 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace SelfDef.Systems.SpawnSystemV2.Tools
 {
@@ -9,7 +11,9 @@ namespace SelfDef.Systems.SpawnSystemV2.Tools
         public Vector3 pointPosition;
         [HideInInspector]
         public string positionName;
+#if UNITY_EDITOR
         [HideInInspector]
         public SerializedObject spawnPointTransform;
+#endif
     }
 }
