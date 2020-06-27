@@ -14,6 +14,16 @@ namespace SelfDef.Change_Cubes
         public int LevelIndex { get; set; }
         public bool StopAnimation { get; set; }
 
+        [SerializeField]
+        private string tipText;
+        [SerializeField] 
+        private Sprite icon;
+        public string TipText
+        {
+            get => tipText;
+            set => tipText = value;
+        }
+
         public Vector3 StartPosition { get; set; }
 
         [SerializeField]
@@ -30,10 +40,12 @@ namespace SelfDef.Change_Cubes
 
         private LoadingHandler _loadingHandler;
         private UserInterfaceHandler _userInterfaceHandler;
+        
 
 #pragma warning restore CS0649
         private void Awake()
         {
+            
             _mainObject = gameObject.transform.parent;
             
             LevelIndex = levelIndex;
@@ -68,7 +80,6 @@ namespace SelfDef.Change_Cubes
             if(_animationLock) return;
             
             StartCoroutine(Explode(1f));
-            
         }
 
         public IEnumerator Explode(float delay)
@@ -123,6 +134,11 @@ namespace SelfDef.Change_Cubes
         {
             _loadingHandler.playerFinishedLevel.RemoveListener(ResetPosition);
             Destroy(_mainObject.gameObject);
+        }
+
+        public Sprite GetIcon()
+        {
+            return icon;
         }
 
         private int CorrectIndex(int index)

@@ -74,6 +74,7 @@ namespace SelfDef.NPCScripts
                 _particleRotation = _myTransform.rotation;
                 
                 Instantiate(explosionParticle, _particlePosition, _particleRotation);
+                persistentVariable.activeEnemies--;
                 gameObject.SetActive(false);  
             }
 

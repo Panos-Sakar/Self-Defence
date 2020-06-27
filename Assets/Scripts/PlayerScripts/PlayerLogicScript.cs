@@ -35,8 +35,6 @@ namespace SelfDef.PlayerScripts
         private float maxStamina = 10;
         private float _stamina;
 
-        public int money;
-    
         [SerializeField] 
         private float staminaRegenPeriod;
         [SerializeField] 
@@ -73,7 +71,6 @@ namespace SelfDef.PlayerScripts
             InvokeRepeating(nameof(IncreaseStamina),0,staminaRegenPeriod );
 
             InitializeValues();
-        
         }
         
         private void Update()
@@ -89,16 +86,6 @@ namespace SelfDef.PlayerScripts
                 UpdatePlayerStats();
             }
 
-            if (money > 10 && !PlayerUpgrades.Instance.explodeOnImpact)
-            {
-                _uiInstance.ActivateButton("ImpactExplosion");
-            }
-        
-            if (money > 20 && !PlayerUpgrades.Instance.ultimate)
-            {
-                _uiInstance.ActivateButton("Ultimate");
-            }
-
             _timeToFire -= Time.deltaTime;
         }
     
@@ -112,7 +99,7 @@ namespace SelfDef.PlayerScripts
         {
             _healthRef.value = _life;
             _staminaRef.value = _stamina;
-            _moneyRef.text = Padding + money;
+            _moneyRef.text = Padding + playerVariable.money;
 #if UNITY_EDITOR
             _uiInstance.PrintToDebug(0,"Life: " + _life + " Stamina: " + _stamina);
 #endif
@@ -122,12 +109,12 @@ namespace SelfDef.PlayerScripts
         {
             _life = 0;
             _stamina = 0;
-            money = 0;
+            playerVariable.money = 0;
 
             _healthRef.value = _life;
             _staminaRef.value = _stamina;
             _titleRef.text = Padding + "CPhage is DEAD :(";
-            _moneyRef.text = Padding + money;
+            _moneyRef.text = Padding + playerVariable.money;
         }
 
         private void GetUiRefs()
@@ -158,8 +145,8 @@ namespace SelfDef.PlayerScripts
             // Title Init -----------------------------------------------------
             _titleRef.text = Padding + "Defend the CPhage!";
 
-            // Money Init -----------------------------------------------------
-            _moneyRef.text = Padding + money;
+            // playerVariable.money Init -----------------------------------------------------
+            _moneyRef.text = Padding + playerVariable.money;
         }
 
         private  void IncreaseStamina()
@@ -171,12 +158,13 @@ namespace SelfDef.PlayerScripts
 
         public void GiveMoney(int amount)
         {
-            money += amount;
+            playerVariable.money += amount;
         }
     
         public void TakeMoney(int amount)
         {
-            money -= amount;
+            if(playerVariable.money<amount) return;
+            playerVariable.money -= amount;
         }
 
         public void GiveLife(int amount)
@@ -241,7 +229,7 @@ namespace SelfDef.PlayerScripts
         
         private void SpecialAction(InputAction.CallbackContext context)
         {
-            if (PlayerCanFire() && PlayerUpgrades.Instance.ultimate)
+            if (PlayerCanFire() && playerVariable.playerAbilities[PlayerVariables.PlayerAbilities.StarUltimate])
             {
                 
                 projectileSystem.SpawnUltimateEffect(_myTransform);

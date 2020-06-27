@@ -15,7 +15,18 @@ namespace SelfDef.Change_Cubes
         
         public Vector3 StartPosition { get; set; }
         public bool StopAnimation { get; set; }
-        
+
+        [SerializeField]
+        private string tipText;
+
+        [SerializeField] 
+        private Sprite icon;
+        public string TipText
+        {
+            get => tipText;
+            set => tipText = value;
+        }
+
         [Header("Audio Sources")]
         [SerializeField] 
         private AudioSource[] musicSources;
@@ -38,6 +49,7 @@ namespace SelfDef.Change_Cubes
         private bool _animationLock;
         private LoadingHandler _loadingHandler;
         
+
         private static readonly int Hide = Animator.StringToHash("Hide");
 
 #pragma warning restore CS0649
@@ -83,7 +95,7 @@ namespace SelfDef.Change_Cubes
 
             if (colliderSettings == null) return;
 
-            if (!colliderSettings.ChangeLevel) return;
+            if (!colliderSettings.ToggleMasterVolume) return;
             
             if(_animationLock) return;
             
@@ -152,7 +164,7 @@ namespace SelfDef.Change_Cubes
             obj.transform.position = StartPosition;
             obj.transform.localScale = Vector3.one;
             obj.transform.localRotation = quaternion.identity;
-            animator.
+            //animator.
             gameObject.SetActive(true);
         }
 
@@ -183,5 +195,9 @@ namespace SelfDef.Change_Cubes
             Destroy(this.gameObject);
         }
 
+        public Sprite GetIcon()
+        {
+            return icon;
+        }
     }
 }

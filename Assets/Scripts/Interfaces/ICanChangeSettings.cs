@@ -7,10 +7,13 @@ namespace SelfDef.Interfaces
     {
         Vector3 StartPosition { get; set; }
         bool StopAnimation { set; get; }
+        
+        string TipText { set; get; }
 
         IEnumerator Explode(float delay);
         void ResetPosition();
         void Lock();
         void Kill();
+        Sprite GetIcon();
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,9 +25,6 @@ namespace SelfDef.Systems.UI
         [SerializeField] private Image gamepadImage;
         [SerializeField] private Image keyboardAndMouseImage;
 
-        [Header("upgrade References")]
-        [SerializeField] private List<Button> upgradeButtons;
-        
         [Header("Debug")]
         [SerializeField] private List<TextMeshProUGUI> debugTextFields;
 
@@ -111,14 +107,6 @@ namespace SelfDef.Systems.UI
             {
                 keyboardAndMouseImage.enabled = false;
                 gamepadImage.enabled = false;
-            }
-        }
-
-        public void ActivateButton(string buttonName)
-        {
-            foreach (var button in upgradeButtons.Where(button => button.name == buttonName))
-            {
-                button.interactable = true;
             }
         }
 

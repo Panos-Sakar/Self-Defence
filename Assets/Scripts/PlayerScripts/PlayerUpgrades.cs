@@ -18,17 +18,5 @@ namespace SelfDef.PlayerScripts
             explodeOnImpact = false;
             ultimate = false;
         }
-        
-        public void ActivateExplodeOnImpact(int cost)
-        {
-            explodeOnImpact = true;
-            PlayerLogicScript.Instance.money -= cost;
-        }
-    
-        public void ActivateUltimate(int cost)
-        {
-            ultimate = true;
-            PlayerLogicScript.Instance.money -= cost;
-        }
     }
 }

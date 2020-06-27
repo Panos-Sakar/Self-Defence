@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SelfDef.PlayerScripts;
+using UnityEngine;
 
 namespace SelfDef.Systems.FireProjectile
 {
@@ -10,6 +11,10 @@ namespace SelfDef.Systems.FireProjectile
         private Ray _rayMouse;
         private RaycastHit _hit;
         private Vector3 _correctedPos;
+        [SerializeField]
+        private ShowTooltip tooltipHandler;
+
+        private bool _lock;
         
         private Quaternion _rotation;
 
@@ -19,6 +24,7 @@ namespace SelfDef.Systems.FireProjectile
 #pragma warning restore CS0649
         private void Awake()
         {
+            _lock = false;
             _mainCamera = UnityEngine.Camera.main;
         }
         
@@ -29,6 +35,24 @@ namespace SelfDef.Systems.FireProjectile
 
             if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out _hit, hitLayerMasks))
             {
+                if (_hit.transform.CompareTag("ChangeCube"))
+                {
+                    if (!_lock)
+                    {
+                        tooltipHandler.EnableTooltip(_hit.transform);
+                        _lock = true;
+                    }
+                }
+                else
+                {
+                    if (_lock)
+                    {
+                        _lock = false;
+                        tooltipHandler.DisableTooltip();
+                    }
+                }
+
+
                 _correctedPos = _hit.point - new Vector3(0, 1.95f, 0);
                 RotateToMouseDirection(gameObject,_correctedPos);
             }

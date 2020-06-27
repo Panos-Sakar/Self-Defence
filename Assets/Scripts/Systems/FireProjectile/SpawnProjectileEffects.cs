@@ -1,4 +1,4 @@
-﻿using SelfDef.PlayerScripts;
+﻿using SelfDef.Variables;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ namespace SelfDef.Systems.FireProjectile
 #pragma warning disable CS0649
         [Header("Properties")]
         [SerializeField] private ProjectileProperties myProperties;
+        [SerializeField] private PlayerVariables playerVariable;
         
         [Header("Attributes")]
         [SerializeField] private bool canPassThruEnemy;
@@ -59,8 +60,9 @@ namespace SelfDef.Systems.FireProjectile
                     Instantiate(impactEffect, pos, rot);
                 }
             
-                if (hasExplodeEffect && PlayerUpgrades.Instance.explodeOnImpact)
+                if (hasExplodeEffect && playerVariable.playerAbilities[PlayerVariables.PlayerAbilities.ExplodeOnImpact])
                 {
+
                     Instantiate(explodeEffect, pos, rot);
                 }
 

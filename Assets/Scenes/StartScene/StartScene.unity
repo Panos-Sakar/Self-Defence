@@ -843,6 +843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: e8390b1e566690a45846813970e2b7e5, type: 3}
   persistentVariable: {fileID: 11400000, guid: f9222b737b4bc664596a739f4d17d90e, type: 2}
+  playerVariables: {fileID: 11400000, guid: c2aed736095095543a14907035d809d7, type: 2}
 --- !u!4 &1807632612
 Transform:
   m_ObjectHideFlags: 0

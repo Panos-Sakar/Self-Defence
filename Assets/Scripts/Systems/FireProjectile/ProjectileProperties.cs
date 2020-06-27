@@ -15,7 +15,8 @@ namespace SelfDef.Systems.FireProjectile
         
         [Header("IActivateSettings")]
         [SerializeField] private bool changeLevel;
-        [SerializeField] private bool toggleMasterVolume;
+        [SerializeField] private bool toggleVolume;
+        [SerializeField] private bool giveUpgrade;
         
         public bool ChangeLevel 
         {
@@ -25,10 +26,16 @@ namespace SelfDef.Systems.FireProjectile
 
         public bool ToggleMasterVolume
         {
-            get => toggleMasterVolume;
-            set => toggleMasterVolume = value;
+            get => toggleVolume;
+            set => toggleVolume = value;
         }
-        
+
+        public bool GiveUpgrade 
+        {             
+            get => giveUpgrade;
+            set => giveUpgrade = value; 
+        }
+
 #pragma warning restore CS0649
 
         public void DestroyProjectile()

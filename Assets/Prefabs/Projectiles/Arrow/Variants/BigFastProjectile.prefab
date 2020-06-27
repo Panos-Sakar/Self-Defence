@@ -32,6 +32,21 @@ PrefabInstance:
       propertyPath: expireIn
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7195188046791526714, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: changeLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195188046791526714, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: toggleVolume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195188046791526714, guid: 5fdf6093d3245584ea1ff7e669c6c949,
+        type: 3}
+      propertyPath: giveUpgrade
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7791773924494857050, guid: 5fdf6093d3245584ea1ff7e669c6c949,
         type: 3}
       propertyPath: canPassThruEnemy

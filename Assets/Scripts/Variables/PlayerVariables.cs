@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SelfDef.Variables
@@ -22,11 +23,16 @@ namespace SelfDef.Variables
         [Header("Weapon")]
         public float fireRate;
 
-        [Header("Abilities")]
-        public bool explodeOnImpact;
-        public bool ultimate;
+        [Header("Abilities")] 
+        public Dictionary<PlayerAbilities, bool> playerAbilities;
 
         [Header("Misc")] 
         public float headRotationSpeed;
+        
+        public enum PlayerAbilities
+        {
+            ExplodeOnImpact = 0,
+            StarUltimate = 1
+        }
     }
 }

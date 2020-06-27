@@ -1,4 +1,5 @@
-﻿using SelfDef.Variables;
+﻿using System.Collections.Generic;
+using SelfDef.Variables;
 using UnityEngine;
 
 namespace SelfDef.Systems.Loading
@@ -33,12 +34,16 @@ namespace SelfDef.Systems.Loading
 
         private void InitializePlayerVariable()
         {
+            playerVariables.playerAbilities = new Dictionary<PlayerVariables.PlayerAbilities, bool>()
+            {
+                [PlayerVariables.PlayerAbilities.ExplodeOnImpact] = false,
+                [PlayerVariables.PlayerAbilities.StarUltimate] = false
+                
+            };
+            
             playerVariables.currentLife = 0;
             playerVariables.currentStamina = 0;
             playerVariables.money = 0;
-
-            playerVariables.ultimate = false;
-            playerVariables.explodeOnImpact = false;
         }
 
         private void InitializePersistentVariable()
