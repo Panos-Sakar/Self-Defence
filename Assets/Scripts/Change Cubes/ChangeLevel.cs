@@ -19,7 +19,7 @@ namespace SelfDef.Change_Cubes
         [SerializeField]
         private int levelIndex;
         [SerializeField]
-        private MeshRenderer meshRenderer;
+        private MeshRenderer[] meshRenderers;
         [SerializeField]
         private GameObject animationChild;
         
@@ -92,7 +92,7 @@ namespace SelfDef.Change_Cubes
         private  IEnumerator ExplodeEffect(float delay, Vector3 newPosition, bool destroyAfterExplode)
         {
             StartPosition = newPosition;
-            meshRenderer.enabled = false;
+            DisableMeshRenderers(false);
             animationChild.SetActive(true);
             
             yield return new WaitForSeconds(delay);
@@ -110,7 +110,7 @@ namespace SelfDef.Change_Cubes
             
             _mainObject.position = new Vector3(-10,50,-10);
             
-            meshRenderer.enabled = true;
+            DisableMeshRenderers(true);
             
             animationChild.SetActive(false);
         }
@@ -157,12 +157,18 @@ namespace SelfDef.Change_Cubes
 
         public void ResetPosition(Vector3 newPosition)
         {
-            
             StartPosition = newPosition;
             gameObject.transform.localPosition = new Vector3(0,0,0);
             _mainObject.position = StartPosition;
             _mainObject.gameObject.SetActive(true);
-            
+        }
+
+        private void DisableMeshRenderers(bool disable)
+        {
+            foreach (var meshRenderer in meshRenderers)
+            {
+                meshRenderer.enabled = disable;
+            }
         }
     }
 }
