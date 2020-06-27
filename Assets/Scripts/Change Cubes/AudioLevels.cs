@@ -37,6 +37,7 @@ namespace SelfDef.Change_Cubes
 
         private bool _animationLock;
         private LoadingHandler _loadingHandler;
+        
         private static readonly int Hide = Animator.StringToHash("Hide");
 
 #pragma warning restore CS0649
@@ -157,7 +158,8 @@ namespace SelfDef.Change_Cubes
 
         public void Lock()
         {
-            animator.SetTrigger(Hide);
+            //animator.SetTrigger(Hide);
+            StartCoroutine(Disappear(0.9f));
         }
 
         [UsedImplicitly]
@@ -166,11 +168,20 @@ namespace SelfDef.Change_Cubes
             gameObject.SetActive(false);
         }
 
+        private IEnumerator Disappear(float delay)
+        {
+            animator.SetTrigger(Hide);
+            yield return new WaitForSeconds(delay);
+            gameObject.SetActive(false);
+            
+        }
+
         public void Kill()
         {
             _loadingHandler.playerFinishedLevel.RemoveListener(ResetPosition);
             _loadingHandler.levelLoadingStarted.RemoveListener(Lock);
             Destroy(this.gameObject);
         }
+
     }
 }

@@ -14,11 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - pointName: Alpha
-    spawnPointTransform: {x: -23, y: 3, z: 3}
+    spawnPointTransform: {x: -19.685389, y: 3, z: 7.0062685}
     waves:
     - waveName: Wave > 1
       waveDelay: 2
       size: 3
+      enemyType: 1
+      spawnRate: 1.5
+  - pointName: Bravo
+    spawnPointTransform: {x: -19.432709, y: 0, z: -16.203213}
+    waves:
+    - waveName: Wave > 1
+      waveDelay: 1
+      size: 5
+      enemyType: 1
+      spawnRate: 1.5
+  - pointName: Charlie
+    spawnPointTransform: {x: 5.149535, y: 0, z: -9.49656}
+    waves:
+    - waveName: Wave > 1
+      waveDelay: 7
+      size: 1
       enemyType: 1
       spawnRate: 1
     - waveName: Wave > 2
@@ -26,14 +42,17 @@ MonoBehaviour:
       size: 1
       enemyType: 2
       spawnRate: 1
-  - pointName: Bravo
-    spawnPointTransform: {x: 0, y: 0, z: -21}
-    waves:
-    - waveName: Wave > 1
-      waveDelay: 2
-      size: 4
+    - waveName: Wave > 3
+      waveDelay: 1
+      size: 1
       enemyType: 1
       spawnRate: 1
+    - waveName: Wave > 4
+      waveDelay: 1
+      size: 1
+      enemyType: 2
+      spawnRate: 1
+  lastPointIndex: 1
   availablePools:
   - poolName: smallBalls
     enemyType: 1
@@ -47,3 +66,4 @@ MonoBehaviour:
       type: 3}
     size: 2
     canGrow: 0
+  lastPoolIndex: 0

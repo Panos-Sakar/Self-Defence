@@ -75,9 +75,13 @@ namespace SelfDef.Change_Cubes
         {
             _animationLock = true;
             
+            _loadingHandler.levelLoadingStarted.Invoke();
+            
+            yield return new WaitForEndOfFrame();
+            
             StartCoroutine(ExplodeEffect(delay,new Vector3(-10,20,-5),false));
             StartCoroutine(_userInterfaceHandler.HideViewOfGame());
-            _loadingHandler.levelLoadingStarted.Invoke();
+            
             
             yield return new WaitForSeconds(delay);
             
