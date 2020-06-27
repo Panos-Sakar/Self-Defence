@@ -1,13 +1,20 @@
 ﻿using System;
+using System.Collections;
+using JetBrains.Annotations;
+using SelfDef.Interfaces;
 using SelfDef.Systems.Loading;
 using SelfDef.Variables;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace SelfDef.Change_Cubes
 {
-    public class AudioLevels : MonoBehaviour
+    public class AudioLevels : MonoBehaviour, ICanChangeSettings
     {
 #pragma warning disable CS0649
+        
+        public Vector3 StartPosition { get; set; }
+        public bool StopAnimation { get; set; }
         
         [Header("Audio Sources")]
         [SerializeField] 
@@ -15,27 +22,33 @@ namespace SelfDef.Change_Cubes
         [SerializeField] 
         private AudioSource[] sfxSources;
 
-        [Header("Arches References")]
+        [Header("References")]
         [SerializeField]
         private GameObject archesInner;
         [SerializeField]
         private GameObject archesOuter;
+
+        [SerializeField] 
+        private Animator animator;
         
         [Header("Levels")]
         [SerializeField]
         private AudioVariables audioLevels;
 
-        private Vector3 _startPosition;
-        
+        private bool _animationLock;
         private LoadingHandler _loadingHandler;
-        
+        private static readonly int Hide = Animator.StringToHash("Hide");
+
 #pragma warning restore CS0649
         private void Awake()
         {
-            _startPosition = new Vector3(-3,-2,-13);
             _loadingHandler = LoadingHandler.Instance;
-            _loadingHandler.playerFinishedLevel.AddListener(ResetPosition);
             
+            StartPosition = new Vector3(-3,40,-13);
+            
+            StopAnimation = false;
+            _animationLock = false;
+
             switch (audioLevels.muteLevel)
             {
                 case AudioVariables.MuteLevel.Mute:
@@ -50,33 +63,60 @@ namespace SelfDef.Change_Cubes
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            
+            _loadingHandler.playerFinishedLevel.AddListener(ResetPosition);
+            _loadingHandler.levelLoadingStarted.AddListener(Lock);
+            
         }
-
+        private void Update()
+        {
+            if (StopAnimation)
+            {
+                StopAnimation = false;
+                _animationLock = false;
+            }
+        }
         private void OnTriggerEnter(Collider other)
         {
+            var colliderSettings = other.GetComponent<IActivateSettings>();
+
+            if (colliderSettings == null) return;
+
+            if (!colliderSettings.ChangeLevel) return;
+            
+            if(_animationLock) return;
+            
+            StartCoroutine(Explode(0f));
+        }
+
+        public IEnumerator Explode(float delay)
+        {
+            _animationLock = true;
             switch (audioLevels.muteLevel)
             {
                 case AudioVariables.MuteLevel.Mute:
                     audioLevels.muteLevel = AudioVariables.MuteLevel.FullAudio;
                     
                     ChangeLevels(false, false);
-
+                    
                     break;
                 case AudioVariables.MuteLevel.OnlySfx:
                     audioLevels.muteLevel = AudioVariables.MuteLevel.Mute;
                     
                     ChangeLevels(true, true);
-
+                    
                     break;
                 case AudioVariables.MuteLevel.FullAudio:
                     audioLevels.muteLevel = AudioVariables.MuteLevel.OnlySfx;
                     
                     ChangeLevels(true, false);
-
+                    
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            yield return new WaitForSeconds(delay);
+            StopAnimation = true;
         }
 
         private void ChangeLevels(bool muteMusic, bool muteSfx)
@@ -103,17 +143,33 @@ namespace SelfDef.Change_Cubes
                 sfxSource.mute = mute;
             }
         }
-        
+
         public void ResetPosition()
         {
-            Debug.Log("Reset");
-            //gameObject.transform.position = _startPosition;
+            var obj = gameObject;
+            
+            obj.transform.position = StartPosition;
+            obj.transform.localScale = Vector3.one;
+            obj.transform.localRotation = quaternion.identity;
+            animator.
             gameObject.SetActive(true);
+        }
+
+        public void Lock()
+        {
+            animator.SetTrigger(Hide);
+        }
+
+        [UsedImplicitly]
+        private void Disappear()
+        {
+            gameObject.SetActive(false);
         }
 
         public void Kill()
         {
             _loadingHandler.playerFinishedLevel.RemoveListener(ResetPosition);
+            _loadingHandler.levelLoadingStarted.RemoveListener(Lock);
             Destroy(this.gameObject);
         }
     }

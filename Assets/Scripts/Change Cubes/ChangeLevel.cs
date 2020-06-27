@@ -25,8 +25,7 @@ namespace SelfDef.Change_Cubes
         
 
         private Transform _mainObject;
-
-        private bool _stopAnimation;
+        
         private bool _animationLock;
 
         private LoadingHandler _loadingHandler;
@@ -40,7 +39,7 @@ namespace SelfDef.Change_Cubes
             LevelIndex = levelIndex;
             StartPosition = _mainObject.position;
 
-            _stopAnimation = false;
+            StopAnimation = false;
             _animationLock = false;
 
             _loadingHandler = LoadingHandler.Instance;
@@ -50,9 +49,9 @@ namespace SelfDef.Change_Cubes
 
         private void Update()
         {
-            if (_stopAnimation)
+            if (StopAnimation)
             {
-                _stopAnimation = false;
+                StopAnimation = false;
                 _animationLock = false;
                 _mainObject.gameObject.SetActive(false);
             }
@@ -78,6 +77,7 @@ namespace SelfDef.Change_Cubes
             
             StartCoroutine(ExplodeEffect(delay,new Vector3(-10,20,-5),false));
             StartCoroutine(_userInterfaceHandler.HideViewOfGame());
+            _loadingHandler.levelLoadingStarted.Invoke();
             
             yield return new WaitForSeconds(delay);
             
@@ -86,7 +86,7 @@ namespace SelfDef.Change_Cubes
             yield return StartCoroutine(_userInterfaceHandler.ShowViewOfGame());
             
             LevelIndex++;
-            _stopAnimation = true;
+            StopAnimation = true;
         }
 
         private  IEnumerator ExplodeEffect(float delay, Vector3 newPosition, bool destroyAfterExplode)
@@ -108,7 +108,7 @@ namespace SelfDef.Change_Cubes
             obj.transform.localPosition = new Vector3(0,0,0);
             obj.transform.localRotation = new Quaternion().normalized;
             
-            _mainObject.position = new Vector3(-10,100,-10);
+            _mainObject.position = new Vector3(-10,50,-10);
             
             meshRenderer.enabled = true;
             
@@ -157,10 +157,12 @@ namespace SelfDef.Change_Cubes
 
         public void ResetPosition(Vector3 newPosition)
         {
+            
             StartPosition = newPosition;
             gameObject.transform.localPosition = new Vector3(0,0,0);
             _mainObject.position = StartPosition;
             _mainObject.gameObject.SetActive(true);
+            
         }
     }
 }

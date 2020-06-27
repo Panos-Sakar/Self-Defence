@@ -13,6 +13,7 @@ namespace SelfDef.Systems.Loading
         public static LoadingHandler Instance { get; private  set; }
         [HideInInspector]
         public UnityEvent playerFinishedLevel;
+        public UnityEvent levelLoadingStarted;
         [Header("References")]
         [SerializeField] 
         public GameObject playerRef;
@@ -57,9 +58,14 @@ namespace SelfDef.Systems.Loading
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            persistentVariable.currentLevelIndex = activeLevelIndex;
-            persistentVariable.activeEnemies = 0;
-            persistentVariable.loading = false;
+            // ReSharper disable once InvertIf
+            if (mode == LoadSceneMode.Additive)
+            {
+                persistentVariable.currentLevelIndex = activeLevelIndex;
+                persistentVariable.activeEnemies = 0;
+                persistentVariable.loading = false;
+            }
+            
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
             debugCanvas.SetActive(true);
 #endif
@@ -94,6 +100,8 @@ namespace SelfDef.Systems.Loading
 
         private IEnumerator LoadLevel(int levelIndex, bool relative)
         {
+            levelLoadingStarted.Invoke();
+            
             if(relative) levelIndex += indexOffset;
 
             yield return StartCoroutine(UserInterfaceHandler.Instance.HideViewOfGame());

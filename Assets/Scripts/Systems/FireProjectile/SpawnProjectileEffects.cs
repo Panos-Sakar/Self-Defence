@@ -50,7 +50,7 @@ namespace SelfDef.Systems.FireProjectile
             var pos = _myTransform.position;
             quaternion rot = _myTransform.rotation;
             
-            if (other.CompareTag("Obstacle")) // -- Obstacle Collision -------------------------------------------------
+            if (other.CompareTag("Obstacle") || other.CompareTag("ChangeCube")) // -- Obstacle Collision -------------------------------------------------
             {
                 myProperties.speed = 0;
 
