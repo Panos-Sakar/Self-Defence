@@ -1,5 +1,6 @@
 ﻿using SelfDef.Systems.FireProjectile;
 using SelfDef.Systems.UI;
+using SelfDef.Variables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,8 +13,9 @@ namespace SelfDef.PlayerScripts
     {
 #pragma warning disable CS0649
         public static PlayerLogicScript Instance { get; private  set; }
-        
-        [Header("References")]
+
+        [Header("References")] 
+        [SerializeField] private PlayerVariables playerVariable;
         [SerializeField] private PlayerInput playerInputVar;
         [SerializeField] private SpawnProjectiles projectileSystem;
         [SerializeField] private GameObject headInnerTransform;

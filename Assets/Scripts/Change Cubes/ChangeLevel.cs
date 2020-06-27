@@ -43,7 +43,7 @@ namespace SelfDef.Change_Cubes
             _stopAnimation = false;
             _animationLock = false;
 
-            _loadingHandler = LoadingHandler.Instance ;
+            _loadingHandler = LoadingHandler.Instance;
             _userInterfaceHandler = UserInterfaceHandler.Instance;
             _loadingHandler.playerFinishedLevel.AddListener(ResetPosition);
         }

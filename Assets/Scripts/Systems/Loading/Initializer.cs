@@ -10,8 +10,9 @@ namespace SelfDef.Systems.Loading
         
         [SerializeField] 
         private Texture2D cursorTexture;
-        [SerializeField]
-        private PersistentVariables persistentVariable;
+        
+        public PersistentVariables persistentVariable;
+        public PlayerVariables playerVariables;
 
         private const CursorMode CursorMode = UnityEngine.CursorMode.Auto;
         private readonly Vector2 _hotSpot = Vector2.zero;
@@ -21,22 +22,39 @@ namespace SelfDef.Systems.Loading
         {
             if (Instance == null) { Instance = this; } else { Destroy(gameObject); }
 
-            persistentVariable.currentLevelIndex = 0;
-            persistentVariable.activeEnemies = 0;
-            persistentVariable.enemySpawnFinished = 0;
-            persistentVariable.loading = false;
+            InitializePersistentVariable();
             
+            InitializePlayerVariable();
+
             DontDestroyOnLoad(this.gameObject);
             
             Cursor.SetCursor(cursorTexture, _hotSpot, CursorMode);
         }
 
-        void OnMouseEnter()
+        private void InitializePlayerVariable()
+        {
+            playerVariables.currentLife = 0;
+            playerVariables.currentStamina = 0;
+            playerVariables.money = 0;
+
+            playerVariables.ultimate = false;
+            playerVariables.explodeOnImpact = false;
+        }
+
+        private void InitializePersistentVariable()
+        {
+            persistentVariable.currentLevelIndex = 0;
+            persistentVariable.activeEnemies = 0;
+            persistentVariable.enemySpawnFinished = 0;
+            persistentVariable.loading = false;
+        }
+
+        private void OnMouseEnter()
         {
             Cursor.SetCursor(cursorTexture, _hotSpot, CursorMode);
         }
 
-        void OnMouseExit()
+        private void OnMouseExit()
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode);
         }

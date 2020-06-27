@@ -10,6 +10,7 @@ TagManager:
   - UIDebug
   - Enemy
   - Projectile
+  - ChangeCube
   layers:
   - Default
   - TransparentFX

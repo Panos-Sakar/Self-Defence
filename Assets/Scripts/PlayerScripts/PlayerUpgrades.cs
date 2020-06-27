@@ -18,8 +18,7 @@ namespace SelfDef.PlayerScripts
             explodeOnImpact = false;
             ultimate = false;
         }
-
-        [ContextMenu("ActivateExplodeOnImpact")]
+        
         public void ActivateExplodeOnImpact(int cost)
         {
             explodeOnImpact = true;
