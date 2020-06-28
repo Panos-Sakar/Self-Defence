@@ -38,6 +38,7 @@ namespace SelfDef.Systems.Loading
         {
             playerVariables.playerAbilities = new Dictionary<PlayerVariables.PlayerAbilities, bool>()
             {
+                [PlayerVariables.PlayerAbilities.None] = false,
                 [PlayerVariables.PlayerAbilities.ExplodeOnImpact] = false,
                 [PlayerVariables.PlayerAbilities.StarUltimate] = false
                 

@@ -1,62 +1,38 @@
 ﻿using System.Collections;
 using SelfDef.Interfaces;
 using SelfDef.Systems.Loading;
-using SelfDef.Variables;
 using Unity.Mathematics;
 using UnityEngine;
 
 
 namespace SelfDef.Change_Cubes
 {
-    public class UpgradeCube : MonoBehaviour , ICanChangeSettings, IGiveUpgrade
+    public class InfoCube : MonoBehaviour, ICanChangeSettings
     {
 #pragma warning disable CS0649
         
         public Vector3 StartPosition { get; set; }
         public bool StopAnimation { get; set; }
-
+        
+        [Header("Cube parameters")]
+        [SerializeField]
+        private string tipText;
+        [SerializeField] 
+        private Sprite icon;
 
         public string TipText
         {
             get => tipText;
             set => tipText = value;
         }
-
-        public int Cost
-        {
-            get => abilityCost;
-            set => abilityCost = value;
-        }
-
-        [Header("Cube parameters")] 
-        [SerializeField] 
-        private PlayerVariables.PlayerAbilities abilityType;
-        [SerializeField] 
-        private int abilityCost;
-        [SerializeField]
-        private string tipText;
-        [SerializeField] 
-        private Sprite icon;
-
+        
         [Header("References")]
-        [SerializeField]
-        private PlayerVariables playerVariable;
+        [SerializeField] 
+        private GameObject mother;
         [SerializeField]
         private Animator animator;
 
-        [SerializeField] 
-        private GameObject mother;
-
-        public PlayerVariables PlayerVariable
-        {
-            get => playerVariable;
-            set => playerVariable = value;
-        }
-
-        
-
         private bool _animationLock;
-        private bool _abilityGiven;
         private LoadingHandler _loadingHandler;
         
 
@@ -74,12 +50,10 @@ namespace SelfDef.Change_Cubes
             
             StopAnimation = false;
             _animationLock = false;
-            _abilityGiven = false;
             
-            _loadingHandler.playerFinishedLevel.AddListener(ResetPosition);
             _loadingHandler.levelLoadingStarted.AddListener(Lock);
         }
-        
+
         private void Update()
         {
             if (StopAnimation)
@@ -88,39 +62,38 @@ namespace SelfDef.Change_Cubes
                 _animationLock = false;
             }
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             var colliderSettings = other.GetComponent<IActivateSettings>();
 
             if (colliderSettings == null) return;
 
-            if (!colliderSettings.GiveUpgrade) return;
-            
             if(_animationLock) return;
             
-            StartCoroutine(Explode(2f));
+            StartCoroutine(Explode(1f));
         }
-        
+
+        public Sprite GetIcon()
+        {
+            return icon;
+        }
+
         public IEnumerator Explode(float delay)
         {
-            if (abilityCost > playerVariable.money) yield break;
             _animationLock = true;
             
-            playerVariable.money -= abilityCost;
-            playerVariable.playerAbilities[abilityType] = true;
-            _abilityGiven = true;
             animator.SetTrigger(Hit);
             
             yield return new WaitForSeconds(delay);
+            
             StopAnimation = true;
+            
             Kill();
         }
 
         public void ResetPosition()
         {
-            if (_abilityGiven) return;
-            
             var obj = gameObject;
             
             obj.transform.position = StartPosition;
@@ -135,24 +108,20 @@ namespace SelfDef.Change_Cubes
             
             StartCoroutine(Disappear(0.9f));
         }
-        
+
         private IEnumerator Disappear(float delay)
         {
             animator.SetTrigger(Hide);
+            
             yield return new WaitForSeconds(delay);
-            gameObject.SetActive(false);
+            
+            Kill();
         }
 
         public void Kill()
         {
-            _loadingHandler.playerFinishedLevel.RemoveListener(ResetPosition);
             _loadingHandler.levelLoadingStarted.RemoveListener(Lock);
-            gameObject.SetActive(false);
-        }
-
-        public Sprite GetIcon()
-        {
-            return icon;
+            Destroy(mother);
         }
     }
 }

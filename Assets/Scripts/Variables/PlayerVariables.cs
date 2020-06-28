@@ -31,8 +31,9 @@ namespace SelfDef.Variables
         
         public enum PlayerAbilities
         {
-            ExplodeOnImpact = 0,
-            StarUltimate = 1
+            None = 0,
+            ExplodeOnImpact = 1,
+            StarUltimate = 2
         }
     }
 }

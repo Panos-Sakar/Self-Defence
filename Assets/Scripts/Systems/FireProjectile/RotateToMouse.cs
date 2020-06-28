@@ -15,6 +15,7 @@ namespace SelfDef.Systems.FireProjectile
         private ShowTooltip tooltipHandler;
 
         private bool _lock;
+        private int _activeObjId;
         
         private Quaternion _rotation;
 
@@ -24,6 +25,7 @@ namespace SelfDef.Systems.FireProjectile
 #pragma warning restore CS0649
         private void Awake()
         {
+            _activeObjId = 0;
             _lock = false;
             _mainCamera = UnityEngine.Camera.main;
         }
@@ -35,12 +37,13 @@ namespace SelfDef.Systems.FireProjectile
 
             if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out _hit, hitLayerMasks))
             {
-                if (_hit.transform.CompareTag("ChangeCube"))
+                if (_hit.transform.CompareTag("ChangeCube") || _hit.transform.CompareTag("InfoCube"))
                 {
                     if (!_lock)
                     {
                         tooltipHandler.EnableTooltip(_hit.transform);
                         _lock = true;
+                        _activeObjId = _hit.transform.GetInstanceID();
                     }
                 }
                 else
@@ -52,6 +55,10 @@ namespace SelfDef.Systems.FireProjectile
                     }
                 }
 
+                if (_activeObjId != _hit.transform.GetInstanceID())
+                {
+                    _lock = false;
+                }
 
                 _correctedPos = _hit.point - new Vector3(0, 1.95f, 0);
                 RotateToMouseDirection(gameObject,_correctedPos);
