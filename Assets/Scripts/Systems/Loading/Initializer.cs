@@ -16,7 +16,7 @@ namespace SelfDef.Systems.Loading
         public PlayerVariables playerVariables;
 
         private const CursorMode CursorMode = UnityEngine.CursorMode.Auto;
-        private readonly Vector2 _hotSpot = Vector2.zero;
+        private Vector2 _hotSpot;
 
 #pragma warning restore CS0649
         private void Awake()
@@ -28,6 +28,8 @@ namespace SelfDef.Systems.Loading
             InitializePlayerVariable();
 
             DontDestroyOnLoad(this.gameObject);
+            
+            _hotSpot = new Vector2 (cursorTexture.width / 2f, cursorTexture.height / 2f);
             
             Cursor.SetCursor(cursorTexture, _hotSpot, CursorMode);
         }

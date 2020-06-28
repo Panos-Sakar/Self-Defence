@@ -2832,7 +2832,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c40dcc001b2fc46aeb1e524b1dd304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipText: 
+  icon: {fileID: 0}
   levelIndex: 1
+  meshRenderers: []
+  animationChild: {fileID: 0}
 --- !u!114 &2023373994420073227
 MonoBehaviour:
   m_ObjectHideFlags: 0

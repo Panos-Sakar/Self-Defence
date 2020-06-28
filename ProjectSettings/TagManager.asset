@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Projectile
   - ChangeCube
+  - InfoCube
   layers:
   - Default
   - TransparentFX
