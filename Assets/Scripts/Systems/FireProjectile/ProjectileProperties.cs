@@ -33,7 +33,7 @@ namespace SelfDef.Systems.FireProjectile
         public bool GiveUpgrade 
         {             
             get => giveUpgrade;
-            set => giveUpgrade = value; 
+            set => giveUpgrade = value;
         }
 
 #pragma warning restore CS0649

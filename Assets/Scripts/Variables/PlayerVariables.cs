@@ -28,6 +28,8 @@ namespace SelfDef.Variables
 
         [Header("Misc")] 
         public float headRotationSpeed;
+
+        public int kills;
         
         public enum PlayerAbilities
         {

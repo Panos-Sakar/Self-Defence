@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using SelfDef.Interfaces;
 using SelfDef.Systems.Loading;
+using SelfDef.Variables;
 using Unity.Mathematics;
 using UnityEngine;
-
+// ReSharper disable SpecifyACultureInStringConversionExplicitly
 
 namespace SelfDef.Change_Cubes
 {
@@ -15,10 +16,21 @@ namespace SelfDef.Change_Cubes
         public bool StopAnimation { get; set; }
         
         [Header("Cube parameters")]
+        [SerializeField] 
+        private Sprite icon;
         [SerializeField]
         private string tipText;
         [SerializeField] 
-        private Sprite icon;
+        private bool useSecondaryText;
+        [SerializeField] 
+        private TextSource secondaryTextSource;
+        [SerializeField] 
+        private PlayerVariables playerVariables;
+        [SerializeField] 
+        private string customText;
+        [SerializeField] 
+        private string customTextTrail;
+        
 
         public string TipText
         {
@@ -27,7 +39,7 @@ namespace SelfDef.Change_Cubes
         }
         
         [Header("References")]
-        [SerializeField] 
+        [SerializeField]
         private GameObject mother;
         [SerializeField]
         private Animator animator;
@@ -79,6 +91,28 @@ namespace SelfDef.Change_Cubes
             return icon;
         }
 
+        public (bool print,string secondaryText) GetSecondaryText()
+        {
+            switch (secondaryTextSource)
+            {
+                case TextSource.Custom:
+                    return (useSecondaryText, customText);
+                case TextSource.PlayerMaxLife:
+                    return (useSecondaryText, $"{customText} {playerVariables.maxLife} {customTextTrail}");
+                case TextSource.PlayerMaxStamina:
+                    return (useSecondaryText, $"{customText} {playerVariables.maxStamina} {customTextTrail}");
+                case TextSource.PlayerMoney:
+                    return (useSecondaryText, $"{customText} {playerVariables.money} {customTextTrail}");
+                case TextSource.PlayerFireRate:
+                    return (useSecondaryText, $"{customText} {playerVariables.fireRate} {customTextTrail}");
+                case TextSource.PlayerKills:
+                    return (useSecondaryText, $"{customText} {playerVariables.kills} {customTextTrail}");
+                default:
+                    return (false, "");
+            }
+            
+        }
+
         public IEnumerator Explode(float delay)
         {
             _animationLock = true;
@@ -123,5 +157,16 @@ namespace SelfDef.Change_Cubes
             _loadingHandler.levelLoadingStarted.RemoveListener(Lock);
             Destroy(mother);
         }
+        
+        private enum TextSource
+        {
+            Custom = 0,
+            PlayerMaxLife = 1,
+            PlayerMaxStamina = 2,
+            PlayerMoney = 3,
+            PlayerFireRate = 4,
+            PlayerKills = 5
+        }
+        //
     }
 }

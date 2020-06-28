@@ -9,6 +9,7 @@ namespace SelfDef.Interfaces
         bool StopAnimation { set; get; }
         
         string TipText { set; get; }
+        (bool print, string secondaryText) GetSecondaryText();
 
         IEnumerator Explode(float delay);
         void ResetPosition();

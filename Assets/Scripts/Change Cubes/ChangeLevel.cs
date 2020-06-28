@@ -82,6 +82,11 @@ namespace SelfDef.Change_Cubes
             StartCoroutine(Explode(1f));
         }
 
+        public (bool, string) GetSecondaryText()
+        {
+            return (false, "");
+        }
+
         public IEnumerator Explode(float delay)
         {
             _animationLock = true;

@@ -33,10 +33,7 @@ namespace SelfDef.Systems.Camera
         private void Update()
         {
             //TODO: Rotate the camera to specific point in each level
-            if (_canRotate)
-            {
-                _myTransform.transform.Rotate(new Vector3(0, _mouseValue, 0) * (Time.deltaTime * rotateAmount));
-            }else 
+
             if (_toggleRotate != 0)
             {
                 _myTransform.transform.Rotate(new Vector3(0, _toggleRotate, 0) * (Time.deltaTime * rotateAmount*2.5f));
@@ -55,6 +52,11 @@ namespace SelfDef.Systems.Camera
         private void RotateCamera(InputAction.CallbackContext context)
         {
             _mouseValue = context.ReadValue<float>();
+            _mouseValue = Input.mousePosition.y < Screen.height / 2f ? _mouseValue * 1f : _mouseValue * -1f;
+            if (_canRotate)
+            {
+                _myTransform.transform.Rotate(new Vector3(0, _mouseValue, 0) * (Time.deltaTime * rotateAmount));
+            }
         }
 
         private void StartCameraRotation(InputAction.CallbackContext context)

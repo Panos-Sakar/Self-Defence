@@ -129,6 +129,5 @@ namespace SelfDef.Systems.UI
                 yield return new WaitForEndOfFrame();
             }
         }
-        
     }
 }

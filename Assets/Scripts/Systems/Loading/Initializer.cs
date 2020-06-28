@@ -47,6 +47,7 @@ namespace SelfDef.Systems.Loading
             playerVariables.currentLife = 0;
             playerVariables.currentStamina = 0;
             playerVariables.money = 0;
+            playerVariables.kills = 0;
         }
 
         private void InitializePersistentVariable()
