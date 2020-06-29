@@ -163,7 +163,7 @@ namespace SelfDef.Change_Cubes
         {
             if(relative) index += _loadingHandler.indexOffset;
             
-            SceneManager.UnloadSceneAsync(_loadingHandler.activeLevelIndex);
+            if(_loadingHandler.activeLevelIndex >= 0) SceneManager.UnloadSceneAsync(_loadingHandler.activeLevelIndex);
             var asyncLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
             _loadingHandler.activeLevelIndex = index;
             

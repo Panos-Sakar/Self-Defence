@@ -64,7 +64,7 @@ namespace SelfDef.Change_Cubes
         private static readonly int Hide = Animator.StringToHash("Hide");
 
 #pragma warning restore CS0649
-        private void Awake()
+        private void Start()
         {
             mother.transform.parent = null;
             DontDestroyOnLoad(mother);

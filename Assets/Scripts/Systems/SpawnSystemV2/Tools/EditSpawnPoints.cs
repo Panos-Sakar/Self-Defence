@@ -2,7 +2,7 @@
 
 namespace SelfDef.Systems.SpawnSystemV2.Tools
 {
-    [RequireComponent(typeof(Initializer))]
+    [RequireComponent(typeof(SpawnInitializer))]
     public class EditSpawnPoints : MonoBehaviour
     {
         [HideInInspector]
@@ -27,12 +27,12 @@ namespace SelfDef.Systems.SpawnSystemV2.Tools
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            data = GetComponent<Initializer>().GetLevelData();
+            data = GetComponent<SpawnInitializer>().GetLevelData();
         }
 
         public void UpdateData()
         {
-            data = GetComponent<Initializer>().GetLevelData();
+            data = GetComponent<SpawnInitializer>().GetLevelData();
         }
 #endif
     }

@@ -52,17 +52,17 @@ namespace SelfDef.Change_Cubes
         private static readonly int Hide = Animator.StringToHash("Hide");
 
 #pragma warning restore CS0649
-        private void Awake()
+        private void Start()
         {
             mother.transform.parent = null;
             DontDestroyOnLoad(mother);
-            _loadingHandler = LoadingHandler.Instance;
+            
             
             StartPosition = new Vector3(-3,40,-5);
             
             StopAnimation = false;
             _animationLock = false;
-            
+            _loadingHandler = LoadingHandler.Instance;
             _loadingHandler.levelLoadingStarted.AddListener(Lock);
         }
 

@@ -25,7 +25,7 @@ namespace SelfDef.Systems.Loading
         [Header("Level Indexing")]
         [SerializeField] public int indexOffset;
         [SerializeField] public int menuLevelIndex;
-        [SerializeField] private bool loadMenu;
+        [SerializeField] public bool loadMenu;
         
         private Scene _activeLevel;
         [HideInInspector]
@@ -106,7 +106,7 @@ namespace SelfDef.Systems.Loading
 
             yield return StartCoroutine(UserInterfaceHandler.Instance.HideViewOfGame());
             
-            SceneManager.UnloadSceneAsync(activeLevelIndex);
+            if(activeLevelIndex >= 0) SceneManager.UnloadSceneAsync(activeLevelIndex);
             var asyncLoad = SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
             activeLevelIndex = levelIndex;
             

@@ -12,6 +12,7 @@ TagManager:
   - Projectile
   - ChangeCube
   - InfoCube
+  - DestroyOnEditMode
   layers:
   - Default
   - TransparentFX

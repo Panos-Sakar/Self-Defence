@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SelfDef.Systems.SpawnSystemV2
 {
-    public class Initializer : MonoBehaviour
+    public class SpawnInitializer : MonoBehaviour
     {
 #pragma warning disable CS0649
         
