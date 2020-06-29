@@ -44,6 +44,9 @@ namespace SelfDef.Change_Cubes
         [SerializeField]
         private Animator animator;
 
+        [SerializeField] 
+        private GameObject mother;
+
         public PlayerVariables PlayerVariable
         {
             get => playerVariable;
@@ -61,8 +64,15 @@ namespace SelfDef.Change_Cubes
         private static readonly int Hide = Animator.StringToHash("Hide");
 
 #pragma warning restore CS0649
-        private void Awake()
+        private void Start()
         {
+            
+            
+            mother.transform.parent = null;
+            DontDestroyOnLoad(mother);
+            
+            if(playerVariable.playerAbilities[abilityType]) Destroy(mother);
+            
             _loadingHandler = LoadingHandler.Instance;
             
             StartPosition = new Vector3(-3,40,-5);
@@ -73,6 +83,8 @@ namespace SelfDef.Change_Cubes
             
             _loadingHandler.playerFinishedLevel.AddListener(ResetPosition);
             _loadingHandler.levelLoadingStarted.AddListener(Lock);
+            
+            gameObject.SetActive(false);
         }
         
         private void Update()
@@ -96,7 +108,12 @@ namespace SelfDef.Change_Cubes
             
             StartCoroutine(Explode(2f));
         }
-        
+
+        public (bool, string) GetSecondaryText()
+        {
+            return (false, "");
+        }
+
         public IEnumerator Explode(float delay)
         {
             if (abilityCost > playerVariable.money) yield break;

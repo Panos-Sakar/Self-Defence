@@ -12,11 +12,11 @@ namespace SelfDef.PlayerScripts
         [SerializeField]
         private Canvas canvas;
 
-        [SerializeField] 
+        [SerializeField]
         private TextMeshProUGUI label;
-        [SerializeField] 
+        [SerializeField]
         private TextMeshProUGUI cost;
-        [SerializeField] 
+        [SerializeField]
         private Image icon;
 
         [SerializeField] 
@@ -64,18 +64,21 @@ namespace SelfDef.PlayerScripts
             if (_newObject)
             {
                 MakeText();
-                canvas.enabled = true;
+                
                 label.text = _textTpPrint;
-                background.sizeDelta = new Vector2(label.preferredWidth ,5);
                 cost.text = _costToPrint;
+                icon.sprite = _imageToPrint;
+                
+                background.sizeDelta = label.preferredWidth>cost.preferredWidth ? new Vector2(label.preferredWidth ,5) : new Vector2(cost.preferredWidth ,5);
                 _worldPosition = _targetObject.transform.position + new Vector3(0,5,0);
                 tooltipPos.transform.position = _worldPosition;
-                icon.sprite = _imageToPrint;
+                
+                canvas.enabled = true;
+                
                 _newObject = false;
             }
             tooltipPos.transform.LookAt(myCamera.transform);
-
-
+            
         }
 
         private void MakeText()
@@ -85,10 +88,13 @@ namespace SelfDef.PlayerScripts
             if ( canChangeSettingsComp != null)
             {
                 _textTpPrint = canChangeSettingsComp.TipText;
+                
+                var (print, secondaryText) = canChangeSettingsComp.GetSecondaryText();
+                _costToPrint = print ? secondaryText : "";
+                
                 _imageToPrint = canChangeSettingsComp.GetIcon();
             }
 
-            _costToPrint = "";
             var giveUpgradeComp =_targetObject.GetComponent<IGiveUpgrade>();
             if (giveUpgradeComp != null)
             {

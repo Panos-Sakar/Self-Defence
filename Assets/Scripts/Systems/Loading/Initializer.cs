@@ -38,6 +38,7 @@ namespace SelfDef.Systems.Loading
         {
             playerVariables.playerAbilities = new Dictionary<PlayerVariables.PlayerAbilities, bool>()
             {
+                [PlayerVariables.PlayerAbilities.None] = false,
                 [PlayerVariables.PlayerAbilities.ExplodeOnImpact] = false,
                 [PlayerVariables.PlayerAbilities.StarUltimate] = false
                 
@@ -46,6 +47,7 @@ namespace SelfDef.Systems.Loading
             playerVariables.currentLife = 0;
             playerVariables.currentStamina = 0;
             playerVariables.money = 0;
+            playerVariables.kills = 0;
         }
 
         private void InitializePersistentVariable()

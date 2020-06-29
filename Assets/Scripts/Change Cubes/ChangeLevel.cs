@@ -82,6 +82,11 @@ namespace SelfDef.Change_Cubes
             StartCoroutine(Explode(1f));
         }
 
+        public (bool, string) GetSecondaryText()
+        {
+            return (false, "");
+        }
+
         public IEnumerator Explode(float delay)
         {
             _animationLock = true;
@@ -148,7 +153,7 @@ namespace SelfDef.Change_Cubes
             if (SceneManager.sceneCountInBuildSettings == correctIndex)
             {
                 correctIndex = _loadingHandler.indexOffset;
-                LevelIndex = 1;
+                LevelIndex = 0;
             }
 
             return correctIndex;
@@ -158,7 +163,7 @@ namespace SelfDef.Change_Cubes
         {
             if(relative) index += _loadingHandler.indexOffset;
             
-            SceneManager.UnloadSceneAsync(_loadingHandler.activeLevelIndex);
+            if(_loadingHandler.activeLevelIndex >= 0) SceneManager.UnloadSceneAsync(_loadingHandler.activeLevelIndex);
             var asyncLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
             _loadingHandler.activeLevelIndex = index;
             

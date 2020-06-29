@@ -28,11 +28,14 @@ namespace SelfDef.Variables
 
         [Header("Misc")] 
         public float headRotationSpeed;
+
+        public int kills;
         
         public enum PlayerAbilities
         {
-            ExplodeOnImpact = 0,
-            StarUltimate = 1
+            None = 0,
+            ExplodeOnImpact = 1,
+            StarUltimate = 2
         }
     }
 }
