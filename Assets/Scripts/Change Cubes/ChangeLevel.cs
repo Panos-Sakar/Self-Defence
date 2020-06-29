@@ -153,7 +153,7 @@ namespace SelfDef.Change_Cubes
             if (SceneManager.sceneCountInBuildSettings == correctIndex)
             {
                 correctIndex = _loadingHandler.indexOffset;
-                LevelIndex = 1;
+                LevelIndex = 0;
             }
 
             return correctIndex;

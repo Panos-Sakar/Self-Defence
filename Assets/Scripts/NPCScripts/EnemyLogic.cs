@@ -17,6 +17,8 @@ namespace SelfDef.NPCScripts
         //TODO: Organize members here
         [SerializeField]
         private PersistentVariables persistentVariable;
+        [SerializeField]
+        private PlayerVariables playerVariable;
         
         public GameObject player;
         private NavMeshAgent _agent;
@@ -96,8 +98,14 @@ namespace SelfDef.NPCScripts
             _particleRotation = _myTransform.rotation;
 
             player.GetComponent<PlayerLogicScript>().GiveMoney(money);
+            
             Instantiate(hitParticle, _particlePosition, _particleRotation);
+            
             persistentVariable.activeEnemies--;
+            
+            playerVariable.money += money;
+            playerVariable.kills++;
+            
             gameObject.SetActive(false);
         }
         

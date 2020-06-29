@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 using UnityToolbarExtender;
 
 namespace SelfDef.Tools.Editor
@@ -15,7 +16,7 @@ namespace SelfDef.Tools.Editor
 		{
 			CommandButtonStyle = new GUIStyle("Command")
 			{
-				fontSize = 16,
+				fontSize = 14,
 				alignment = TextAnchor.MiddleCenter,
 				imagePosition = ImagePosition.ImageAbove,
 				fontStyle = FontStyle.Bold
@@ -28,29 +29,40 @@ namespace SelfDef.Tools.Editor
 	{
 		static SceneSwitchLeftButton()
 		{
-			ToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
+			ToolbarExtender.LeftToolbarGUI.Add(OnToolbarLeftGUI);
+			ToolbarExtender.RightToolbarGUI.Add(OnToolbarRightGUI);
 		}
 
-		private static void OnToolbarGUI()
+		private static void OnToolbarLeftGUI()
 		{
 			GUILayout.FlexibleSpace();
-
-			if(GUILayout.Button(new GUIContent("A", "Load All Levels"), ToolbarStyles.CommandButtonStyle))
+			if(GUILayout.Button(new GUIContent("PB", "Load ProBuilder Scene"), ToolbarStyles.CommandButtonStyle))
+			{
+				SceneHelper.LoadProBuilderScene();
+			}
+			if(GUILayout.Button(new GUIContent("ALL", "Load All Levels"), ToolbarStyles.CommandButtonStyle))
 			{
 				SceneHelper.LoadAllLevels();
 			}
-			if(GUILayout.Button(new GUIContent("MS", "Load Main Scene And Play"), ToolbarStyles.CommandButtonStyle))
+		}
+
+		private static void OnToolbarRightGUI()
+		{
+
+			if(GUILayout.Button(new GUIContent("MS", "Load Main Scene And Play"),"Button"))
 			{
 				SceneHelper.LoadMainSceneAndPlay();
 			}
+			
 		}
 	}
 
 	internal static class SceneHelper
 	{
-		private static string _sceneToOpen;
+		private static string _scenePathToOpen;
 		private static bool _loadMainSceneAndPlay;
 		private static bool _loadAllScene;
+		private static bool _loadProBuilderScene;
 
 		public static void LoadMainSceneAndPlay()
 		{
@@ -75,6 +87,18 @@ namespace SelfDef.Tools.Editor
 			
 			EditorApplication.update += OnUpdate;
 		}
+		
+		public static void LoadProBuilderScene()
+		{
+			if(EditorApplication.isPlaying)
+			{
+				EditorApplication.isPlaying = false;
+			}
+
+			_loadProBuilderScene = true;
+			_scenePathToOpen = "Assets/Scenes/Helper Scenes/ProBuilder Objects/ProBuilder.unity";
+			EditorApplication.update += OnUpdate;
+		}
 
 		private static void OnUpdate()
 		{
@@ -91,7 +115,7 @@ namespace SelfDef.Tools.Editor
 			{
 				if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 				
-				AddMainScene(true, OpenSceneMode.Additive);
+				AddMainScene(true,false, OpenSceneMode.Additive);
 
 				DisableMenuLevelLoading();
 
@@ -102,26 +126,49 @@ namespace SelfDef.Tools.Editor
 			}
 			else if (_loadAllScene)
 			{
-				AddStartScene(true, OpenSceneMode.Single);
-				AddMainScene(false, OpenSceneMode.Additive);
-				AddAllLevelScenes(OpenSceneMode.Additive);
+				AddStartScene(true,false, OpenSceneMode.Single);
+				AddMainScene(false,true, OpenSceneMode.Additive);
+				AddAllLevelScenes(true,OpenSceneMode.Additive);
 				_loadAllScene = false;
+			}
+			else if (_loadProBuilderScene)
+			{
+				AddSceneByPath(_scenePathToOpen, true, false, OpenSceneMode.Single);
+				_loadProBuilderScene = false;
+				_scenePathToOpen = null;
 			}
 		}
 
-		private static void AddStartScene(bool setActive, OpenSceneMode sceneMode)
+		private static void AddSceneByPath(string scenePath,bool setActive,bool isClosed, OpenSceneMode sceneMode)
 		{
-			EditorSceneManager.OpenScene("Assets/Scenes/1_StartScene/StartScene.unity", sceneMode);
-			if(setActive) SceneManager.SetActiveScene(SceneManager.GetSceneByName("StartScene"));
+			EditorSceneManager.OpenScene(scenePath, sceneMode);
+			if(setActive) SceneManager.SetActiveScene(SceneManager.GetSceneByPath(scenePath));
+			if(isClosed) EditorSceneManager.CloseScene(SceneManager.GetSceneByPath(scenePath),false);
 		}
 		
-		private static void AddMainScene(bool setActive, OpenSceneMode sceneMode)
+		private static void AddStartScene(bool setActive,bool isClosed, OpenSceneMode sceneMode)
 		{
-			EditorSceneManager.OpenScene("Assets/Scenes/2_MainScene/MainScene.unity", sceneMode);
-			if(setActive) SceneManager.SetActiveScene(SceneManager.GetSceneByName("MainScene"));
+			const string scenePath = "Assets/Scenes/1_StartScene/StartScene.unity";
+			
+			EditorSceneManager.OpenScene(scenePath, sceneMode);
+
+			var scene = SceneManager.GetSceneByPath(scenePath);
+			if(setActive) SceneManager.SetActiveScene(scene);
+			if(isClosed) EditorSceneManager.CloseScene(scene,false);
 		}
 		
-		private static void AddAllLevelScenes(OpenSceneMode sceneMode)
+		private static void AddMainScene(bool setActive,bool isClosed, OpenSceneMode sceneMode)
+		{
+			const string scenePath = "Assets/Scenes/2_MainScene/MainScene.unity";
+			
+			EditorSceneManager.OpenScene(scenePath, sceneMode);
+			
+			var scene = SceneManager.GetSceneByPath(scenePath);
+			if(setActive) SceneManager.SetActiveScene(scene);
+			if(isClosed) EditorSceneManager.CloseScene(scene,false);
+		}
+		
+		private static void AddAllLevelScenes(bool loadAssClosed,OpenSceneMode sceneMode)
 		{
 			var folders = AssetDatabase.GetSubFolders("Assets/Scenes/3_Levels");
 
@@ -130,7 +177,12 @@ namespace SelfDef.Tools.Editor
 			{
 				var levelPath = AssetDatabase.GUIDToAssetPath(level);
 				EditorSceneManager.OpenScene(levelPath, sceneMode);
-				EditorSceneManager.CloseScene(SceneManager.GetSceneByPath(levelPath),false);
+				
+				if (loadAssClosed)
+				{
+					var scene = SceneManager.GetSceneByPath(levelPath);
+					EditorSceneManager.CloseScene(scene,false);
+				}
 			}
 		}
 

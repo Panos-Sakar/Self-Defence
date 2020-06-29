@@ -66,8 +66,13 @@ namespace SelfDef.Change_Cubes
 #pragma warning restore CS0649
         private void Start()
         {
+            
+            
             mother.transform.parent = null;
             DontDestroyOnLoad(mother);
+            
+            if(playerVariable.playerAbilities[abilityType]) Destroy(mother);
+            
             _loadingHandler = LoadingHandler.Instance;
             
             StartPosition = new Vector3(-3,40,-5);

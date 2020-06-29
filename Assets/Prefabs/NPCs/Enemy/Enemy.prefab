@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd06b39e6793fe0478622bce1dadf328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   persistentVariable: {fileID: 11400000, guid: f9222b737b4bc664596a739f4d17d90e, type: 2}
+  playerVariable: {fileID: 11400000, guid: c2aed736095095543a14907035d809d7, type: 2}
+  player: {fileID: 0}
   explosionParticle: {fileID: 0}
   hitParticle: {fileID: 0}
   damageAmount: 0
