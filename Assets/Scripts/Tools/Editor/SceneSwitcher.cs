@@ -7,22 +7,6 @@ using UnityToolbarExtender;
 
 namespace SelfDef.Tools.Editor
 {
-	internal static class ToolbarStyles
-	{
-		public static readonly GUIStyle CommandButtonStyle;
-
-		static ToolbarStyles()
-		{
-			CommandButtonStyle = new GUIStyle("Command")
-			{
-				fontSize = 14,
-				alignment = TextAnchor.MiddleCenter,
-				imagePosition = ImagePosition.ImageAbove,
-				fontStyle = FontStyle.Bold
-			};
-		}
-	}
-
 	[InitializeOnLoad]
 	public class SceneSwitchLeftButton
 	{
@@ -35,11 +19,11 @@ namespace SelfDef.Tools.Editor
 		private static void OnToolbarLeftGUI()
 		{
 			GUILayout.FlexibleSpace();
-			if(GUILayout.Button(new GUIContent("PB", "Load ProBuilder Scene"), ToolbarStyles.CommandButtonStyle))
+			if(GUILayout.Button(new GUIContent(" PB ", "Load ProBuilder Scene"), "Button"))
 			{
 				SceneHelper.LoadProBuilderScene();
 			}
-			if(GUILayout.Button(new GUIContent("ALL", "Load All Levels"), ToolbarStyles.CommandButtonStyle))
+			if(GUILayout.Button(new GUIContent("ALL", "Load All Levels"), "Button"))
 			{
 				SceneHelper.LoadAllLevels();
 			}
@@ -48,11 +32,11 @@ namespace SelfDef.Tools.Editor
 		private static void OnToolbarRightGUI()
 		{
 
-			if(GUILayout.Button(new GUIContent("MS", "Load Main Scene And Play"),"Button"))
+			if(GUILayout.Button(new GUIContent("Load Main & Play", "Load Main Scene And Play"),"Button"))
 			{
 				SceneHelper.LoadMainSceneAndPlay();
 			}
-			
+			GUILayout.FlexibleSpace();
 		}
 	}
 

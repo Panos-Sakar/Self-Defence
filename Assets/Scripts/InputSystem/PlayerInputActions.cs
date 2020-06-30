@@ -130,7 +130,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""RotateCameraWithMouse"",
+                    ""name"": ""RotateCameraWithMouseX"",
                     ""type"": ""Value"",
                     ""id"": ""6cbb5035-4ae4-4a0a-9554-7b1aeeec72be"",
                     ""expectedControlType"": ""Axis"",
@@ -142,6 +142,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""e4c84ede-d756-448a-9af2-3335d1b91fef"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""RotateCameraWithMouseY"",
+                    ""type"": ""Value"",
+                    ""id"": ""23c6fdc3-c3b8-47bd-84f3-faeda54af7c3"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
                 }
@@ -165,7 +173,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardAndMouse"",
-                    ""action"": ""RotateCameraWithMouse"",
+                    ""action"": ""RotateCameraWithMouseX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -289,6 +297,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a47ef9ae-f016-4bc4-ab78-56a7bddbb836"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""RotateCameraWithMouseY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -371,8 +390,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_CameraControls_RotateEnable = m_CameraControls.FindAction("RotateEnable", throwIfNotFound: true);
         m_CameraControls_RotateDisable = m_CameraControls.FindAction("RotateDisable", throwIfNotFound: true);
         m_CameraControls_Zoom = m_CameraControls.FindAction("Zoom", throwIfNotFound: true);
-        m_CameraControls_RotateCameraWithMouse = m_CameraControls.FindAction("RotateCameraWithMouse", throwIfNotFound: true);
+        m_CameraControls_RotateCameraWithMouseX = m_CameraControls.FindAction("RotateCameraWithMouseX", throwIfNotFound: true);
         m_CameraControls_RotateCameraWithButtons = m_CameraControls.FindAction("RotateCameraWithButtons", throwIfNotFound: true);
+        m_CameraControls_RotateCameraWithMouseY = m_CameraControls.FindAction("RotateCameraWithMouseY", throwIfNotFound: true);
         // UIControls
         m_UIControls = asset.FindActionMap("UIControls", throwIfNotFound: true);
         m_UIControls_ExitGame = m_UIControls.FindAction("ExitGame", throwIfNotFound: true);
@@ -477,8 +497,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_CameraControls_RotateEnable;
     private readonly InputAction m_CameraControls_RotateDisable;
     private readonly InputAction m_CameraControls_Zoom;
-    private readonly InputAction m_CameraControls_RotateCameraWithMouse;
+    private readonly InputAction m_CameraControls_RotateCameraWithMouseX;
     private readonly InputAction m_CameraControls_RotateCameraWithButtons;
+    private readonly InputAction m_CameraControls_RotateCameraWithMouseY;
     public struct CameraControlsActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -486,8 +507,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @RotateEnable => m_Wrapper.m_CameraControls_RotateEnable;
         public InputAction @RotateDisable => m_Wrapper.m_CameraControls_RotateDisable;
         public InputAction @Zoom => m_Wrapper.m_CameraControls_Zoom;
-        public InputAction @RotateCameraWithMouse => m_Wrapper.m_CameraControls_RotateCameraWithMouse;
+        public InputAction @RotateCameraWithMouseX => m_Wrapper.m_CameraControls_RotateCameraWithMouseX;
         public InputAction @RotateCameraWithButtons => m_Wrapper.m_CameraControls_RotateCameraWithButtons;
+        public InputAction @RotateCameraWithMouseY => m_Wrapper.m_CameraControls_RotateCameraWithMouseY;
         public InputActionMap Get() { return m_Wrapper.m_CameraControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -506,12 +528,15 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Zoom.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnZoom;
                 @Zoom.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnZoom;
                 @Zoom.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnZoom;
-                @RotateCameraWithMouse.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouse;
-                @RotateCameraWithMouse.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouse;
-                @RotateCameraWithMouse.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouse;
+                @RotateCameraWithMouseX.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouseX;
+                @RotateCameraWithMouseX.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouseX;
+                @RotateCameraWithMouseX.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouseX;
                 @RotateCameraWithButtons.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithButtons;
                 @RotateCameraWithButtons.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithButtons;
                 @RotateCameraWithButtons.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithButtons;
+                @RotateCameraWithMouseY.started -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouseY;
+                @RotateCameraWithMouseY.performed -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouseY;
+                @RotateCameraWithMouseY.canceled -= m_Wrapper.m_CameraControlsActionsCallbackInterface.OnRotateCameraWithMouseY;
             }
             m_Wrapper.m_CameraControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -525,12 +550,15 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Zoom.started += instance.OnZoom;
                 @Zoom.performed += instance.OnZoom;
                 @Zoom.canceled += instance.OnZoom;
-                @RotateCameraWithMouse.started += instance.OnRotateCameraWithMouse;
-                @RotateCameraWithMouse.performed += instance.OnRotateCameraWithMouse;
-                @RotateCameraWithMouse.canceled += instance.OnRotateCameraWithMouse;
+                @RotateCameraWithMouseX.started += instance.OnRotateCameraWithMouseX;
+                @RotateCameraWithMouseX.performed += instance.OnRotateCameraWithMouseX;
+                @RotateCameraWithMouseX.canceled += instance.OnRotateCameraWithMouseX;
                 @RotateCameraWithButtons.started += instance.OnRotateCameraWithButtons;
                 @RotateCameraWithButtons.performed += instance.OnRotateCameraWithButtons;
                 @RotateCameraWithButtons.canceled += instance.OnRotateCameraWithButtons;
+                @RotateCameraWithMouseY.started += instance.OnRotateCameraWithMouseY;
+                @RotateCameraWithMouseY.performed += instance.OnRotateCameraWithMouseY;
+                @RotateCameraWithMouseY.canceled += instance.OnRotateCameraWithMouseY;
             }
         }
     }
@@ -597,8 +625,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnRotateEnable(InputAction.CallbackContext context);
         void OnRotateDisable(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
-        void OnRotateCameraWithMouse(InputAction.CallbackContext context);
+        void OnRotateCameraWithMouseX(InputAction.CallbackContext context);
         void OnRotateCameraWithButtons(InputAction.CallbackContext context);
+        void OnRotateCameraWithMouseY(InputAction.CallbackContext context);
     }
     public interface IUIControlsActions
     {

@@ -2525,7 +2525,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34804
+  m_Name: pb_Mesh66654
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2707,7 +2707,7 @@ PrefabInstance:
     - target: {fileID: 8896340918196702728, guid: bf241be3b0a9073478a4c7f6c6c55ab5,
         type: 3}
       propertyPath: tipText
-      value: 'Ability: Fire 4 projectiles that pass trugh enemies!'
+      value: 'Ultimate: Fire 4 projectiles that pass trugh enemies!'
       objectReference: {fileID: 0}
     - target: {fileID: 8896340918196702728, guid: bf241be3b0a9073478a4c7f6c6c55ab5,
         type: 3}
@@ -4481,7 +4481,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-57534
+  m_Name: pb_Mesh-78544
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

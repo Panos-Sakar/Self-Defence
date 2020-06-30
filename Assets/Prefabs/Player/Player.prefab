@@ -934,7 +934,7 @@ MonoBehaviour:
   headRotationSpeed: 2
   maxLife: 50
   maxStamina: 20
-  staminaRegenPeriod: 0.5
+  staminaRegen: 1
   fireRate: 0.15
 --- !u!114 &2466855064957449025
 MonoBehaviour:

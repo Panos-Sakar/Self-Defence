@@ -13036,6 +13036,11 @@ PrefabInstance:
       propertyPath: hitLayerMasks.m_Bits
       value: 104448
       objectReference: {fileID: 0}
+    - target: {fileID: 1409507551510974097, guid: 2060ab72bbf4f2342a4876249b78fa52,
+        type: 3}
+      propertyPath: rotateAmount
+      value: 25.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1508677630431246434, guid: 2060ab72bbf4f2342a4876249b78fa52,
         type: 3}
       propertyPath: m_LocalPosition.x

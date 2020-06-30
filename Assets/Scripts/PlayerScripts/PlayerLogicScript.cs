@@ -36,7 +36,7 @@ namespace SelfDef.PlayerScripts
         private float _stamina;
 
         [SerializeField] 
-        private float staminaRegenPeriod;
+        private float staminaRegen;
         [SerializeField] 
         private float fireRate = 0.5f;
         
@@ -67,8 +67,6 @@ namespace SelfDef.PlayerScripts
         private void Start()
         {
             GetUiRefs();
-            
-            InvokeRepeating(nameof(IncreaseStamina),0,staminaRegenPeriod );
 
             InitializeValues();
         }
@@ -76,7 +74,7 @@ namespace SelfDef.PlayerScripts
         private void Update()
         {
             RotatePlayerHead();
-        
+            IncreaseStamina();
             if (_life <=0)
             {
                 KillPlayer();
@@ -151,7 +149,7 @@ namespace SelfDef.PlayerScripts
 
         private  void IncreaseStamina()
         {
-            _stamina += 1;
+            _stamina += Time.deltaTime*staminaRegen;
         
             if (_stamina > maxStamina) _stamina = maxStamina; 
         }
