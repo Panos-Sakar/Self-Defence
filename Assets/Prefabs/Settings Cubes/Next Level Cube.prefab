@@ -8588,6 +8588,7 @@ MonoBehaviour:
   - {fileID: 5643858442898907876}
   - {fileID: 5643858441502852817}
   animationChild: {fileID: 5643858441445819296}
+  staminaGift: -1
 --- !u!1 &5643858442648651266
 GameObject:
   m_ObjectHideFlags: 0

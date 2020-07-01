@@ -13131,6 +13131,17 @@ PrefabInstance:
       propertyPath: playerFiredProjectile.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5179763006850549007, guid: 2060ab72bbf4f2342a4876249b78fa52,
+        type: 3}
+      propertyPath: staminaRegen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179763006850549007, guid: 2060ab72bbf4f2342a4876249b78fa52,
+        type: 3}
+      propertyPath: persistentVariable
+      value: 
+      objectReference: {fileID: 11400000, guid: f9222b737b4bc664596a739f4d17d90e,
+        type: 2}
     - target: {fileID: 6050108014788145123, guid: 2060ab72bbf4f2342a4876249b78fa52,
         type: 3}
       propertyPath: m_Name

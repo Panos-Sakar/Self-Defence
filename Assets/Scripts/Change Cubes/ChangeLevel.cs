@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using SelfDef.Interfaces;
+using SelfDef.PlayerScripts;
 using SelfDef.Systems.Loading;
 using SelfDef.Systems.UI;
 using UnityEngine;
@@ -32,6 +33,8 @@ namespace SelfDef.Change_Cubes
         private MeshRenderer[] meshRenderers;
         [SerializeField]
         private GameObject animationChild;
+
+        [SerializeField] private int staminaGift;
         
 
         private Transform _mainObject;
@@ -178,6 +181,9 @@ namespace SelfDef.Change_Cubes
             gameObject.transform.localPosition = new Vector3(0,0,0);
             _mainObject.position = StartPosition;
             _mainObject.gameObject.SetActive(true);
+            PlayerLogicScript.Instance.GiveStamina(staminaGift);
+            staminaGift++;
+            if (staminaGift > 5) staminaGift = 1;
         }
 
         public void ResetPosition(Vector3 newPosition)

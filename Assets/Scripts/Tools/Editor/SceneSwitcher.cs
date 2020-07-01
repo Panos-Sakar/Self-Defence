@@ -100,6 +100,8 @@ namespace SelfDef.Tools.Editor
 				
 				AddMainScene(true,false, OpenSceneMode.Additive);
 
+				var startScene = SceneManager.GetSceneByName("StartScene");
+				EditorSceneManager.CloseScene(startScene,false);
 				DisableMenuLevelLoading();
 
 				CreateInitializerGameObject();

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - pointName: Alfa
-    spawnPointTransform: {x: -35.947914, y: 0, z: 22.727974}
+    spawnPointTransform: {x: -34.609562, y: 0, z: 18.825481}
     waves:
     - waveName: Wave > 1
       waveDelay: 3
@@ -30,7 +30,7 @@ MonoBehaviour:
       enemyType: 3
       spawnRate: 0
   - pointName: Charlie
-    spawnPointTransform: {x: -41.554, y: 0, z: -13.338909}
+    spawnPointTransform: {x: -41.918743, y: 0, z: -7.708892}
     waves:
     - waveName: Wave > 1
       waveDelay: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
       enemyType: 1
       spawnRate: 1
   - pointName: Delta
-    spawnPointTransform: {x: -32.121502, y: 0, z: -14.007306}
+    spawnPointTransform: {x: -32.71485, y: 0, z: -8.494937}
     waves:
     - waveName: Wave > 1
       waveDelay: 2

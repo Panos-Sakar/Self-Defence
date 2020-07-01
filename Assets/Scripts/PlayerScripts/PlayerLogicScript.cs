@@ -16,6 +16,7 @@ namespace SelfDef.PlayerScripts
 
         [Header("References")] 
         [SerializeField] private PlayerVariables playerVariable;
+        [SerializeField] private PersistentVariables persistentVariable;
         [SerializeField] private PlayerInput playerInputVar;
         [SerializeField] private SpawnProjectiles projectileSystem;
         [SerializeField] private GameObject headInnerTransform;
@@ -149,7 +150,7 @@ namespace SelfDef.PlayerScripts
 
         private  void IncreaseStamina()
         {
-            _stamina += Time.deltaTime*staminaRegen;
+            if(!persistentVariable.loading) _stamina += Time.deltaTime*staminaRegen;
         
             if (_stamina > maxStamina) _stamina = maxStamina; 
         }
@@ -179,7 +180,7 @@ namespace SelfDef.PlayerScripts
     
         public void GiveStamina(int amount)
         {
-        
+            if (amount <= 0) return;
             _stamina += amount;
         }
     
@@ -221,7 +222,7 @@ namespace SelfDef.PlayerScripts
             if (PlayerCanFire())
             {
                 projectileSystem.SpawnFireEffect();
-                _stamina -= 1;
+                if(!persistentVariable.loading) _stamina -= 1;
             }
         }
         
@@ -231,7 +232,7 @@ namespace SelfDef.PlayerScripts
             {
                 
                 projectileSystem.SpawnUltimateEffect(_myTransform);
-                _stamina -= 5;
+                if(!persistentVariable.loading) _stamina -= 5;
             }
         }
 
