@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - pointName: Alpha
-    spawnPointTransform: {x: -19.685389, y: 3, z: 7.0062685}
+    spawnPointTransform: {x: -19.685389, y: 0, z: 7.0062685}
     waves:
     - waveName: Wave > 1
       waveDelay: 2

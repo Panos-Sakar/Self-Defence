@@ -20,20 +20,15 @@ MonoBehaviour:
       waveDelay: 1
       size: 4
       enemyType: 1
-      spawnRate: 1.5
-    - waveName: Wave > 2
-      waveDelay: 0
-      size: 2
-      enemyType: 1
-      spawnRate: 1
+      spawnRate: 0.5
   - pointName: Bravo
     spawnPointTransform: {x: -5.8608503, y: 0, z: -16.611137}
     waves:
     - waveName: Wave > 1
-      waveDelay: 10
-      size: 1
+      waveDelay: 4
+      size: 4
       enemyType: 1
-      spawnRate: 0
+      spawnRate: 1
   lastPointIndex: 2
   availablePools:
   - poolName: SmallBalls

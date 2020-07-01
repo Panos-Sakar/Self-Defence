@@ -11,8 +11,13 @@ namespace SelfDef.Change_Cubes
     public class UpgradeCube : MonoBehaviour , ICanChangeSettings, IGiveUpgrade
     {
 #pragma warning disable CS0649
-        
-        public Vector3 StartPosition { get; set; }
+
+        public Vector3 StartPosition
+        {
+            get => startPosition;
+            set => startPosition = value;
+        }
+
         public bool StopAnimation { get; set; }
 
 
@@ -58,7 +63,8 @@ namespace SelfDef.Change_Cubes
         private bool _animationLock;
         private bool _abilityGiven;
         private LoadingHandler _loadingHandler;
-        
+        [SerializeField] private Vector3 startPosition;
+
 
         private static readonly int Hit = Animator.StringToHash("Hit");
         private static readonly int Hide = Animator.StringToHash("Hide");
@@ -74,8 +80,8 @@ namespace SelfDef.Change_Cubes
             if(playerVariable.playerAbilities[abilityType]) Destroy(mother);
             
             _loadingHandler = LoadingHandler.Instance;
-            
-            StartPosition = new Vector3(-3,40,-5);
+
+            StartPosition = startPosition;
             
             StopAnimation = false;
             _animationLock = false;
