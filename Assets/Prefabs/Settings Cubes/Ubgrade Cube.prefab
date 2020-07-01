@@ -2368,6 +2368,7 @@ MonoBehaviour:
   playerVariable: {fileID: 11400000, guid: c2aed736095095543a14907035d809d7, type: 2}
   animator: {fileID: 8896340918196702731}
   mother: {fileID: 8896340918196702743}
+  startPosition: {x: -3, y: 25, z: -5}
 --- !u!1 &8896340918892678854
 GameObject:
   m_ObjectHideFlags: 0
