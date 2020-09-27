@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 2540336223214915157}
   - component: {fileID: 2540336223214915154}
   - component: {fileID: 2540336223214915152}
+  - component: {fileID: 18767327}
   m_Layer: 11
-  m_Name: River
+  m_Name: River (0)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
@@ -95,6 +96,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4b0a7d5c4f0f1014da4db6888f8aaac2, type: 2}
+--- !u!114 &18767327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540336223214915166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: -83.35, y: 4.4, z: 7.74}
+  m_Center: {x: 0, y: 0, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1001 &211721023373445759
 PrefabInstance:
   m_ObjectHideFlags: 0
