@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Systems.UI
+namespace SelfDef.Systems.UI
 {
     public class UserInterfaceHandler : MonoBehaviour
     {
@@ -26,9 +25,6 @@ namespace Systems.UI
         [SerializeField] private Image gamepadImage;
         [SerializeField] private Image keyboardAndMouseImage;
 
-        [Header("upgrade References")]
-        [SerializeField] private List<Button> upgradeButtons;
-        
         [Header("Debug")]
         [SerializeField] private List<TextMeshProUGUI> debugTextFields;
 
@@ -114,14 +110,6 @@ namespace Systems.UI
             }
         }
 
-        public void ActivateButton(string buttonName)
-        {
-            foreach (var button in upgradeButtons.Where(button => button.name == buttonName))
-            {
-                button.interactable = true;
-            }
-        }
-
         public IEnumerator HideViewOfGame()
         {
             var id = LeanTween.alphaCanvas(loadingCover, 1, fadeDuration/4).id;
@@ -141,6 +129,5 @@ namespace Systems.UI
                 yield return new WaitForEndOfFrame();
             }
         }
-        
     }
 }

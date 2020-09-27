@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Systems.SpawnSystem
+namespace SelfDef.Systems.SpawnSystem
 {
     public class SpawnInit : MonoBehaviour
     {
@@ -9,7 +9,6 @@ namespace Systems.SpawnSystem
         
         private string _pathToJson ;
         private SpawnData _spawnData;
-        private int _enemyWave;
 
         [SerializeField] private string levelIndex = "Test";
         [Space]
@@ -47,8 +46,6 @@ namespace Systems.SpawnSystem
                 
                 _spawnPoints.Add(spawnPoint.pointName,Instantiate(spawnPointPrefab,pos,Quaternion.identity,gameObject.transform));
                 _spawnPoints[spawnPoint.pointName].GetComponent<SpawnPoint>().InitializePoint(_availablePools, spawnPoint.pointName,spawnPoint.spawnRate,spawnPoint.pattern);
-
-                _enemyWave += spawnPoint.pattern.Length;
             }
         }
 

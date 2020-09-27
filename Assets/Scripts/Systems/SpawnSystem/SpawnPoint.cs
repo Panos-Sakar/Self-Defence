@@ -2,14 +2,13 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Systems.SpawnSystem
+namespace SelfDef.Systems.SpawnSystem
 {
     public class SpawnPoint : MonoBehaviour
     {
 #pragma warning disable CS0649
 
         private Transform _myTransform;
-        private string _pointName;
         private float _spawnRate;
         private string[] _pattern;
         private Dictionary<string,GameObject> _pools;
@@ -27,7 +26,6 @@ namespace Systems.SpawnSystem
 
         public  void InitializePoint(Dictionary<string,GameObject> pools, string pointName, float spawnRate, string[] pattern)
         {
-            _pointName = pointName;
             _spawnRate = spawnRate;
             _pattern = pattern;
             _pools = pools;

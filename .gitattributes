@@ -1,0 +1,4 @@
+Assets/Scenes/Levels/**/Lightmap* filter=lfs diff=lfs merge=lfs -text
+Assets/Scenes/Levels/**/ReflectionProbe* filter=lfs diff=lfs merge=lfs -text
+Assets/Scenes/Levels/**/LightingData* filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text

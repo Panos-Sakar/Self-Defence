@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Systems.SpawnSystem
+namespace SelfDef.Systems.SpawnSystem
 {
     public class EnemyPool : MonoBehaviour
     {
@@ -12,7 +12,6 @@ namespace Systems.SpawnSystem
         private GameObject _enemyPrefab;
         private int _poolDepth;
         private bool _canGrow;
-        private string _enemyName;
 
         private readonly List<GameObject> _pool = new List<GameObject>();
         
@@ -44,7 +43,6 @@ namespace Systems.SpawnSystem
         public void InitializePool(GameObject enemyPrefab,string enemyName, int poolDepth, bool canGrow)
         {
             _enemyPrefab = enemyPrefab;
-            _enemyName = enemyName;
             _poolDepth = poolDepth;
             _canGrow = canGrow;
             

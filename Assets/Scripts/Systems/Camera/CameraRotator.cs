@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Systems.Camera
+namespace SelfDef.Systems.Camera
 {
     public class CameraRotator : MonoBehaviour
     {
@@ -16,13 +16,14 @@ namespace Systems.Camera
         [SerializeField] private float minFieldOfView = 25f;
         [SerializeField][Range(10,50)] private float rotateAmount = 30f;
     
-        private float _mouseValue;
+        private float _mouseValueX;
+        private float _mouseValueY;
         private int _toggleRotate;
         private bool _canRotate;
         private float _zoomLevel;
     
 #pragma warning restore CS0649
-        void Awake()
+        private void Awake()
         {
             InitializeInputSystem();
 
@@ -32,10 +33,13 @@ namespace Systems.Camera
 
         private void Update()
         {
-            if (_canRotate)
+            //TODO: Rotate the camera to specific point in each level
+            if (_canRotate && _inputActionsVar.CameraControls.RotateCameraWithMouseX.phase != InputActionPhase.Waiting)
             {
-                _myTransform.transform.Rotate(new Vector3(0, _mouseValue, 0) * (Time.deltaTime * rotateAmount));
-            }else 
+                _myTransform.transform.Rotate(
+                    new Vector3(0, (_mouseValueX + _mouseValueY), 0) * (Time.deltaTime * rotateAmount));
+            }
+
             if (_toggleRotate != 0)
             {
                 _myTransform.transform.Rotate(new Vector3(0, _toggleRotate, 0) * (Time.deltaTime * rotateAmount*2.5f));
@@ -48,21 +52,29 @@ namespace Systems.Camera
         
             _mainCamera.fieldOfView = fieldOfView;
         }
-
-        private void RotateCamera(InputAction.CallbackContext context)
+        
+        private void RotateCameraX(InputAction.CallbackContext context)
         {
-            _mouseValue = context.ReadValue<float>();
+            _mouseValueX = context.ReadValue<float>();
+            _mouseValueX = Input.mousePosition.y < Screen.height / 2f ? _mouseValueX * 1f : _mouseValueX * -1f;
+        }
+
+        private void RotateCameraY(InputAction.CallbackContext contextY)
+        {
+            _mouseValueY = contextY.ReadValue<float>();
+            _mouseValueY = Input.mousePosition.x > Screen.width / 2f ? _mouseValueY * 1f : _mouseValueY * -1f;
         }
 
         private void StartCameraRotation(InputAction.CallbackContext context)
         {
             _canRotate = true;
         }
+
         private void StopCameraRotation(InputAction.CallbackContext context)
         {
             _canRotate = false;
         }
-    
+
         private void ZoomRelativeToPlayer(InputAction.CallbackContext context)
         {
             _zoomLevel = context.ReadValue<float>();
@@ -72,6 +84,7 @@ namespace Systems.Camera
         {
             _toggleRotate = context.ReadValue<int>();
         }
+
         private void OnEnable()
         {
             _inputActionsVar.Enable();
@@ -85,7 +98,8 @@ namespace Systems.Camera
         private void InitializeInputSystem()
         {
             _inputActionsVar = new PlayerInputActions();
-            _inputActionsVar.CameraControls.RotateCameraWithMouse.performed += RotateCamera;
+            _inputActionsVar.CameraControls.RotateCameraWithMouseX.performed += RotateCameraX;
+            _inputActionsVar.CameraControls.RotateCameraWithMouseY.performed += RotateCameraY;
             _inputActionsVar.CameraControls.RotateCameraWithButtons.performed += ToggleRotate;
             _inputActionsVar.CameraControls.RotateEnable.performed += StartCameraRotation;
             _inputActionsVar.CameraControls.RotateDisable.performed += StopCameraRotation;

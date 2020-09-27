@@ -1,0 +1,751 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ColorPalette
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: dda436a9c8bbd4d109478acf25cd48d8,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.size
+    value: 45
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[0].r
+    value: 0.33333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[0].g
+    value: 0.16470589
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[0].b
+    value: 0.45098042
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[0].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[1].r
+    value: 0.69803923
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[1].g
+    value: 0.6039216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[1].b
+    value: 0.76470596
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[1].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[2].r
+    value: 0.48235297
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[2].g
+    value: 0.34509805
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[2].b
+    value: 0.5921569
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[2].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[3].r
+    value: 0.19215688
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[3].g
+    value: 0.050980397
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[3].b
+    value: 0.3019608
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[3].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[4].r
+    value: 0.09411766
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[4].g
+    value: 0.007843138
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[4].b
+    value: 0.16078432
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[4].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[5].r
+    value: 0.19215688
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[5].g
+    value: 0.23137257
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[5].b
+    value: 0.45098042
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[5].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[6].r
+    value: 0.61960787
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[6].g
+    value: 0.64705884
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[6].b
+    value: 0.77647066
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[6].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[7].r
+    value: 0.3647059
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[7].g
+    value: 0.40784317
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[7].b
+    value: 0.6039216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[7].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[8].r
+    value: 0.07450981
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[8].g
+    value: 0.10980393
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[8].b
+    value: 0.30980393
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[8].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[9].r
+    value: 0.015686275
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[9].g
+    value: 0.039215688
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[9].b
+    value: 0.16078432
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[9].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[10].r
+    value: 0.5921569
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[10].g
+    value: 0.20000002
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[10].b
+    value: 0.32156864
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[10].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[11].r
+    value: 0.9215687
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[11].g
+    value: 0.7137255
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[11].b
+    value: 0.77647066
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[11].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[12].r
+    value: 0.7843138
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[12].g
+    value: 0.43137258
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[12].b
+    value: 0.54901963
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[12].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[13].r
+    value: 0.4039216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[13].g
+    value: 0.04705883
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[13].b
+    value: 0.16078432
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[13].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[14].r
+    value: 0.20784315
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[14].g
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[14].b
+    value: 0.0627451
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[14].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[15].r
+    value: 0.6666667
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[15].g
+    value: 0.654902
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[15].b
+    value: 0.22352943
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[15].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[16].r
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[16].g
+    value: 0.9921569
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[16].b
+    value: 0.77647066
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[16].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[17].r
+    value: 0.87843144
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[17].g
+    value: 0.8705883
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[17].b
+    value: 0.48235297
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[17].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[18].r
+    value: 0.45098042
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[18].g
+    value: 0.43529415
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[18].b
+    value: 0.050980397
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[18].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[19].r
+    value: 0.2392157
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[19].g
+    value: 0.23137257
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[19].b
+    value: 0.007843138
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[19].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[20].r
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[20].g
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[20].b
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[20].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[21].r
+    value: 0.75
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[21].g
+    value: 0.75
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[21].b
+    value: 0.75
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[21].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[22].r
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[22].g
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[22].b
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[22].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[23].r
+    value: 0.25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[23].g
+    value: 0.25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[23].b
+    value: 0.25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[23].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[24].r
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[24].g
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[24].b
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[24].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[25].r
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[25].g
+    value: 0.6431373
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[25].b
+    value: 0.49803925
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[25].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[26].r
+    value: 0.9803922
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[26].g
+    value: 0.49803925
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[26].b
+    value: 0.32156864
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[26].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[27].r
+    value: 0.69803923
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[27].g
+    value: 0.21568629
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[27].b
+    value: 0.43921572
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[27].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[28].r
+    value: 0.43137258
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[28].g
+    value: 0.12941177
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[28].b
+    value: 0.30980393
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[28].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[29].r
+    value: 0.14509805
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[29].g
+    value: 0.80392164
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[29].b
+    value: 0.9686275
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[29].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[30].r
+    value: 0.10588236
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[30].g
+    value: 0.6156863
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[30].b
+    value: 0.9921569
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[30].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[31].r
+    value: 0.23529413
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[31].g
+    value: 0.23137257
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[31].b
+    value: 0.6039216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[31].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[32].r
+    value: 0.09411766
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[32].g
+    value: 0.17254902
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[32].b
+    value: 0.38823533
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[32].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[33].r
+    value: 0.9215687
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[33].g
+    value: 0.7137255
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[33].b
+    value: 0.25882354
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[33].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[34].r
+    value: 0.9686275
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[34].g
+    value: 0.9333334
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[34].b
+    value: 0.73333335
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[34].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[35].r
+    value: 0.9921569
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[35].g
+    value: 0.44705886
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[35].b
+    value: 0.45098042
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[35].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[36].r
+    value: 0.9921569
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[36].g
+    value: 0.25882354
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[36].b
+    value: 0.48235297
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[36].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[37].r
+    value: 0.32156864
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[37].g
+    value: 0.9058824
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[37].b
+    value: 0.7411765
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[37].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[38].r
+    value: 0.34509805
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[38].g
+    value: 0.6901961
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[38].b
+    value: 0.62352943
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[38].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[39].r
+    value: 0.6039216
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[39].g
+    value: 0.92549026
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[39].b
+    value: 0.86274517
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[39].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[40].r
+    value: 0.7411765
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[40].g
+    value: 0.77647066
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[40].b
+    value: 0.5058824
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[40].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[41].r
+    value: 0.7960785
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[41].g
+    value: 0.82745105
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[41].b
+    value: 0.7843138
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[41].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[42].r
+    value: 0.17254902
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[42].g
+    value: 0.23137257
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[42].b
+    value: 0.2784314
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[42].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[43].r
+    value: 0.83921576
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[43].g
+    value: 0.63529414
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[43].b
+    value: 0.9058824
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[43].a
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[44].r
+    value: 0.5058824
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[44].g
+    value: 0.34901962
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[44].b
+    value: 0.62352943
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_Colors.Array.data[44].a
+    value: 1
+    objectReference: {fileID: 0}

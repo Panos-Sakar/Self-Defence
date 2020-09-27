@@ -53,7 +53,8 @@ MonoBehaviour:
   maxDistance: 0
   expireIn: 0
   changeLevel: 1
-  toggleMasterVolume: 0
+  toggleVolume: 1
+  giveUpgrade: 1
 --- !u!114 &7791773924494857050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myProperties: {fileID: 7195188046791526714}
+  playerVariable: {fileID: 11400000, guid: c2aed736095095543a14907035d809d7, type: 2}
   canPassThruEnemy: 0
   startsFromPlayer: 1
   hasStartEffect: 0

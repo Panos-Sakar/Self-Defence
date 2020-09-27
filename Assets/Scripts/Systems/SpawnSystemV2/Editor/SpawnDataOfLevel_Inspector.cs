@@ -9,7 +9,7 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         [OnOpenAsset]
         public static bool OpenEditor(int instanceId, int line)
         {
-            var obj = EditorUtility.InstanceIDToObject(instanceId) as SpawnDataOfLevel;
+            var obj = EditorUtility.InstanceIDToObject(instanceId) as LevelSpawnData;
 
             if (obj != null)
             {
@@ -20,19 +20,17 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
         }
     }
     
-
     // ReSharper disable once InconsistentNaming
-    [CustomEditor(typeof(SpawnDataOfLevel))]
+    [CustomEditor(typeof(LevelSpawnData))]
     public class SpawnDataOfLevel_Inspector : UnityEditor.Editor
     {
 
         [SerializeField] private bool showInspector;
         public override void OnInspectorGUI()
         {
-            
             if (GUILayout.Button("Open Editor"))
             {
-                SpawnDataOfLevel_InspectorWindow.Open((SpawnDataOfLevel)target);
+                SpawnDataOfLevel_InspectorWindow.Open((LevelSpawnData)target);
             }
             if (GUILayout.Button("Toggle Default Inspector"))
             {
@@ -44,7 +42,5 @@ namespace SelfDef.Systems.SpawnSystemV2.Editor
                 base.OnInspectorGUI();
             }
         }
-
-
     }
 }

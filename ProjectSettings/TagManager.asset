@@ -10,6 +10,9 @@ TagManager:
   - UIDebug
   - Enemy
   - Projectile
+  - ChangeCube
+  - InfoCube
+  - DestroyOnEditMode
   layers:
   - Default
   - TransparentFX
@@ -28,7 +31,7 @@ TagManager:
   - Systems
   - Lights
   - Enemys
-  - 
+  - NavMeshSurface
   - 
   - 
   - 

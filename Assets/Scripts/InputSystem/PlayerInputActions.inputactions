@@ -117,7 +117,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RotateCameraWithMouse",
+                    "name": "RotateCameraWithMouseX",
                     "type": "Value",
                     "id": "6cbb5035-4ae4-4a0a-9554-7b1aeeec72be",
                     "expectedControlType": "Axis",
@@ -129,6 +129,14 @@
                     "type": "Value",
                     "id": "e4c84ede-d756-448a-9af2-3335d1b91fef",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "RotateCameraWithMouseY",
+                    "type": "Value",
+                    "id": "23c6fdc3-c3b8-47bd-84f3-faeda54af7c3",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
                 }
@@ -152,7 +160,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardAndMouse",
-                    "action": "RotateCameraWithMouse",
+                    "action": "RotateCameraWithMouseX",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -276,6 +284,17 @@
                     "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a47ef9ae-f016-4bc4-ab78-56a7bddbb836",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "RotateCameraWithMouseY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

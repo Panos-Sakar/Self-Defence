@@ -1,5 +1,4 @@
-﻿using PlayerScripts;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SelfDef.PlayerScripts
 {
@@ -18,19 +17,6 @@ namespace SelfDef.PlayerScripts
 
             explodeOnImpact = false;
             ultimate = false;
-        }
-
-        [ContextMenu("ActivateExplodeOnImpact")]
-        public void ActivateExplodeOnImpact(int cost)
-        {
-            explodeOnImpact = true;
-            PlayerLogicScript.Instance.money -= cost;
-        }
-    
-        public void ActivateUltimate(int cost)
-        {
-            ultimate = true;
-            PlayerLogicScript.Instance.money -= cost;
         }
     }
 }

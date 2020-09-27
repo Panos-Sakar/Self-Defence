@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using SelfDef.PlayerScripts;
+using UnityEngine;
 
-namespace Systems.FireProjectile
+namespace SelfDef.Systems.FireProjectile
 {
     public class RotateToMouse : MonoBehaviour
     {
@@ -10,6 +11,11 @@ namespace Systems.FireProjectile
         private Ray _rayMouse;
         private RaycastHit _hit;
         private Vector3 _correctedPos;
+        [SerializeField]
+        private ShowTooltip tooltipHandler;
+
+        private bool _lock;
+        private int _activeObjId;
         
         private Quaternion _rotation;
 
@@ -19,6 +25,8 @@ namespace Systems.FireProjectile
 #pragma warning restore CS0649
         private void Awake()
         {
+            _activeObjId = 0;
+            _lock = false;
             _mainCamera = UnityEngine.Camera.main;
         }
         
@@ -29,6 +37,29 @@ namespace Systems.FireProjectile
 
             if (Physics.Raycast(_rayMouse.origin, _rayMouse.direction, out _hit, hitLayerMasks))
             {
+                if (_hit.transform.CompareTag("ChangeCube") || _hit.transform.CompareTag("InfoCube"))
+                {
+                    if (!_lock)
+                    {
+                        tooltipHandler.EnableTooltip(_hit.transform);
+                        _lock = true;
+                        _activeObjId = _hit.transform.GetInstanceID();
+                    }
+                }
+                else
+                {
+                    if (_lock)
+                    {
+                        _lock = false;
+                        tooltipHandler.DisableTooltip();
+                    }
+                }
+
+                if (_activeObjId != _hit.transform.GetInstanceID())
+                {
+                    _lock = false;
+                }
+
                 _correctedPos = _hit.point - new Vector3(0, 1.95f, 0);
                 RotateToMouseDirection(gameObject,_correctedPos);
             }

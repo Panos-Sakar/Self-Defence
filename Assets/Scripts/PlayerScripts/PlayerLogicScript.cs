@@ -1,20 +1,22 @@
-﻿using Systems.FireProjectile;
-using Systems.UI;
-using SelfDef.PlayerScripts;
+﻿using SelfDef.Systems.FireProjectile;
+using SelfDef.Systems.UI;
+using SelfDef.Variables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
-namespace PlayerScripts
+namespace SelfDef.PlayerScripts
 {
     public class PlayerLogicScript : MonoBehaviour
     {
 #pragma warning disable CS0649
         public static PlayerLogicScript Instance { get; private  set; }
-        
-        [Header("References")]
+
+        [Header("References")] 
+        [SerializeField] private PlayerVariables playerVariable;
+        [SerializeField] private PersistentVariables persistentVariable;
         [SerializeField] private PlayerInput playerInputVar;
         [SerializeField] private SpawnProjectiles projectileSystem;
         [SerializeField] private GameObject headInnerTransform;
@@ -23,17 +25,22 @@ namespace PlayerScripts
         private PlayerInputActions _inputActionsVar;
     
         [Header("Player Attributes")]
-        [SerializeField] private float headRotationSpeed;
-        [SerializeField] private float maxLife = 10;
+        [SerializeField] 
+        private float headRotationSpeed;
+        
+        [SerializeField] 
+        private float maxLife = 10;
         private float _life;
     
-        [SerializeField] private float maxStamina = 10;
+        [SerializeField] 
+        private float maxStamina = 10;
         private float _stamina;
 
-        public int money;
-    
-        [SerializeField] private float staminaRegenPeriod;
-        [SerializeField] private float fireRate = 0.5f;
+        [SerializeField] 
+        private float staminaRegen;
+        [SerializeField] 
+        private float fireRate = 0.5f;
+        
         private float _timeToFire;
     
         private Transform _myTransform;
@@ -43,6 +50,10 @@ namespace PlayerScripts
         private TextMeshProUGUI _moneyRef;
         private TextMeshProUGUI _titleRef;
         private const string Padding = "    ";
+        
+        //Events 
+        public delegate void PlayerEventHandler();
+        public event PlayerEventHandler PlayerFiredProjectile;
         
 #pragma warning restore CS0649
 
@@ -57,17 +68,14 @@ namespace PlayerScripts
         private void Start()
         {
             GetUiRefs();
-            
-            InvokeRepeating(nameof(IncreaseStamina),0,staminaRegenPeriod );
 
             InitializeValues();
-        
         }
         
         private void Update()
         {
             RotatePlayerHead();
-        
+            IncreaseStamina();
             if (_life <=0)
             {
                 KillPlayer();
@@ -75,16 +83,6 @@ namespace PlayerScripts
             else
             {
                 UpdatePlayerStats();
-            }
-
-            if (money > 10 && !PlayerUpgrades.Instance.explodeOnImpact)
-            {
-                _uiInstance.ActivateButton("ImpactExplosion");
-            }
-        
-            if (money > 20 && !PlayerUpgrades.Instance.ultimate)
-            {
-                _uiInstance.ActivateButton("Ultimate");
             }
 
             _timeToFire -= Time.deltaTime;
@@ -100,7 +98,7 @@ namespace PlayerScripts
         {
             _healthRef.value = _life;
             _staminaRef.value = _stamina;
-            _moneyRef.text = Padding + money;
+            _moneyRef.text = Padding + playerVariable.money;
 #if UNITY_EDITOR
             _uiInstance.PrintToDebug(0,"Life: " + _life + " Stamina: " + _stamina);
 #endif
@@ -110,12 +108,12 @@ namespace PlayerScripts
         {
             _life = 0;
             _stamina = 0;
-            money = 0;
+            playerVariable.money = 0;
 
             _healthRef.value = _life;
             _staminaRef.value = _stamina;
             _titleRef.text = Padding + "CPhage is DEAD :(";
-            _moneyRef.text = Padding + money;
+            _moneyRef.text = Padding + playerVariable.money;
         }
 
         private void GetUiRefs()
@@ -146,25 +144,26 @@ namespace PlayerScripts
             // Title Init -----------------------------------------------------
             _titleRef.text = Padding + "Defend the CPhage!";
 
-            // Money Init -----------------------------------------------------
-            _moneyRef.text = Padding + money;
+            // playerVariable.money Init -----------------------------------------------------
+            _moneyRef.text = Padding + playerVariable.money;
         }
 
         private  void IncreaseStamina()
         {
-            _stamina += 1;
+            if(!persistentVariable.loading) _stamina += Time.deltaTime*staminaRegen;
         
             if (_stamina > maxStamina) _stamina = maxStamina; 
         }
 
         public void GiveMoney(int amount)
         {
-            money += amount;
+            playerVariable.money += amount;
         }
     
         public void TakeMoney(int amount)
         {
-            money -= amount;
+            if(playerVariable.money<amount) return;
+            playerVariable.money -= amount;
         }
 
         public void GiveLife(int amount)
@@ -181,7 +180,7 @@ namespace PlayerScripts
     
         public void GiveStamina(int amount)
         {
-        
+            if (amount <= 0) return;
             _stamina += amount;
         }
     
@@ -218,20 +217,22 @@ namespace PlayerScripts
         
         private void FireProjectile(InputAction.CallbackContext context)
         {
+            PlayerFiredProjectile?.Invoke();
+            
             if (PlayerCanFire())
             {
                 projectileSystem.SpawnFireEffect();
-                _stamina -= 1;
+                if(!persistentVariable.loading) _stamina -= 1;
             }
         }
         
         private void SpecialAction(InputAction.CallbackContext context)
         {
-            if (PlayerCanFire() && PlayerUpgrades.Instance.ultimate)
+            if (PlayerCanFire() && playerVariable.playerAbilities[PlayerVariables.PlayerAbilities.StarUltimate])
             {
                 
                 projectileSystem.SpawnUltimateEffect(_myTransform);
-                _stamina -= 5;
+                if(!persistentVariable.loading) _stamina -= 5;
             }
         }
 
