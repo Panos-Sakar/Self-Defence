@@ -9,7 +9,7 @@ You play as an immovable [CPhage](https://en.wikipedia.org/wiki/Bacteriophage) t
 * Simply use the mouse to target and left click to fire a projectile that damages other shapes.
 
 <p align="center">
-  <img width=33% src="https://github.com/Panos-Sakar/Self-Defence/blob/master/.github/img/next-level.png">
-  <img width=33% src="https://github.com/Panos-Sakar/Self-Defence/blob/master/.github/img/level-1-1.png">
-  <img width=33% src="https://github.com/Panos-Sakar/Self-Defence/blob/master/.github/img/level-3.png">
+  <img width=30% src="https://raw.githubusercontent.com/Panos-Sakar/Self-Defence/master/.github/img/next-level.png">
+  <img width=30% src="https://raw.githubusercontent.com/Panos-Sakar/Self-Defence/master/.github/img/level-1-1.png">
+  <img width=30% src="https://raw.githubusercontent.com/Panos-Sakar/Self-Defence/master/.github/img/level-3.png">
 </p>
