@@ -113,3 +113,7 @@ Corridor/Library/metadata/
 #Assets/Scenes/Levels/**/Lightmap*
 #Assets/Scenes/Levels/**/ReflectionProbe*
 #Assets/Scenes/Levels/**/LightingData*
+
+#Specific Includes
+!/Build_HTML5/*
+!/Build_Win?*
