@@ -117,4 +117,4 @@ Corridor/Library/metadata/
 #Specific Includes
 !/Build_HTML5/*
 !/Build_Win/*
-!/docs/Build/*
+!/docs/Build
